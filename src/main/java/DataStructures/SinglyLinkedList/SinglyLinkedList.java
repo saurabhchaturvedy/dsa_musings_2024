@@ -181,6 +181,30 @@ public class SinglyLinkedList {
         return false;
     }
 
+
+    public ListNode reverse() {
+
+        if (head == null) {
+            return null;
+        }
+
+        ListNode current = head;
+        ListNode previous = null;
+        ListNode next = null;
+
+
+        while (current != null) {
+
+            next = current.next;
+            current.next = previous;
+            previous = current;
+            current = next;
+        }
+
+
+        return previous;
+    }
+
     public static void main(String[] args) {
 
 
@@ -229,5 +253,14 @@ public class SinglyLinkedList {
         boolean search = singlyLinkedList.search(30);
 
         System.out.println(" Element found ? " + search);
+
+
+        ListNode reverse = singlyLinkedList.reverse();
+
+        singlyLinkedList.head = reverse;
+
+        singlyLinkedList.print();
+
+
     }
 }
