@@ -208,8 +208,7 @@ public class SinglyLinkedList {
 
     public ListNode getMiddleNode() {
 
-        if(head==null)
-        {
+        if (head == null) {
             return null;
         }
 
@@ -223,6 +222,29 @@ public class SinglyLinkedList {
         }
 
         return slowPtr;
+    }
+
+
+    public ListNode getNthNodeFromEnd(int n) {
+
+        ListNode mainPtr = head;
+        ListNode refPtr = head;
+
+        int count = 0;
+
+        while (count < n) {
+
+            refPtr = refPtr.next;
+            count++;
+        }
+
+        while (refPtr != null) {
+
+            refPtr = refPtr.next;
+            mainPtr = mainPtr.next;
+        }
+
+        return mainPtr;
     }
 
     public static void main(String[] args) {
@@ -284,7 +306,12 @@ public class SinglyLinkedList {
 
         ListNode middleNode = singlyLinkedList.getMiddleNode();
 
-        System.out.println(" middle node is "+middleNode.data);
+        System.out.println(" middle node is " + middleNode.data);
+
+
+        ListNode nthNodeFromEnd = singlyLinkedList.getNthNodeFromEnd(2);
+
+        System.out.println(" Nth node from the end " + nthNodeFromEnd.data);
 
 
     }
