@@ -306,6 +306,7 @@ public class SinglyLinkedList {
 
         if (head.data == key) {
             head = head.next;
+            return;
         }
 
 
