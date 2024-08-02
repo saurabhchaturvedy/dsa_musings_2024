@@ -322,49 +322,50 @@ public class SinglyLinkedList {
         previous.next = current.next;
     }
 
+
+    public boolean hasLoop() {
+
+        ListNode fastPtr = head;
+        ListNode slowPtr = head;
+
+
+        while (fastPtr != null && fastPtr.next != null) {
+
+            fastPtr = fastPtr.next.next;
+            slowPtr = slowPtr.next;
+
+            if (fastPtr == slowPtr) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public static void main(String[] args) {
 
 
         SinglyLinkedList singlyLinkedList = new SinglyLinkedList();
 
-        singlyLinkedList.head = new ListNode(10);
-        ListNode second = new ListNode(20);
-        ListNode third = new ListNode(30);
-        ListNode fourth = new ListNode(40);
+        singlyLinkedList.head = new ListNode(1);
+        ListNode second = new ListNode(2);
+        ListNode third = new ListNode(3);
+        ListNode fourth = new ListNode(4);
+        ListNode fifth = new ListNode(5);
+        ListNode six = new ListNode(6);
 
 
         singlyLinkedList.head.next = second;
         second.next = third;
         third.next = fourth;
+        fourth.next = fifth;
+        fifth.next = six;
+        six.next = third;
 
-        singlyLinkedList.print();
+       // singlyLinkedList.print();
 
         System.out.println(" size of the linked list is : " + singlyLinkedList.length());
 
-        //   singlyLinkedList.addFirst(10);
-
-        singlyLinkedList.print();
-
-        //   singlyLinkedList.addLast(40);
-
-        singlyLinkedList.print();
-
-        //    singlyLinkedList.addAtPosition(40, 4);
-        //    singlyLinkedList.addAtPosition(10, 1);
-
-        singlyLinkedList.print();
-
-        //   singlyLinkedList.deleteFirst();
-
-        singlyLinkedList.print();
-
-        //   singlyLinkedList.deleteLast();
-
-        singlyLinkedList.print();
-
-        //    singlyLinkedList.deleteNodeAtPosition(3);
-
-        singlyLinkedList.print();
 
 
         boolean search = singlyLinkedList.search(30);
@@ -376,7 +377,7 @@ public class SinglyLinkedList {
 
         //    singlyLinkedList.head = reverse;
 
-        singlyLinkedList.print();
+     //   singlyLinkedList.print();
 
 
         ListNode middleNode = singlyLinkedList.getMiddleNode();
@@ -389,21 +390,25 @@ public class SinglyLinkedList {
         System.out.println(" Nth node from the end " + nthNodeFromEnd.data);
 
 
-        singlyLinkedList.print();
+     //   singlyLinkedList.print();
 
         singlyLinkedList.removeDuplicatesFromSortedList();
 
-        singlyLinkedList.print();
+     //   singlyLinkedList.print();
 
         ListNode listNode = singlyLinkedList.insertNodeInASortedList(50);
 
         singlyLinkedList.head = listNode;
 
-        singlyLinkedList.print();
+     //   singlyLinkedList.print();
 
 
-        singlyLinkedList.deleteKey(40);
+        // singlyLinkedList.deleteKey(40);
 
-        singlyLinkedList.print();
+       singlyLinkedList.print();
+
+        boolean hasLoop = singlyLinkedList.hasLoop();
+
+        System.out.println(" linked list has loop ? " + hasLoop);
     }
 }
