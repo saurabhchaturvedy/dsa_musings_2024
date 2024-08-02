@@ -227,8 +227,7 @@ public class SinglyLinkedList {
 
     public ListNode getNthNodeFromEnd(int n) {
 
-        if(head==null)
-        {
+        if (head == null) {
             return null;
         }
 
@@ -252,13 +251,34 @@ public class SinglyLinkedList {
         return mainPtr;
     }
 
+
+    public void removeDuplicatesFromSortedList() {
+
+        if (head == null) {
+            return;
+        }
+
+
+        ListNode current = head;
+
+        while (current != null && current.next != null) {
+
+            if (current.data == current.next.data) {
+
+                current.next = current.next.next;
+            }
+
+            current = current.next;
+        }
+    }
+
     public static void main(String[] args) {
 
 
         SinglyLinkedList singlyLinkedList = new SinglyLinkedList();
 
         singlyLinkedList.head = new ListNode(10);
-        ListNode second = new ListNode(20);
+        ListNode second = new ListNode(10);
         ListNode third = new ListNode(30);
         ListNode fourth = new ListNode(40);
 
@@ -271,11 +291,11 @@ public class SinglyLinkedList {
 
         System.out.println(" size of the linked list is : " + singlyLinkedList.length());
 
-        singlyLinkedList.addFirst(60);
+        singlyLinkedList.addFirst(10);
 
         singlyLinkedList.print();
 
-        singlyLinkedList.addLast(80);
+        singlyLinkedList.addLast(40);
 
         singlyLinkedList.print();
 
@@ -319,5 +339,10 @@ public class SinglyLinkedList {
         System.out.println(" Nth node from the end " + nthNodeFromEnd.data);
 
 
+        singlyLinkedList.print();
+
+        singlyLinkedList.removeDuplicatesFromSortedList();
+
+        singlyLinkedList.print();
     }
 }
