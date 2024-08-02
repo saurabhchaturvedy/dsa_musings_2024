@@ -147,7 +147,7 @@ public class SinglyLinkedList {
 
         int count = 0;
 
-        while (count < pos-2) {
+        while (count < pos - 2) {
             count++;
             previous = previous.next;
 
@@ -158,6 +158,27 @@ public class SinglyLinkedList {
         previous.next = current.next;
         current.next = null;
 
+    }
+
+
+    public boolean search(int key) {
+
+        if (head == null) {
+            return false;
+        }
+
+        ListNode current = head;
+
+        while (current != null) {
+
+            if (current.data == key) {
+                return true;
+            }
+
+            current = current.next;
+        }
+
+        return false;
     }
 
     public static void main(String[] args) {
@@ -203,5 +224,10 @@ public class SinglyLinkedList {
         singlyLinkedList.deleteNodeAtPosition(3);
 
         singlyLinkedList.print();
+
+
+        boolean search = singlyLinkedList.search(30);
+
+        System.out.println(" Element found ? " + search);
     }
 }
