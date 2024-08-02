@@ -272,13 +272,39 @@ public class SinglyLinkedList {
         }
     }
 
+
+    public ListNode insertNodeInASortedList(int data) {
+
+        ListNode newNode = new ListNode(data);
+
+        if (head == null) {
+            return new ListNode(data);
+        }
+
+
+        ListNode current = head;
+        ListNode previous = null;
+
+
+        while (current != null && current.data < newNode.data) {
+
+            previous = current;
+            current = current.next;
+        }
+
+
+        newNode.next = current;
+        previous.next = newNode;
+        return head;
+    }
+
     public static void main(String[] args) {
 
 
         SinglyLinkedList singlyLinkedList = new SinglyLinkedList();
 
         singlyLinkedList.head = new ListNode(10);
-        ListNode second = new ListNode(10);
+        ListNode second = new ListNode(20);
         ListNode third = new ListNode(30);
         ListNode fourth = new ListNode(40);
 
@@ -291,28 +317,28 @@ public class SinglyLinkedList {
 
         System.out.println(" size of the linked list is : " + singlyLinkedList.length());
 
-        singlyLinkedList.addFirst(10);
+     //   singlyLinkedList.addFirst(10);
 
         singlyLinkedList.print();
 
-        singlyLinkedList.addLast(40);
+     //   singlyLinkedList.addLast(40);
 
         singlyLinkedList.print();
 
-        singlyLinkedList.addAtPosition(45, 4);
-        singlyLinkedList.addAtPosition(66, 1);
+    //    singlyLinkedList.addAtPosition(40, 4);
+    //    singlyLinkedList.addAtPosition(10, 1);
 
         singlyLinkedList.print();
 
-        singlyLinkedList.deleteFirst();
+     //   singlyLinkedList.deleteFirst();
 
         singlyLinkedList.print();
 
-        singlyLinkedList.deleteLast();
+     //   singlyLinkedList.deleteLast();
 
         singlyLinkedList.print();
 
-        singlyLinkedList.deleteNodeAtPosition(3);
+    //    singlyLinkedList.deleteNodeAtPosition(3);
 
         singlyLinkedList.print();
 
@@ -322,9 +348,9 @@ public class SinglyLinkedList {
         System.out.println(" Element found ? " + search);
 
 
-        ListNode reverse = singlyLinkedList.reverse();
+    //    ListNode reverse = singlyLinkedList.reverse();
 
-        singlyLinkedList.head = reverse;
+    //    singlyLinkedList.head = reverse;
 
         singlyLinkedList.print();
 
@@ -342,6 +368,12 @@ public class SinglyLinkedList {
         singlyLinkedList.print();
 
         singlyLinkedList.removeDuplicatesFromSortedList();
+
+        singlyLinkedList.print();
+
+        ListNode listNode = singlyLinkedList.insertNodeInASortedList(50);
+
+        singlyLinkedList.head = listNode;
 
         singlyLinkedList.print();
     }
