@@ -298,6 +298,29 @@ public class SinglyLinkedList {
         return head;
     }
 
+
+    public void deleteKey(int key) {
+
+        ListNode current = head;
+        ListNode previous = null;
+
+        if (head.data == key) {
+            head = head.next;
+        }
+
+
+        while (current != null && current.data != key) {
+
+            previous = current;
+            current = current.next;
+        }
+
+
+        if (current == null) return;
+
+        previous.next = current.next;
+    }
+
     public static void main(String[] args) {
 
 
@@ -317,28 +340,28 @@ public class SinglyLinkedList {
 
         System.out.println(" size of the linked list is : " + singlyLinkedList.length());
 
-     //   singlyLinkedList.addFirst(10);
+        //   singlyLinkedList.addFirst(10);
 
         singlyLinkedList.print();
 
-     //   singlyLinkedList.addLast(40);
+        //   singlyLinkedList.addLast(40);
 
         singlyLinkedList.print();
 
-    //    singlyLinkedList.addAtPosition(40, 4);
-    //    singlyLinkedList.addAtPosition(10, 1);
+        //    singlyLinkedList.addAtPosition(40, 4);
+        //    singlyLinkedList.addAtPosition(10, 1);
 
         singlyLinkedList.print();
 
-     //   singlyLinkedList.deleteFirst();
+        //   singlyLinkedList.deleteFirst();
 
         singlyLinkedList.print();
 
-     //   singlyLinkedList.deleteLast();
+        //   singlyLinkedList.deleteLast();
 
         singlyLinkedList.print();
 
-    //    singlyLinkedList.deleteNodeAtPosition(3);
+        //    singlyLinkedList.deleteNodeAtPosition(3);
 
         singlyLinkedList.print();
 
@@ -348,9 +371,9 @@ public class SinglyLinkedList {
         System.out.println(" Element found ? " + search);
 
 
-    //    ListNode reverse = singlyLinkedList.reverse();
+        //    ListNode reverse = singlyLinkedList.reverse();
 
-    //    singlyLinkedList.head = reverse;
+        //    singlyLinkedList.head = reverse;
 
         singlyLinkedList.print();
 
@@ -374,6 +397,11 @@ public class SinglyLinkedList {
         ListNode listNode = singlyLinkedList.insertNodeInASortedList(50);
 
         singlyLinkedList.head = listNode;
+
+        singlyLinkedList.print();
+
+
+        singlyLinkedList.deleteKey(40);
 
         singlyLinkedList.print();
     }
