@@ -131,6 +131,35 @@ public class SinglyLinkedList {
         return current;
     }
 
+
+    public void deleteNodeAtPosition(int pos) {
+
+
+        if (pos == 1) {
+            ListNode temp = head;
+            head = head.next;
+            temp.next = null;
+
+        }
+
+
+        ListNode previous = head;
+
+        int count = 0;
+
+        while (count < pos-2) {
+            count++;
+            previous = previous.next;
+
+        }
+
+
+        ListNode current = previous.next;
+        previous.next = current.next;
+        current.next = null;
+
+    }
+
     public static void main(String[] args) {
 
 
@@ -168,6 +197,10 @@ public class SinglyLinkedList {
         singlyLinkedList.print();
 
         singlyLinkedList.deleteLast();
+
+        singlyLinkedList.print();
+
+        singlyLinkedList.deleteNodeAtPosition(3);
 
         singlyLinkedList.print();
     }
