@@ -125,6 +125,7 @@ public class SinglyLinkedList {
         singlyLinkedList.print();
 
         singlyLinkedList.addAtPosition(45,4);
+        singlyLinkedList.addAtPosition(66,1);
 
         singlyLinkedList.print();
     }
