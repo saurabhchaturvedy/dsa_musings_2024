@@ -205,6 +205,26 @@ public class SinglyLinkedList {
         return previous;
     }
 
+
+    public ListNode getMiddleNode() {
+
+        if(head==null)
+        {
+            return null;
+        }
+
+        ListNode slowPtr = head;
+        ListNode fastPtr = head;
+
+        while (fastPtr != null && fastPtr.next != null) {
+
+            slowPtr = slowPtr.next;
+            fastPtr = fastPtr.next.next;
+        }
+
+        return slowPtr;
+    }
+
     public static void main(String[] args) {
 
 
@@ -260,6 +280,11 @@ public class SinglyLinkedList {
         singlyLinkedList.head = reverse;
 
         singlyLinkedList.print();
+
+
+        ListNode middleNode = singlyLinkedList.getMiddleNode();
+
+        System.out.println(" middle node is "+middleNode.data);
 
 
     }
