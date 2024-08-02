@@ -227,6 +227,11 @@ public class SinglyLinkedList {
 
     public ListNode getNthNodeFromEnd(int n) {
 
+        if(head==null)
+        {
+            return null;
+        }
+
         ListNode mainPtr = head;
         ListNode refPtr = head;
 
