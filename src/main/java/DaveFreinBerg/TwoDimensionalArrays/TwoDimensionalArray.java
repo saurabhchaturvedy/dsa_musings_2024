@@ -22,6 +22,33 @@ public class TwoDimensionalArray {
         return getValueIn(arr, row - 1, col) + getValueIn(arr, row, col - 1) + getValueIn(arr, row, col + 1) + getValueIn(arr, row + 1, col);
     }
 
+
+    public static boolean colContains(int[][] arr, int col, int value) {
+
+        for (int row = 0; row < arr.length; row++) {
+
+            if (arr[row][col] == value) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
+    public static int getNumColContains(int[][] arr, int value) {
+
+        int count = 0;
+
+        for (int col = 0; col < arr[0].length; col++) {
+
+            if (colContains(arr, col, value)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
     public static void main(String[] args) {
 
 
@@ -32,7 +59,10 @@ public class TwoDimensionalArray {
         System.out.println("No of columns " + g[0].length);
 
 
-        int[][] arr = {{1, 2, 3, 4}, {14, 7, 8, 11}, {23, 9, 21, 10}, {13, 18, 22, 33}};
+        int[][] arr = {{1, 2, 3, 4},
+                {14, 7, 8, 14},
+                {23, 9, 21, 10},
+                {13, 18, 22, 33}};
 
 
         System.out.println(arr[2]);
@@ -45,5 +75,11 @@ public class TwoDimensionalArray {
 
 
         System.out.println("sum around is : " + sumAround(arr, 2, 3));
+
+
+        System.out.println(" Col contains " + colContains(arr, 2, 21));
+
+
+        System.out.println("Col value count " + getNumColContains(arr, 14));
     }
 }
