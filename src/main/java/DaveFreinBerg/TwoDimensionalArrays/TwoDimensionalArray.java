@@ -49,6 +49,22 @@ public class TwoDimensionalArray {
         return count;
     }
 
+
+    public int addAll(int[][] arr) {
+
+        int sum = 0;
+
+        for (int row = 0; row < arr.length; row++) {
+
+            for (int col = 0; col < arr[0].length; col++) {
+
+                sum = sum + arr[row][col];
+            }
+        }
+
+        return sum;
+    }
+
     public static void main(String[] args) {
 
 
@@ -59,10 +75,7 @@ public class TwoDimensionalArray {
         System.out.println("No of columns " + g[0].length);
 
 
-        int[][] arr = {{1, 2, 3, 4},
-                {14, 7, 8, 14},
-                {23, 9, 21, 10},
-                {13, 18, 22, 33}};
+        int[][] arr = {{1, 2, 3, 4}, {14, 7, 8, 14}, {23, 9, 21, 10}, {13, 18, 22, 33}};
 
 
         System.out.println(arr[2]);
