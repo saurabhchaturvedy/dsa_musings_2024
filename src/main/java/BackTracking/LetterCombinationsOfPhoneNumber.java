@@ -60,12 +60,9 @@ public class LetterCombinationsOfPhoneNumber {
         LetterCombinationsOfPhoneNumber letterCombinationsOfPhoneNumber = new LetterCombinationsOfPhoneNumber();
 
 
-        List<String> ab = letterCombinationsOfPhoneNumber.letterCombinations("27");
+        List<String> ab = letterCombinationsOfPhoneNumber.letterCombinations("23");
 
-        for (String str : ab) {
-
-            System.out.print(str + " ");
-        }
+        System.out.println(ab);
 
     }
 }
