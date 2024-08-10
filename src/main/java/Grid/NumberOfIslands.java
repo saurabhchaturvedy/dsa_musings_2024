@@ -16,31 +16,34 @@ public class NumberOfIslands {
         for (int i = 0; i < grid.length; i++) {
             for (int j = 0; j < grid[i].length; j++) {
 
-                if(grid[i][j]=='1') {
-                    numOfIslands++;
-                    dfs(grid, i, j);
-                }
+
+                numOfIslands += dfs(grid, i, j);
+
             }
         }
 
         return numOfIslands;
     }
 
-    private void dfs(char[][] grid, int row, int col) {
+    private int dfs(char[][] grid, int row, int col) {
 
 
-        if (row < 0 || row >= grid.length || col < 0 || col >= grid[0].length || grid[row][col]=='0') {
-            return;
+        if (row < 0 || row >= grid.length || col < 0 || col >= grid[0].length || grid[row][col] == '0') {
+            return 0;
         }
 
 
         grid[row][col] = '0';
 
-        dfs(grid, row + 1, col);
-        dfs(grid, row, col - 1);
+
         dfs(grid, row - 1, col);
+        dfs(grid, row, col - 1);
+        dfs(grid, row + 1, col);
         dfs(grid, row, col + 1);
 
+
+
+        return 1;
 
     }
 
@@ -48,13 +51,12 @@ public class NumberOfIslands {
     public static void main(String[] args) {
 
 
+        char[][] grid = {
 
-        char[][]grid = {
-
-                {'1','1','0','0','0'},
-                {'1','1','0','1','0'},
-                {'0','0','1','0','0'},
-                {'0','0','0','1','1'}
+                {'1', '1', '0', '0', '0'},
+                {'1', '1', '0', '0', '0'},
+                {'0', '0', '1', '0', '0'},
+                {'0', '0', '0', '1', '1'}
         };
 
 
@@ -62,7 +64,7 @@ public class NumberOfIslands {
 
         int numIslands = numberOfIslands.numIslands(grid);
 
-        System.out.println(" Number of islands : "+numIslands);
+        System.out.println(" Number of islands : " + numIslands);
 
     }
 }
