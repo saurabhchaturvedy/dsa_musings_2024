@@ -72,7 +72,7 @@ public class RestoreIPAddresses {
     public static void main(String[] args) {
 
 
-        String str = "101023";
+        String str = "25525511135";
 
         RestoreIPAddresses restoreIPAddresses = new RestoreIPAddresses();
 
