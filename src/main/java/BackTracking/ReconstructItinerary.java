@@ -6,7 +6,7 @@ public class ReconstructItinerary {
 
 
     Map<String, List<String>> graph = new HashMap<>();
-    List<String> path = new ArrayList<>();
+    List<String> path = new LinkedList<>();
 
 
     public List<String> reconstructItinerary(List<List<String>> itineraries) {
