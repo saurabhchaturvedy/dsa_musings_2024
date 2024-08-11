@@ -130,9 +130,9 @@ public class NQueens {
     private List<String> prepareStringList(char[][] board) {
 
         List<String> boardPosition = new ArrayList<>();
-
+        StringBuilder sb;
         for (char[] c : board) {
-            StringBuilder sb = new StringBuilder();
+             sb = new StringBuilder();
             for (char cx : c) {
 
                 sb.append(cx);
