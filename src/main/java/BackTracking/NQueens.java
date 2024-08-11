@@ -123,7 +123,7 @@ public class NQueens {
             c--;
         }
 
-        return false;
+        return true;
 
     }
 
