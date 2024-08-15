@@ -1,4 +1,4 @@
-package CodingSimplified.Array;
+package CodingSimplified.Array.A001;
 
 public class InsertionSort {
 
