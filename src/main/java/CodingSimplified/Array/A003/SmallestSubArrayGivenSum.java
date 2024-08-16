@@ -53,7 +53,7 @@ public class SmallestSubArrayGivenSum {
 
         int arr[] = {3, 2, 5, 5, 3, 2, 10};
 
-        int sum = 10;
+        int sum = 7;
 
         int smallestSubArrayGivenSum = smallestSubArrayGivenSum(arr, sum);
 
