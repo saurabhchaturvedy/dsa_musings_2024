@@ -35,12 +35,13 @@ public class SubArrayWithGivenSum {
             if (windowSumMap.containsKey(windowDiff)) {
 
                 start = windowSumMap.get(windowDiff);
-                System.out.print(" start : " + start + " end : " + end);
+                System.out.print(" start : " + (start+1) + " end : " + end);
                 return;
 
             }
-            end++;
+
             windowSumMap.put(window_sum, end);
+            end++;
         }
     }
 
