@@ -10,6 +10,9 @@ public class FirstKMissingPositiveNumber {
 
     static List<Integer> firstKMissingPositive(int[] arr, int k) {
 
+
+        if (arr.length == 0 || k < 1) return new ArrayList<>();
+
         int i = 0;
 
         while (i < arr.length) {
@@ -33,11 +36,11 @@ public class FirstKMissingPositiveNumber {
         Set<Integer> otherNumber = new HashSet<>();
 
 
-        for (i = 0; k < arr.length && missing.size() < k; i++) {
+        for (i = 0; i < arr.length && missing.size() < k; i++) {
 
-            if (arr[k] != k + 1) {
+            if (arr[i] != i + 1) {
 
-                missing.add(k + 1);
+                missing.add(i + 1);
                 otherNumber.add(arr[i]);
             }
         }
