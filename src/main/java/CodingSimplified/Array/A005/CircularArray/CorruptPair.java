@@ -32,6 +32,7 @@ public class CorruptPair {
 
         for (i = 0; i < arr.length; i++) {
 
+
             if (arr[i] != i + 1) {
 
                 return Arrays.asList(arr[i], i + 1);
