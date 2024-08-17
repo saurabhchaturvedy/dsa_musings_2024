@@ -1,4 +1,4 @@
-package CodingSimplified.Array.A005;
+package CodingSimplified.Array.A006;
 
 import java.util.ArrayList;
 import java.util.HashSet;
