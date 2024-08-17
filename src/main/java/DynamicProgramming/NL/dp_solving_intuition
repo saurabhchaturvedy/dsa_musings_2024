@@ -2,5 +2,5 @@
 
 
 
-1. Always think of problem with a smaller/base use case first .
+1. Always think of problem with a smaller/base use case first . This will help make the recurrence relation/ base reference for the problem
 2. Need to think creatively in order to visualize the problems to translate them into Top Down or Bottom up approach
