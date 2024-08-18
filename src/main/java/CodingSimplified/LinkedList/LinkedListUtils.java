@@ -63,4 +63,16 @@ public class LinkedListUtils {
         }
         System.out.print(redColor + "NULL" + resetColor);
     }
+
+
+    public static ListNode insertAtStart(int data, ListNode node) {
+
+        if (node == null) {
+            return new ListNode(data);
+        }
+
+        ListNode newNode = new ListNode(data);
+        newNode.next = node;
+        return newNode;
+    }
 }

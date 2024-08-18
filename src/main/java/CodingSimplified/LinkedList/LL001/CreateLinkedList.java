@@ -1,4 +1,7 @@
-package CodingSimplified.LinkedList;
+package CodingSimplified.LinkedList.LL001;
+
+import CodingSimplified.LinkedList.LinkedListUtils;
+import CodingSimplified.LinkedList.ListNode;
 
 public class CreateLinkedList {
 
@@ -12,8 +15,15 @@ public class CreateLinkedList {
         root = LinkedListUtils.insert(35, root);
         root = LinkedListUtils.insertIteratively(47, root);
 
+
         LinkedListUtils.print(root);
         System.out.println();
-        LinkedListUtils.printIteratively(root);
+      //  LinkedListUtils.printIteratively(root);
+        root = LinkedListUtils.insertAtStart(80,root);
+
+        LinkedListUtils.print(root);
+
+
+
     }
 }
