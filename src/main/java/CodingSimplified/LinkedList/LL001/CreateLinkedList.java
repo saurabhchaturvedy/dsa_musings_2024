@@ -18,11 +18,15 @@ public class CreateLinkedList {
 
         LinkedListUtils.print(root);
         System.out.println();
-      //  LinkedListUtils.printIteratively(root);
-        root = LinkedListUtils.insertAtStart(80,root);
+        //  LinkedListUtils.printIteratively(root);
+        root = LinkedListUtils.insertAtStart(80, root);
 
         LinkedListUtils.print(root);
 
+
+        root = LinkedListUtils.insertAtPosition(75, 3, root);
+        System.out.println();
+        LinkedListUtils.print(root);
 
 
     }
