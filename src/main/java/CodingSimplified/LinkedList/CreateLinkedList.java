@@ -13,5 +13,7 @@ public class CreateLinkedList {
         root = LinkedListUtils.insertIteratively(47, root);
 
         LinkedListUtils.print(root);
+        System.out.println();
+        LinkedListUtils.printIteratively(root);
     }
 }

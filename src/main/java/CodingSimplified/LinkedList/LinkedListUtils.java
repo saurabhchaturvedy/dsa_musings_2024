@@ -46,4 +46,21 @@ public class LinkedListUtils {
         System.out.print(node.data + " -> ");
         print(node.next);
     }
+
+
+    public static void printIteratively(ListNode node) {
+
+        if (node == null) {
+            return;
+        }
+
+
+        ListNode current = node;
+
+        while (current != null) {
+            System.out.print(current.data + " -> ");
+            current = current.next;
+        }
+        System.out.print(redColor + "NULL" + resetColor);
+    }
 }
