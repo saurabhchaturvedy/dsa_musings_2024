@@ -55,7 +55,15 @@ public class SortList {
             dummyHead = dummyHead.next;
         }
 
-        dummyHead.next = (first == null) ? second : first;
+        if (first != null) {
+            dummyHead.next = first;
+            first = first.next;
+        }
+
+        if (second != null) {
+            dummyHead.next = second;
+            second = second.next;
+        }
         return finalList.next;
     }
 
