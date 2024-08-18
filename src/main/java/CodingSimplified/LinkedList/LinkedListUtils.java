@@ -39,6 +39,7 @@ public class LinkedListUtils {
     public static void print(ListNode node) {
         if (node == null) {
             System.out.print(redColor + "NULL" + resetColor);
+            System.out.println();
             return;
         }
 
