@@ -3,6 +3,9 @@ package CodingSimplified.LinkedList;
 public class LinkedListUtils {
 
 
+    static String redColor = "\u001B[31m";
+    static String resetColor = "\u001B[0m";
+
     public static ListNode insert(int data, ListNode node) {
 
         if (node == null) {
@@ -18,7 +21,7 @@ public class LinkedListUtils {
 
     public static void print(ListNode node) {
         if (node == null) {
-            System.out.print("Null");
+            System.out.print(redColor+"NULL"+resetColor);
             return;
         }
 
