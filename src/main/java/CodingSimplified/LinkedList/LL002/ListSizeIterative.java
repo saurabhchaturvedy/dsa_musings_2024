@@ -26,6 +26,7 @@ public class ListSizeIterative {
 
     public static void main(String[] args) {
         ListNode root = null;
+
         root= LinkedListUtils.insert(10,root);
         root=LinkedListUtils.insert(20,root);
         root=LinkedListUtils.insert(30,root);
