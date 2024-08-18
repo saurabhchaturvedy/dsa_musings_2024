@@ -3,8 +3,6 @@ package CodingSimplified.LinkedList.LL001;
 import CodingSimplified.LinkedList.LinkedListUtils;
 import CodingSimplified.LinkedList.ListNode;
 
-import java.util.LinkedList;
-
 public class DeleteFrontNode {
 
 
