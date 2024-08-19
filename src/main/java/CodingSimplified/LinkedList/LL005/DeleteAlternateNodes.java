@@ -15,13 +15,12 @@ public class DeleteAlternateNodes {
 
         ListNode current = node;
 
-        boolean flag = true;
 
-        while (current != null) {
 
-            if (flag) current.next = current.next.next;
-            flag = !flag;
-            current = current.next.next;
+        while (current != null && current.next!=null) {
+
+            current.next = current.next.next;
+            current = current.next;
         }
 
         return node;
@@ -31,11 +30,12 @@ public class DeleteAlternateNodes {
     public static void main(String[] args) {
 
         ListNode root = null;
-        root = LinkedListUtils.insert(5, root);
-        root = LinkedListUtils.insert(12, root);
-        root = LinkedListUtils.insert(13, root);
+        root = LinkedListUtils.insert(1, root);
+        root = LinkedListUtils.insert(2, root);
         root = LinkedListUtils.insert(3, root);
-        root = LinkedListUtils.insert(8, root);
+        root = LinkedListUtils.insert(4, root);
+        root = LinkedListUtils.insert(5, root);
+        root = LinkedListUtils.insert(6, root);
 
         LinkedListUtils.print(root);
 
