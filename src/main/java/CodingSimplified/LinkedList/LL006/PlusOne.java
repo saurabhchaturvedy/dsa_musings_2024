@@ -35,7 +35,7 @@ public class PlusOne {
             resultNode.next = new ListNode(1);
         }
 
-
+        LinkedListUtils.print(resultNode);
         return ReverseIterative.reverse(reversedList);
     }
 
