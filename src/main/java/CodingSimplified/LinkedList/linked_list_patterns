@@ -31,3 +31,8 @@ https://www.turing.com/kb/how-to-detect-and-remove-loop-in-linked-list
 
 
 ******** Pen and paper approach is very important in linked list problems ************
+
+
+check if linked list has even or odd number of nodes ********
+
+if a pointer jumps by 2 position each iteration and temp.next==null , then its not even number of nodes but odd
