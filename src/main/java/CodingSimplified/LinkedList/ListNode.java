@@ -7,6 +7,7 @@ public class ListNode {
    public ListNode next;
    public ListNode right; // for flattening linked list
     public ListNode random;
+    public ListNode child;
 
 
     public ListNode(int data) {
