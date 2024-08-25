@@ -36,6 +36,10 @@ public class MergedSortedListReverse {
         }
 
 
+        LinkedListUtils.print(revereList);
+        LinkedListUtils.print(node1);
+        LinkedListUtils.print(node2);
+
         ListNode temp = node1 != null ? node1 : node2;
 
         while (temp != null) {
