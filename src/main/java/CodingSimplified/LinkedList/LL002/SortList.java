@@ -76,6 +76,7 @@ public class SortList {
         root = LinkedListUtils.insert(3, root);
         root = LinkedListUtils.insert(9, root);
         root = LinkedListUtils.insert(8, root);
+        root = LinkedListUtils.insert(18, root);
 
         LinkedListUtils.print(root);
 
