@@ -50,7 +50,7 @@ public class DeleteLargestElement {
 
 
         ListNode root = null;
-        root = LinkedListUtils.insert(1, root);
+        root = LinkedListUtils.insert(31, root);
         root = LinkedListUtils.insert(2, root);
         root = LinkedListUtils.insert(13, root);
         root = LinkedListUtils.insert(4, root);
