@@ -1,4 +1,4 @@
-package CodingSimplified.String;
+package CodingSimplified.String.String001;
 
 public class PrintString {
 
