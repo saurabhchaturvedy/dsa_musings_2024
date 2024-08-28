@@ -1,4 +1,4 @@
-package CodingSimplified.String.String001;
+package CodingSimplified.String.String002;
 
 import java.util.HashMap;
 import java.util.Map;
