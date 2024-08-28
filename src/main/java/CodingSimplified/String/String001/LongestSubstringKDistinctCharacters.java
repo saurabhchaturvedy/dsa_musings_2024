@@ -51,8 +51,10 @@ public class LongestSubstringKDistinctCharacters {
 
 
         String str = "bccbababd";
+        String str2 = "eceba";
 
         System.out.println(" longest substring length with K distinct characters is = " + longestSubstringKDistinctCharacters(str, 2));
+        System.out.println(" longest substring length with K distinct characters is = " + longestSubstringKDistinctCharacters(str2, 2));
 
     }
 }
