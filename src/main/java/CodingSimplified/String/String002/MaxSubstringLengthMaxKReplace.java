@@ -6,7 +6,7 @@ import java.util.Map;
 public class MaxSubstringLengthMaxKReplace {
 
 
-    public static int maxSubtringLengthKReplace(String s, int k) {
+    public static int maxSubstringLengthKReplace(String s, int k) {
 
         if (s == null) {
             return 0;
@@ -53,6 +53,6 @@ public class MaxSubstringLengthMaxKReplace {
         String s = "bccbababd";
         int k = 2;
 
-        System.out.println("max substring length = " + maxSubtringLengthKReplace(s, k));
+        System.out.println("max substring length = " + maxSubstringLengthKReplace(s, k));
     }
 }
