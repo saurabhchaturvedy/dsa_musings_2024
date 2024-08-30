@@ -23,7 +23,7 @@ public class Board {
 
         cells[size] = new Cell(size, size, CellType.TARGET);
 
-        addSnake(new Snake(15, 75));
+        addSnake(new Snake(75, 15));
         addLadder(new Ladder(12, 56));
 
     }
