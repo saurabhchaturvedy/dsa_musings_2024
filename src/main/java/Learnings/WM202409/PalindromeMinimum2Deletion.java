@@ -46,12 +46,14 @@ public class PalindromeMinimum2Deletion {
 
                     deletions = deletions + 2;
                 }
+
+                break;
             }
 
-            break;
+
         }
 
-        return deletions <= 2;
+        return deletions == 2;
     }
 
 
