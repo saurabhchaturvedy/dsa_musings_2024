@@ -5,10 +5,14 @@ public class CustomHashMap<K, V> {
 
     Entry<K, V>[] buckets;
     int capacity;
+    int size = 0;
+
+    public static final float LOAD_FACTOR = 0.75f;
 
 
     CustomHashMap() {
 
+        this.capacity = 16;
         this.buckets = new Entry[capacity];
     }
 
@@ -22,6 +26,10 @@ public class CustomHashMap<K, V> {
 
     public void put(K key, V value) {
 
+        if ((float) size / capacity >= LOAD_FACTOR) {
+
+            resize();
+        }
 
         int hash = hash(key);
 
@@ -51,7 +59,34 @@ public class CustomHashMap<K, V> {
 
             }
         }
+        size++;
+    }
 
+    private void resize() {
+
+
+        int newCapacity = 2 * capacity;
+
+        Entry<K, V>[] newBuckets = new Entry[newCapacity];
+
+        for (int i = 0; i < capacity; i++) {
+
+            Entry<K, V> entry = buckets[i];
+
+            while (entry != null) {
+
+                Entry<K, V> next = entry.next;
+
+                int hash = Math.abs(entry.key.hashCode()) % newCapacity;
+
+                entry.next = newBuckets[hash];
+                newBuckets[hash] = entry;
+                entry = next;
+            }
+        }
+
+        capacity = newCapacity;
+        buckets = newBuckets;
     }
 
 
@@ -125,7 +160,7 @@ public class CustomHashMap<K, V> {
     public static void main(String[] args) {
 
 
-        CustomHashMap customHashMap = new CustomHashMap(10);
+        CustomHashMap customHashMap = new CustomHashMap();
 
 
         customHashMap.put("A", 100);
