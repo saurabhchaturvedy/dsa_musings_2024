@@ -92,9 +92,9 @@ public class CustomHashMap<K, V> {
                 buckets[hash] = prev;
             }
 
-
             prev = temp;
             temp = temp.next;
+
         }
     }
 
