@@ -14,7 +14,9 @@ public class Ticket {
 
     public static Ticket getTicket(Vehicle vehicle, ParkingSlot parkingSlot) {
 
-        return new Builder(vehicle, parkingSlot).setEntryTime(System.currentTimeMillis()).setId(vehicle.getRegistrationNumber() + System.currentTimeMillis()).build();
+        String id = vehicle.getRegistrationNumber() + System.currentTimeMillis();
+        System.out.println(" Ticket ID : " + id);
+        return new Builder(vehicle, parkingSlot).setEntryTime(System.currentTimeMillis()).setId(id).build();
     }
 
 

@@ -45,20 +45,13 @@ public class ParkingFloor {
     public ParkingSlotType getParkingSlotType(VehicleType vehicleType) {
 
 
-        switch (vehicleType.name()) {
+        return switch (vehicleType.name()) {
+            case "SCOOTY" -> ParkingSlotType.SMALL;
+            case "BIKE" -> ParkingSlotType.COMPACT;
+            case "CAR" -> ParkingSlotType.MEDIUM;
+            case "PICKUP_TRUCK", "MINI_BUS", "TRUCK" -> ParkingSlotType.LARGE;
+            default -> null;
+        };
 
-            case "SCOOTY":
-                return ParkingSlotType.SMALL;
-            case "BIKE":
-                return ParkingSlotType.COMPACT;
-            case "CAR":
-                return ParkingSlotType.MEDIUM;
-            case "PICKUP_TRUCK":
-            case "MINI_BUS":
-            case "TRUCK":
-                return ParkingSlotType.LARGE;
-        }
-
-        return null;
     }
 }

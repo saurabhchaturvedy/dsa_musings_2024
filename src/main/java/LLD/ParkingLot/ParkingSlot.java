@@ -4,7 +4,7 @@ public class ParkingSlot {
 
 
     String name;
-    boolean isAvailable;
+    boolean isAvailable=true;
 
     Vehicle vehicle;
     ParkingSlotType parkingSlotType;
