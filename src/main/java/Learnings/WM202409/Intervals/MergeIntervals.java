@@ -59,7 +59,6 @@ public class MergeIntervals {
 
             }
             System.out.print("]");
-            // System.out.println();
         }
 
     }
