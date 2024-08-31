@@ -1,4 +1,4 @@
-package LLD.RateLimiter;
+package LLD.RateLimiter.TokenBucket;
 
 public class TokenBucketTest {
 
