@@ -1,7 +1,6 @@
 package Learnings.WM202409.Intervals;
 
-import java.util.Arrays;
-import java.util.Stack;
+import java.util.*;
 
 public class MergeIntervals {
 
@@ -9,32 +8,36 @@ public class MergeIntervals {
     public static int[][] merge(int[][] intervals) {
 
 
-        Arrays.sort(intervals, (a, b) -> a[0] - b[0]);
+        if (intervals.length <= 1) {
 
-
-        Stack<int[]> stack = new Stack<>();
-
-
-        stack.push(intervals[0]);
-
-        for (int i = 1; i < intervals.length; i++) {
-
-            int[] prevInterval = stack.peek();
-
-            if (prevInterval[1] >= intervals[i][0]) {
-
-                prevInterval[1] = Math.max(prevInterval[1], intervals[i][1]);
-
-            } else {
-
-                stack.push(new int[]{intervals[i][0], intervals[i][1]});
-            }
-
+            return intervals;
         }
 
 
-        return stack.toArray(new int[stack.size()][2]);
+        Arrays.sort(intervals, Comparator.comparing(i -> i[0]));
 
+
+        List<int[]> list = new ArrayList<>();
+
+
+        int[] refInterval = intervals[0];
+
+        list.add(refInterval);
+
+        for (int[] interval : intervals) {
+
+
+            if (interval[0] <= refInterval[1]) {
+
+                refInterval[1] = Math.max(interval[1], refInterval[1]);
+            } else {
+
+                refInterval = interval;
+                list.add(refInterval);
+            }
+        }
+
+        return list.toArray(new int[list.size()][]);
     }
 
 
@@ -47,14 +50,15 @@ public class MergeIntervals {
         int[][] result = merge(arr);
 
         for (int[] x : result) {
-            System.out.print("[ ");
-            for (int num : x) {
+            System.out.print("[");
+            for (int m = 0; m < x.length; m++) {
 
 
-                System.out.print(num + " ");
+                System.out.print(x[m]);
+                if (m != x.length - 1) System.out.print(",");
 
             }
-            System.out.print(" ] ");
+            System.out.print("]");
             // System.out.println();
         }
 
