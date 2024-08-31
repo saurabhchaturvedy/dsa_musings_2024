@@ -52,10 +52,10 @@ public class RateLimiter {
     }
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
 
-        RateLimiter rateLimiter = new RateLimiter(5, 1000);
+        RateLimiter rateLimiter = new RateLimiter(5, 10000);
 
 
         String userId = "User_1";
@@ -69,6 +69,8 @@ public class RateLimiter {
 
                 System.out.println(" request " + (i + 1) + " is rejected");
             }
+
+            Thread.sleep(1000);
         }
     }
 }
