@@ -7,7 +7,7 @@ public class MinimumConferenceRooms {
 
     public static int minimumConferenceRooms(int[][] intervals) {
 
-        if (intervals.length == 0 || intervals==null) {
+        if (intervals.length == 0 || intervals == null) {
             return 0;
         }
 
@@ -35,7 +35,7 @@ public class MinimumConferenceRooms {
         while (i < intervals.length) {
 
 
-            if (start[i] < end[i]) {
+            if (start[i] < end[j]) {
 
                 minConferenceRooms++;
                 i++;
@@ -56,7 +56,7 @@ public class MinimumConferenceRooms {
     public static void main(String[] args) {
 
 
-        int[][] meetings = {{0,30},{5,10},{15,20}};
+        int[][] meetings = {{0, 30}, {5, 10}, {15, 20}};
 
 
         int minConferenceRooms = minimumConferenceRooms(meetings);
