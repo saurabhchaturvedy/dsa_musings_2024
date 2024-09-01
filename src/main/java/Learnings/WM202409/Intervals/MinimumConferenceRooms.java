@@ -1,43 +1,62 @@
 package Learnings.WM202409.Intervals;
 
 import java.util.Arrays;
-import java.util.Comparator;
 
 public class MinimumConferenceRooms {
 
 
     public static int minimumConferenceRooms(int[][] intervals) {
 
-        if (intervals.length <= 0) {
+        if (intervals.length == 0 || intervals==null) {
             return 0;
         }
 
 
-        Arrays.sort(intervals, Comparator.comparingInt(x -> x[0]));
+        int[] start = new int[intervals.length];
+        int[] end = new int[intervals.length];
 
-        int conferenceRooms = 1;
+        for (int i = 0; i < intervals.length; i++) {
 
-        int[] previousMeetingSchedule = intervals[0];
-
-        for (int i = 1; i < intervals.length; i++) {
-
-            if (intervals[i][0] > previousMeetingSchedule[0] && intervals[i][1] < previousMeetingSchedule[1]) {
-
-                conferenceRooms++;
-            }
-
-            previousMeetingSchedule = intervals[i];
+            start[i] = intervals[i][0];
+            end[i] = intervals[i][1];
         }
 
 
-        return conferenceRooms;
+        Arrays.sort(start);
+        Arrays.sort(end);
+
+
+        int minConferenceRooms = 0;
+        int minRooms = 0;
+
+        int i = 0;
+        int j = 0;
+
+        while (i < intervals.length) {
+
+
+            if (start[i] < end[i]) {
+
+                minConferenceRooms++;
+                i++;
+            } else {
+
+                minConferenceRooms--;
+                j++;
+            }
+
+            minRooms = Math.max(minConferenceRooms, minRooms);
+        }
+
+
+        return minRooms;
     }
 
 
     public static void main(String[] args) {
 
 
-        int[][] meetings = {{0, 30}, {5, 10}, {15, 20}};
+        int[][] meetings = {{0,30},{5,10},{15,20}};
 
 
         int minConferenceRooms = minimumConferenceRooms(meetings);
@@ -45,7 +64,7 @@ public class MinimumConferenceRooms {
         System.out.println(" min conference rooms = " + minConferenceRooms);
 
 
-        int[][] meetings2 = {{7, 10}, {2, 4}};
+        int[][] meetings2 = {{1, 5}, {2, 6}, {3, 7}, {4, 8}};
 
 
         int minConferenceRooms2 = minimumConferenceRooms(meetings2);
