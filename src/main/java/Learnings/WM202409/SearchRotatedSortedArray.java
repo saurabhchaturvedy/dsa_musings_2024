@@ -1,4 +1,4 @@
-package Learnings.WM202409.BestTimeToBuyAndSell;
+package Learnings.WM202409;
 
 public class SearchRotatedSortedArray {
 
