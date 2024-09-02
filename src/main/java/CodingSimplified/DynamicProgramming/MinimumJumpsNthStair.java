@@ -21,10 +21,28 @@ public class MinimumJumpsNthStair {
     }
 
 
+    public static int minJumpsClimbingStairsTopDown(int[] dp, int n) {
+
+        if (n == 0) return 0;
+        if (n == 1) return 1;
+        if (n == 2) return 1;
+
+        if (dp[n] == 0) {
+
+            dp[n] = 1 + Math.min(Math.min(minJumpsClimbingStairsTopDown(dp, n - 1), minJumpsClimbingStairsTopDown(dp, n - 2)), minJumpsClimbingStairsTopDown(dp, n - 3));
+        }
+
+        return dp[n];
+    }
+
+
     public static void main(String[] args) {
 
         int n = 7;
 
         System.out.println(" min cost climbing stairs = " + minJumpsClimbingStairsBottomUp(n));
+
+        int[]dp = new int[n+1];
+        System.out.println(" min cost climbing stairs = " + minJumpsClimbingStairsTopDown(dp,n));
     }
 }
