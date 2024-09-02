@@ -30,4 +30,13 @@ public class MaxSumIncreasingSubsequence {
 
         return maxSumIncreasingSubsequence;
     }
+
+
+    public static void main(String[] args) {
+
+
+        int[] arr = {7, 1, 4, 8, 11, 2, 14, 3};
+
+        System.out.println(" max sum increasing subsequence is = " + maxSum(arr));
+    }
 }
