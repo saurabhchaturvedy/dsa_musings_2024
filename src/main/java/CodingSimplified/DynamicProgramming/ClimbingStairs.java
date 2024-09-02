@@ -3,7 +3,7 @@ package CodingSimplified.DynamicProgramming;
 public class ClimbingStairs {
 
 
-    public static int climbStairs(int n) {
+    public static int climbStairsBottomUp(int n) {
 
         if (n == 1) return 1;
 
@@ -24,6 +24,6 @@ public class ClimbingStairs {
     public static void main(String[] args) {
 
 
-        System.out.println(" no of ways to climb stairs = "+climbStairs(4));
+        System.out.println(" no of ways to climb stairs = "+climbStairsBottomUp(4));
     }
 }
