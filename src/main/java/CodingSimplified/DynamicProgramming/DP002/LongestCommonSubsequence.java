@@ -63,6 +63,38 @@ public class LongestCommonSubsequence {
     }
 
 
+    public static int longestCommonSubsequenceBottomUp(String text1, String text2) {
+
+        return lcsBottomUp(text1, text2, text1.length(), text2.length());
+
+    }
+
+    public static int lcsBottomUp(String s1, String s2, int m, int n) {
+
+        if (m == 0 || n == 0) {
+            return 0;
+        }
+
+        int[][] lcs = new int[m + 1][n + 1];
+
+        for (int i = 1; i <= m; i++) {
+
+            for (int j = 1; j <= n; j++) {
+
+                if (s1.charAt(i - 1) == s2.charAt(j - 1)) {
+
+                    lcs[i][j] = 1 + lcs[i - 1][j - 1];
+                } else {
+
+                    lcs[i][j] = Math.max(lcs[i - 1][j], lcs[i][j - 1]);
+                }
+            }
+        }
+
+        return lcs[m][n];
+    }
+
+
     public static void main(String[] args) {
 
 
@@ -72,6 +104,7 @@ public class LongestCommonSubsequence {
 
         System.out.println(" LCS recursive = " + longestCommonSubsequenceRecursive(text1, text2));
         System.out.println(" LCS top down = " + longestCommonSubsequenceTopDown(text1, text2));
+        System.out.println(" LCS bottom up = " + longestCommonSubsequenceBottomUp(text1, text2));
 
     }
 }
