@@ -1,5 +1,7 @@
 package CodingSimplified.DynamicProgramming.DP002;
 
+import java.util.Arrays;
+
 public class LongestCommonSubsequence {
 
 
@@ -28,6 +30,39 @@ public class LongestCommonSubsequence {
     }
 
 
+    public static int longestCommonSubsequenceTopDown(String text1, String text2) {
+
+
+        int[][] lcs = new int[text1.length() + 1][text2.length() + 1];
+
+        Arrays.stream(lcs).forEach(row -> {
+
+            Arrays.fill(row, -1);
+        });
+
+        return lcs(text1, text2, text1.length(), text2.length(), lcs);
+
+    }
+
+
+    public static int lcs(String s1, String s2, int n, int m, int[][] arr) {
+
+        if (n == 0 || m == 0) {
+            return 0;
+        }
+
+        if (arr[n][m] == -1) {
+            if (s1.charAt(n - 1) == s2.charAt(m - 1)) {
+                arr[n][m] = 1 + lcs(s1, s2, n - 1, m - 1, arr);
+            } else {
+                arr[n][m] = Math.max(lcs(s1, s2, n - 1, m, arr), lcs(s1, s2, n, m - 1, arr));
+            }
+        }
+
+        return arr[n][m];
+    }
+
+
     public static void main(String[] args) {
 
 
@@ -36,6 +71,7 @@ public class LongestCommonSubsequence {
 
 
         System.out.println(" LCS recursive = " + longestCommonSubsequenceRecursive(text1, text2));
+        System.out.println(" LCS top down = " + longestCommonSubsequenceTopDown(text1, text2));
 
     }
 }
