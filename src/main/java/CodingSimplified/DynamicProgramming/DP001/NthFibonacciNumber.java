@@ -1,4 +1,4 @@
-package CodingSimplified.DynamicProgramming;
+package CodingSimplified.DynamicProgramming.DP001;
 
 public class NthFibonacciNumber {
 
