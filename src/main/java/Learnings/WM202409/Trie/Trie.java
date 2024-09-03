@@ -1,5 +1,8 @@
 package Learnings.WM202409.Trie;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Trie {
 
 
@@ -66,7 +69,6 @@ public class Trie {
     }
 
 
-
     public boolean startsWith(String prefix) {
         if (prefix == null || prefix.length() == 0) {
             return false;
@@ -90,16 +92,75 @@ public class Trie {
     }
 
 
+    public List<String> autocomplete(String prefix) {
+
+        List<String> results = new ArrayList<>();
+
+        if (prefix == null || prefix.length() == 0) return results;
+
+
+        prefix = prefix.toLowerCase();
+
+        TrieNode current = root;
+
+        for (int i = 0; i < prefix.length(); i++) {
+            char c = prefix.charAt(i);
+            int index = c - 'a';
+
+            if (current.children[index] == null) {
+
+                return results;
+            } else {
+
+                current = current.children[index];
+            }
+        }
+
+
+        dfs(current, new StringBuilder(prefix), results);
+
+        return results;
+    }
+
+    private void dfs(TrieNode node, StringBuilder sb, List<String> results) {
+
+        if (node.isWord) {
+
+            results.add(sb.toString());
+        }
+
+
+        for (char c = 'a'; c <= 'z'; c++) {
+
+            int index = c - 'a';
+
+            if (node.children[index] != null) {
+
+                sb.append(c);
+                dfs(node.children[index], sb, results);
+                sb.deleteCharAt(sb.length() - 1);
+            }
+        }
+    }
+
+
     public static void main(String[] args) {
 
 
         Trie trie = new Trie();
         trie.insert("apple");
+        trie.insert("applepie");
+        trie.insert("happy");
+        trie.insert("hapless");
+        trie.insert("haphazard");
+        trie.insert("hazard");
         boolean search = trie.search("apple");
         System.out.println(search);
         search = trie.search("app");
         System.out.println(search);
         search = trie.startsWith("app");
         System.out.println(search);
+
+        System.out.println(trie.autocomplete("hap"));
     }
 }
