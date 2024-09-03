@@ -79,43 +79,36 @@ public class EditDistance {
     }
 
 
-    public static int editOperationsBottomUp(String s1, String s2, int m, int n) {
+    public static int minDistanceBottomUp(String word1, String word2) {
+        int m = word1.length();
+        int n = word2.length();
 
+        // Create a 2D dp array with dimensions (m+1) x (n+1)
+        int[][] dp = new int[m + 1][n + 1];
 
-        if(s1 == s2) {
-            return 0;
+        // Initialize the first row and first column
+        for (int i = 0; i <= m; i++) {
+            dp[i][0] = i;  // Cost of deleting characters from word1 to convert to an empty word2
+        }
+        for (int j = 0; j <= n; j++) {
+            dp[0][j] = j;  // Cost of inserting characters into an empty word1 to convert to word2
         }
 
-        if(n == 0) {
-            return m;
-        }
-
-        if(m == 0) {
-            return n;
-        }
-
-        int[][] arr = new int[n + 1][m + 1];
-
-        for(int i = 0; i < m; i++) {
-            arr[0][i] =  i;
-        }
-
-        for(int i = 0; i < n; i++) {
-            arr[i][0] =  i;
-        }
-
-        for(int i = 1; i < n; i++) {
-            for(int j = 1; j < m; j++) {
-
-                if(s1.charAt(i - 1) == s2.charAt(j - 1)) {
-                    arr[i][j] = arr[i - 1][j - 1];
-                } else {
-                    arr[i][j] = 1 + Math.min(arr[i - 1][j - 1], Math.min(arr[i][j - 1], arr[i - 1][j]));
+        // Fill the dp table
+        for (int i = 1; i <= m; i++) {
+            for (int j = 1; j <= n; j++) {
+                if (word1.charAt(i - 1) == word2.charAt(j - 1)) {  // Characters match, no extra cost
+                    dp[i][j] = dp[i - 1][j - 1];
+                } else {  // Characters don't match, consider insert, delete, replace
+                    dp[i][j] = 1+Math.min(dp[i - 1][j],    // Delete
+                            Math.min(dp[i][j - 1] ,    // Insert
+                                    dp[i - 1][j - 1]));  // Replace
                 }
             }
         }
 
-        return arr[n][m];
+        // The answer is in the bottom-right cell of the matrix
+        return dp[m][n];
     }
 
     public static void main(String[] args) {
@@ -125,7 +118,7 @@ public class EditDistance {
 
 
         System.out.println(" edit distance  = " + minDistance(word1, word2));
-        System.out.println(" edit distance >>>> " + editOperationsBottomUp("bat", "bau", "bat".length(), "bau".length()));
+        System.out.println(" edit distance = " + minDistanceBottomUp("horse", "ros"));
     }
 
 }
