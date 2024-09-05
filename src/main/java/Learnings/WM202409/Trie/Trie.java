@@ -161,6 +161,11 @@ public class Trie {
         search = trie.startsWith("app");
         System.out.println(search);
 
-        System.out.println(trie.autocomplete("hap"));
+        trie.insert("to");
+        trie.insert("top");
+        trie.insert("topo");
+
+
+        System.out.println(trie.autocomplete("to"));
     }
 }
