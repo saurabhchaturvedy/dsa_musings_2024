@@ -1,6 +1,4 @@
-package Learnings.WM202409.LLD;
-
-import Learnings.WM202409.TreeNode;
+package Learnings.WM202409.LLD.CustomHashMap;
 
 public class CustomHashMap<K, V> {
 

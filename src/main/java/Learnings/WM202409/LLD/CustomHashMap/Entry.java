@@ -1,4 +1,4 @@
-package Learnings.WM202409.LLD;
+package Learnings.WM202409.LLD.CustomHashMap;
 
 public class Entry<K, V> {
 
