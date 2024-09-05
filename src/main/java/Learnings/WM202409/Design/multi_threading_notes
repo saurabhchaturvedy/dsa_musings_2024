@@ -1,0 +1,25 @@
+
+
+
+
+1. Volatile vs Atomic Integer
+
+
+
+visibility - volatile
+
+synchronization problem - Atomic Integer (instructions might be interleaved)
+
+value.increment();
+
+works for compound operation - compareAndSet(), incrementAndGet()
+
+
+volatile - flags
+
+atomic integers - longs --- counters
+
+atomic references - caches
+
+
+
