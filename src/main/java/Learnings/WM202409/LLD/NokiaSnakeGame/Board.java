@@ -41,6 +41,6 @@ public class Board {
 
         cells[row][col].setCellType(CellType.FOOD);
 
-        System.out.println(" Food generated at : [" + row + "," + "]");
+        System.out.println(" Food generated at : [" + row + "," + col+"]");
     }
 }
