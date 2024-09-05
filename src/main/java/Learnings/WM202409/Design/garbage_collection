@@ -109,6 +109,12 @@ finalize object is only called once for evry object
 
 -XX MaxSize
 
+-verbose - gc
+
+- jvisualVM
+
+
+
 
 
 
