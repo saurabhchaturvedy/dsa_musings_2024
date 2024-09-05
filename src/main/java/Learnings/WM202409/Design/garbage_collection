@@ -1,0 +1,117 @@
+
+
+remove objects that are not used anymore
+
+
+--- live objects
+
+---- dead objects (unreferenced)
+
+Most objects soon become unreachable
+
+
+Objects --- heap
+
+static members/class definitions - Method Area - Permgen/Metaspace
+
+memory full - java.lang.OutOfMemoryError
+
+We cannot force gc to happen (System.gc());
+
+
+
+Garbage collection steps --------
+
+
+1 . mark  -- starts from root , mark reachable objects as LIVE
+
+2. sweep/delete - Delete unreachable objects
+
+
+collect - moving the objects around and making allocation contiguous rather than fragmented
+
+
+
+
+Generational collectors ----
+
+
+Young generation - eden space , survivor space from , to ,
+
+Old generation - tenured generation -- objects that survive for a longer time --- CACHE
+
+Heap
+
+
+Minor GC
+
+Major GC
+
+Both are stop the world garbage collection events
+
+
+
+
+-XX MaxTenuringThreshold
+
+
+
+When old generation gets full ------------ Major GC
+
+Performs
+
+1. Mark
+2. Sweep
+3. Compacting
+
+
+
+Performance
+
+1. Responsiveness/Latency :
+2. Throughput : Amount of work done by an application over a period of time .
+
+
+Type of Garbage Collectors :
+
+1. Serial Collector - single thread
+2. Concurrent Collector - runs along with application , does not wait for old generation to be full , stops world during only mark/remark
+3. Parallel Garbage Collector - Multiple CPUs . Does not kick in until heap is full . Stops the world when it runs .
+
+
+
+CMS - high memory high CPUs , only short pauses
+
+
+PGC - low memory low CPU , can withstand long pauses
+
+
+XX - UseGC - Single GC
+
+-XX - UseParallel GC
+
+
+protected void finalize()
+
+dont use
+
+Object is resurrected
+
+finalize object is only called once for evry object
+
+-Xms min heap
+
+-Xmx max heap
+
+
+-XX newRation how to divide young and new generation
+-XX PermSize
+
+-XX MaxSize
+
+
+
+
+
+
+
