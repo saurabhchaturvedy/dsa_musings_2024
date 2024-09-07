@@ -1,5 +1,7 @@
 package Locker;
 
+import java.util.Stack;
+
 public class RemoveKDigits {
 
 
@@ -50,5 +52,10 @@ public class RemoveKDigits {
         }
 
         return sb.toString();
+    }
+
+
+    public static void main(String[] args) {
+
     }
 }
