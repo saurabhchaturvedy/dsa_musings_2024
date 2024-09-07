@@ -13,7 +13,7 @@ public class RemoveKDigits {
 
         if (k == num.length()) {
 
-            return "";
+            return "0";
         }
 
         Stack<Character> stack = new Stack<>();
@@ -61,7 +61,7 @@ public class RemoveKDigits {
         String num = "1432219";
 
 
-        System.out.println(removeKdigits(num,3));
+        System.out.println(removeKdigits(num, 3));
 
     }
 }
