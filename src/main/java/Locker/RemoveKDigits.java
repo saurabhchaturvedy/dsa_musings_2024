@@ -5,7 +5,7 @@ import java.util.Stack;
 public class RemoveKDigits {
 
 
-    public String removeKdigits(String num, int k) {
+    public static String removeKdigits(String num, int k) {
 
         if (k == 0) {
             return num;
@@ -56,6 +56,9 @@ public class RemoveKDigits {
 
 
     public static void main(String[] args) {
+
+
+        String num = "1432219";
 
     }
 }
