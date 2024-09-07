@@ -23,3 +23,21 @@ atomic references - caches
 
 
 
+
+
+
+********************* THREAD LOCAL IN JAVA
+
+
+
+
+SimpleDateFormat is not thread safe
+
+
+variables specific to thread - ThreadLocal
+
+
+
+
+
+
