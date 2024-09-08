@@ -1,0 +1,2 @@
+
+* Hi. What do you think is a single most important component required for a successful system design interview? What should we focus on the most while preparing for one? I bet this is knowledge. Knowledge of system design concepts and how to combine them together. And let me prove you that by walking you through all the stages of a typical system design interview. This is system design interview channel. And today we discuss how to count things at a large scale. So, the interviewer asks us to design a system that does counting.
