@@ -32,6 +32,7 @@ countViewEvent(videoId)
 countEvent(videoId,eventType)
 processEvent(videoId,eventType Function)
 processEvents(events)
+getViewsCount(videoId,startTime,endTime)
 
 
 Non-Functional Requirements
