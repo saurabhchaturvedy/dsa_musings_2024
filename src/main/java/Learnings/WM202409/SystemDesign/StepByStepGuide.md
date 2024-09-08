@@ -169,3 +169,5 @@ counters, returns successful responses back to clients and the machine crashes w
 
 
 ![img_7.png](img_7.png)
+
+![img_8.png](img_8.png)
