@@ -48,4 +48,4 @@ Non-Functional Requirements
 High Level Architecture
 ==============================
 
-![alt-text](/Images/HLD.png "optional-title")
+![alt-text](https://github.com/saurabhchaturvedy/dsa_musings_2024/blob/0c2666b0fd14487131451d59bea85e2244dfd0a2/src/main/java/Learnings/WM202409/SystemDesign/Images/HLD.png "optional-title")
