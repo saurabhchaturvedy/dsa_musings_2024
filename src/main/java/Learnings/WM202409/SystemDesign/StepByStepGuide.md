@@ -122,3 +122,13 @@ This effect is known as eventual consistency. Cassandra actually extends the con
 
 
 >in these tables. Let's take a look at the example. We want to build a report that shows the following three entities: information about video, number of total views per hour for last several hours and information about the channel this video belongs to. We pass video identifier as input for this report. In a relational database we would define the following three tables: video info table that contains information about videos, video stats table that contains total views accumulated for each hour and channel info table that stores information about video channels.
+
+And to generate report mentioned above, we run a JOIN query that retrieves data from all three tables. And important property of a relational database - data is normalized. It simply means we minimize data duplication across different tables. For example we store video names in the video info table only. And we do not store video names in other tables. Because if some video name changes, we have to change it in several places in the database. Which may lead to inconsistent data. So, normalization is good for relational databases.
+
+How we store ?
+=================
+
+
+>But NoSQL databases promote a different paradigm. They say that we no longer think in terms of nouns, but in terms of queries that will be executed in the system we design. And denormalization is perfectly normal. Not something that we always have to do, but something that we should not be afraid of. In Cassandra for example, report mentioned above will be logically represented as shown in the table. We store everything required for the report together. And instead of adding rows, as in a relational database, we keep adding columns for every
+
+next hour. Great, we have covered the storage portion of our design. And hopefully by now you have got the idea that both SQL and NoSQL database can be used for our solution. What database would you chose? Please let me know in the comments. I also would like to clarify one thing. As you know there are 4 types of NoSQL databases: column, document, key-value and graph. So far we have used Cassandra as a representative of NoSQL databases. We chose Cassandra because it is fault-tolerant, scalable (both read and write throughput increases
