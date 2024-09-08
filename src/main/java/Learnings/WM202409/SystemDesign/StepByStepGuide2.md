@@ -95,3 +95,25 @@ How we store ?
 =====================
 
 
+
+
+
+* And to generate report mentioned above, we run a JOIN query that retrieves data from all three tables. And important property of a relational database - data is normalized. It simply means we minimize data duplication across different tables. For example we store video names in the video info table only. And we do not store video names in other tables. Because if some video name changes, we have to change it in several places in the database. Which may lead to inconsistent data. So, normalization is good for relational databases.
+* But NoSQL databases promote a different paradigm. They say that we no longer think in terms of nouns, but in terms of queries that will be executed in the system we design. And denormalization is perfectly normal. Not something that we always have to do, but something that we should not be afraid of. In Cassandra for example, report mentioned above will be logically represented as shown in the table. We store everything required for the report together. And instead of adding rows, as in a relational database, we keep adding columns for every
+
+SQL
+=====
+
+![img_20.png](img_20.png)
+
+NO-SQL
+=========
+
+![img_21.png](img_21.png)
+
+* next hour. Great, we have covered the storage portion of our design. And hopefully by now you have got the idea that both SQL and NoSQL database can be used for our solution. What database would you chose? Please let me know in the comments. I also would like to clarify one thing. As you know there are 4 types of NoSQL databases: column, document, key-value and graph. So far we have used Cassandra as a representative of NoSQL databases. We chose Cassandra because it is fault-tolerant, scalable (both read and write throughput increases
+* linearly as new machines are added). It supports multi datacenter replication and works well with time-series data. And of course other options are available as well. For a typical system design interview we usually do not need to know architectures of different databases. But we need to know advantages and disadvantages of those and when to use what. And please do not think that all NoSQL database have architectures similar to the one we discussed earlier. Cassandra is a wide column database that supports asynchronous masterless replication.
+* But other NoSQL databases have different architectures. For example MongoDB, a documented-oriented database, uses leader-based replication. HBase, which is another column-oriented data store, similar to Cassandra, has a master-based architecture as well. We will talk more about different database design principles on this channel. As well as when to use each particular database type. Ok, enough talking about databases, let's move on to data processing. First, let's define what processing really means.
+* When Youtube users open some video, we want total views count for this video to be displayed immediately. It means we need to calculate view counts on the fly, in real-time. Also, when video owner opens statistics for the video we want to show per hour counts. So, processing basically means we get a video view event and increment several counters: total and per hour counters. You are in front of the whiteboard, interviewer is looking at you, ready to capture your next ideas. Where to start? As usual start with requirements.
+
+
