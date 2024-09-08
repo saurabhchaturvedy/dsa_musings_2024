@@ -31,10 +31,20 @@ High Level Architecture
 
 ![img_3.png](img_3.png)
 
+Frontend Service
+====================
+
+![img_4.png](img_4.png)
+
 
 00:05:13	interview discussions. So, please remember it. Next, let’s take a look at each component in more details and start with FrontEnd service. FrontEnd is a lightweight web service responsible for: request validation, authentication and authorization, SSL termination, server-side encryption, caching, throttling, request dispatching and deduplucation, usage data collection. We briefly touched all concepts from this list in our previous video about distributed message queue and we highly encourage you to check out that video.
 
 00:05:53	Instead of repeating that information, let me share with you several other FrontEnd service details. Specifically, let’s take a look at a FrontEnd host and discuss what components live there. When request lands on the host, the first component that picks it up is a Reverse Proxy. Reverse proxy is a lightweight server responsible for several things. Such as SSL termination, when requests that come over HTTPS are decrypted and passed further in unencrypted form. At the same time proxy is responsible for encrypting responses while sending them back
+
+Frontend Service Host
+==========================
+
+![img_5.png](img_5.png)
 
 00:06:31	to clients. Second responsibility is compression (for example with gzip), when proxy compresses responses before returning them back to clients. This way we reduce the amount of bandwidth required for data transfer. This feature is not relevant for notification service, as in our case responses are tiny and mostly represent acknowledgment that request have completed successfully. But this feature may be very useful for systems when large amount of data is returned by the service. Next proxy feature we may use is to properly handle FrontEnd service slowness.
 
@@ -44,11 +54,18 @@ High Level Architecture
 
 00:08:25	and when made requests to a specific API in the system. Important to understand here, is that FrontEnd service is responsible for writing log data. But the actual log data processing is managed by other components, usually called agents. Agents are responsible for data aggregation and transferring logs to other system, for post processing and storage. This separation of responsibilities is what helps to make FrontEnd service simpler, faster and more robust. The next component in the notification system is a Metadata service.
 
+Metadata Service
+=========================
+
+
 00:09:01	A web service responsible for storing information about topics and subscriptions in the database. It is a distributed cache. When our notification service becomes so popular that we have millions of topics, all this information cannot be loaded into a memory on a single host. Instead, information about topics is divided between hosts in a cluster. Cluster represents a consistent hashing ring. Each FrontEnd host calculates a hash, for example MD5 hash, using some key, for example a combination of topic name and topic owner identifier.
 
 00:09:40	Based on the hash value, FrontEnd host picks a corresponding Metadata service host. Let’s discuss in more details two different approaches how FrontEnd hosts know which Metadata service host to call. In the first option we introduce a component responsible for coordination. This component knows about all the Metadata service hosts, as those hosts constantly send heartbeats to it. Each FrontEnd host asks Configuration service what Metadata service host contains data for a specified hash value. Every time we scale out and add more Metadata service hosts, Configuration service becomes
 
 00:10:24	aware of the changes and re-maps hash key ranges. In the second option we do not use any coordinator. Instead, we make sure that every FrontEnd host can obtain information about all Metadata service hosts. And every FrontEnd host is notified when more Metadata service hosts are added or if any Metadata host died due to a hardware failure. There are different mechanisms that can help FrontEnd hosts discover Metadata service hosts. We will not dive into this topic here, only mention the Gossip protocol.
+
+![img_6.png](img_6.png)
+
 
 00:11:00	This protocol is based on the way that epidemics spread. Computer systems typically implement this type of protocol with a form of random "peer selection": with a given frequency, each machine picks another machine at random and shares data. After being initially processed by FrontEnd service, message is then passed to the Temporary Storage service. Why do we call it temporary and not just storage? Because messages supposed to stay in this storage for a very short period of time. Sooner we can deliver messages to subscribers is better, unless topic is configured to deliver
 
