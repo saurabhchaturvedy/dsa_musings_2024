@@ -39,9 +39,9 @@ Non-Functional Requirements
 =============================
 
 
-1. Scalable
-2. Highly Performant
-3. Highly Available
+1. Scalable 10000/views per second
+2. Highly Performant - few ms to return the data
+3. Highly Available - highly available all the time
 4. Consistency
 
 
