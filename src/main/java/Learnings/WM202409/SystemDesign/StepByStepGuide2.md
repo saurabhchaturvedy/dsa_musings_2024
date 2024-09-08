@@ -220,3 +220,21 @@ Message Formats
 * Apache Avro is a good choice for our counting system. That was tough. Talking about all these concepts completed our discussion of the data ingestion path. And all the most difficult stuff is behind us. Do not worry if some mentioned before concepts are not completely clear to you right now. Each of them deserves a video on its own. And we will talk more about them on this channel. Eventually, you will feel comfortable using all of them, either on the interview or in your day to day job. Now let's take a look at data retrieval path.
 
 ![img_27.png](img_27.png)
+
+
+Data Retrieval Path
+============================
+
+* When users open a video on Youtube, we need to show total views count for this video. To build a video web page, several web services are called. A web service that retrieves information about the video, a web service that retrieves comments, another one for recommendations. Among them there is our Query web service that is responsible for video statistics. All these web services are typically hidden behind an API Gateway service, a single-entry point. API Gateway routes client requests to backend services.
+
+* So, get total views count request comes to the Query service. We can retrieve the total count number directly from the database. Remember we discussed before how both SQL and NoSQL databases scale for reads. But total views count scenario is probably the simplest one. This is just a single value in the database per video. The more interesting use case is when users retrieve time-series data, which is a sequence of data points ordered in time. For example, when channel owner wants to see statistics for her videos.
+
+* As discussed before, we aggregate data in the database per some time interval, let's say per hour. Every hour for every video. That is a lot of data, right? And it grows over time. Fortunately, this is not a new problem and solution is known. Monitoring systems, for example, aggregate data for every 1 minute interval or even 1 second. You can imaging how huge those data sets can be. So, we cannot afford storing time series data at this low granularity for a long period of time. The solution to this problem is to rollup the data.
+
+* For example, we store per minute count for several days. After let's say one week, per minute data is aggregated into per hour data. And we store per hour count for several months. Then we rollup counts even further and data that is older than let's say 3 months, is stored with 1 day granularity. And the trick here is that we do not need to store old data in the database. We keep data for the last several days in the database, but the older data can be stored somewhere else, for example, object storage like AWS S3.
+
+* In the industry, you may also hear terms like a hot storage and a cold storage. Hot storage represents frequently used data that must be accessed fast. Cold storage doesn’t require fast access. It mostly represents archived and infrequently accessed data. When request comes to the Query service, it does so-called data federation, when it may need to call several storages to fulfill the request. Most recent statistics is retrieved from the database, while older statistics is retrieved from the Object Storage.
+
+* Query service then stitches the data. And this is ideal use case for the cache. We should store query results in a distributed cache. This helps to further improve performance of queries and scale them. We covered both data ingestion and data retrieval. Not many things left. Let me show you the full picture and share with you several other important topics. Three users opened some video A. And API Gateway got 3 requests. Partitioner service client batches all three events and sends them in a single request
+
+![img_29.png](img_29.png)
