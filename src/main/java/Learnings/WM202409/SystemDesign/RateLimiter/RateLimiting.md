@@ -124,3 +124,12 @@ Token Bucket Algorithm
 * in the same order in which they were sent. UDP protocol does not guarantee you are getting all the packets and order is not guaranteed. But because UDP throws all the error-checking stuff out, it is faster. So, which one is better? Both are good choices. If we want rate limiting solution to be more accurate, but with a little bit of performance overhead, we need to go with TCP. If we ok to have a bit less accurate solution, but the one that works faster, UDP should be our choice. Ok, we have implemented the algorithm, created a set of classes and interfaces, discussed
 
 ![img_6.png](img_6.png)
+
+How to integrate all this with the service
+=============================================
+
+* message broadcasting. But how do we integrate all this cool solution with the service? Let’s see what options we have. There are two options. And they are pretty standard. We can run Rate Limiter as a part of the service process or as its own process (daemon). In the first option, Rate Limiter is distributed as a collection of classes, a library that should be integrated with the service code. In the second option we have two libraries: the daemon itself and the client, that is responsible for inter-process communication between the service process and the daemon.
+
+![img_7.png](img_7.png)
+
+![img_8.png](img_8.png)
