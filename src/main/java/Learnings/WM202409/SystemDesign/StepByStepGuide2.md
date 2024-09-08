@@ -238,3 +238,15 @@ Data Retrieval Path
 * Query service then stitches the data. And this is ideal use case for the cache. We should store query results in a distributed cache. This helps to further improve performance of queries and scale them. We covered both data ingestion and data retrieval. Not many things left. Let me show you the full picture and share with you several other important topics. Three users opened some video A. And API Gateway got 3 requests. Partitioner service client batches all three events and sends them in a single request
 
 ![img_29.png](img_29.png)
+
+
+Data Flow Simulation
+==========================
+
+
+* to the partitioner service. This request hits the load balancer first. And load balancer routes it to one of the partitioner service machines. Partitioner service gets all three events from the request and sends them to some partition. All three events end up in the same partition, as we partition data based on the video identifier. Here is where processing service appears on the stage. Partition consumer reads all three messages from the partition one by one and sends them to the aggregator. Aggregator counts messages for a one minute period and flushes calculated values to the
+* internal queue at the end of that minute. Database writer picks count from the internal queue and sends it to the database. In the database we store count per hour and the total number of views for each video. So, we just add a one minute value to the current hour count as well as the total count. Total count was 7 prior to this minute and we add 3 for the current minute. And during data retrieval, when user opens video A, API Gateway sends request to the Query service. Query service checks the cache.
+* And if data is not found in the cache, or cache value has expired, we call the database. Total count value is then stored in the cache and Query service returns the total count back to the user. I hope that this simulation helped you further understand the meaning of each component in the architecture. Feel free to post any questions you have in the comments section. Another important aspect of an interview and system design in general is a technology stack. When we design some system, we usually do not need to reinvent the wheel.
+* We rely on some well-regarded technologies. Either open source or commercial. Public cloud services. During the interview do not forget to discuss these technologies. You may do this along the way or at the end of the interview. So, let's see what technologies we may use for our solution. Netty is a high-performance non-blocking IO framework for developing network applications, both clients and servers. Frameworks such as Hystrix from Netflix and Polly simplify implementation of many client-side
+
+![img_30.png](img_30.png)
