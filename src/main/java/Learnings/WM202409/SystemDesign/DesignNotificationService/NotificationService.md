@@ -1,6 +1,14 @@
+
+Problem Statement
+=======================
 00:00:00	Hi. And welcome to the system design interview channel. Today we design a notification service. Let's start with the problem statement. In the world of web services there are many scenarios when messages need to be sent in a reaction to some event. For example, when credit card transaction amount exceeded a limit and card holder needs to be notified. Or service monitoring system encountered a large number of faults produced by API and on-call engineer needs to be notified. In more general terms, let's say there is a component called Publisher which produces
 
 00:00:35	messages that need to be delivered to a group of other components, called Subscribers. We could have setup a synchronous communication between Publisher and Subscribers, when Publisher calls each Subscriber in some order and waits for the response. But this introduces many different challenges: hard to scale such system when number of subscribers and messages grow and hard to extend such solution to support different types of subscribers. Instead, we can introduce a new system that can register an arbitrary large number of
+
+![img.png](img.png)
+
+
+![img_1.png](img_1.png)
 
 00:01:07	publishers and subscribers and coordinates message delivery between them. The problem statement is ambiguous, as usual. To make it less vague we need to start asking an interviewer clarifying questions. We need to scope both functional and non-functional requirements. Just on the side note, when we talk about functional requirements, we want to define system behavior, or more specifically APIs - a set of operations the system will support. When we talk about non-functional requirements, we basically mean such system qualities as
 
@@ -8,6 +16,11 @@
 
 00:02:19	number of topics, publishers and subscribers; highly available and survive hardware failures and network partitions; fast, so that messages are delivered to subscribers as soon as possible; and durable, so that messages are not lost and delivered to each subscriber at least once. The interviewer may ask to focus on other requirements as well. For example, security or operational cost. And our usual recommendation is to be proactive and clarify requirements upfront. Let’s move on and outline a high-level architecture.
 
+![img_2.png](img_2.png)
+
+
+High Level Architecture
+===============================
 00:02:56	All requests coming from our clients will go through a load balancer first. This will ensure requests are equally distributed among requests processing servers. And the component that does this initial request processing is a FrontEnd service. We will use a database to store information about topics and subscriptions. We will hide the database behind another miscroservice, Metadata service. There are several reasons for this decision. First, separation of concerns, a design principle that teaches us to provide access to the database
 
 00:03:33	through a well-defined interface. It greatly simplifies maintenance and ability to make changes in the future. Second, Metadata service will act as a caching layer between the database and other components. We do not want to hit database with every message published to the system. We want to retrieve topic metadata from cache. Next, we need to store messages for some period of time. This period will generally be short if all subscribers are available and message was successfully sent to all of them.
@@ -15,6 +28,9 @@
 00:04:07	Or we may need to store messages a bit longer (say several days), so that messages can be retried later if some subscriber is not available right now. And one more component we need is the one that retrieves messages from the message store and sends them to subscribers. Sender also needs to call Metadata service to retrieve information about subscribers. When create topic and subscribe APIs are called, we just need to store all this information in the database. It was not hard to define this architecture, right?
 
 00:04:40	We followed some pretty common patterns, like having a FrontEnd service behind a load balancer. And having a database for storing metadata and hide this database behind some facade, which is a distributed cache microservice. And I believe it is evident that we need components for storing messages and sending them. By the way, the pattern that consists of load balancer, frontend, metadata store and service is so common in the world of distributed systems, that you can apply it during many system design
+
+![img_3.png](img_3.png)
+
 
 00:05:13	interview discussions. So, please remember it. Next, let’s take a look at each component in more details and start with FrontEnd service. FrontEnd is a lightweight web service responsible for: request validation, authentication and authorization, SSL termination, server-side encryption, caching, throttling, request dispatching and deduplucation, usage data collection. We briefly touched all concepts from this list in our previous video about distributed message queue and we highly encourage you to check out that video.
 
