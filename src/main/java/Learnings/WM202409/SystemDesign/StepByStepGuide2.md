@@ -288,3 +288,20 @@ Bottlenecks - Trade-offs and more
 
 ![img_31.png](img_31.png)
 
+
+Summary
+========================
+
+
+* We then discuss non-functional requirements with the interviewer and figure out what qualities of the system she is most interested in. We can now outline a high-level architecture of the system. Draw some key components on the whiteboard. At the next stage we should dive deep into several of those components. Our interviewer will help us understand what components we should focus on. And the last important step is to discuss bottlenecks and how to deal with them. And let me quickly remind you some specifics we discussed for each of these steps.
+
+* To define APIs, we discuss with the interviewer what specific behaviors or functions of the system we need to design. We write down verbs characterizing these functions and start thinking about input parameters and return values. We then can make several iterations to brush up the APIs. After this step we should be clear on what the scope of the design is. To define non-functional requirements, just know what your options are. Open a list of non-functional requirements on wiki and read the list.
+
+* There are many of them. I recommend to focus on scalability, availability and performance. Among other popular choices we have consistency, durability, maintainability and cost. Try to pick not more than 3 qualities. To outline a high-level design, think about how data gets into the system, how it gets out of the system and where data is stored inside the system. Draw these components on the whiteboard. It is ok to be rather generic at this stage. Details will follow later. And although it is not easy, try to drive the conversation.
+
+* Our goal here is to get understanding of what components to focus on next. And the interviewer will help us. While designing specific components, start with data. How it is stored, transferred and processed. Here is where our knowledge and experience becomes critical. By using fundamental concepts of system design and by knowing how to combine these concepts together, we can make small incremental improvements. And apply relevant technologies along the way. After technical details are discussed, we can move to discussing other important aspects
+
+* of the system. Listen carefully to the interviewer. She sees bottlenecks of our design and in her questions there will be hints what those bottlenecks are. And what can really help us here is the knowledge of different tradeoffs in system design. We just need to pick and apply a proper one. Today we covered a big topic. If you are still with me watching this video you should be proud of yourself. Seriously. There were many system design concepts covered in the video. And I hope you have a better understanding right now why I consider knowledge the key
+
+* to the successful system design interview. And system design in general. And although we talked about a specific problem today, like video views counting, the same ideas can be applied to other problems, for example counting likes, shares, reposts, ad impressions and clicks. The same ideas can be applied to designing monitoring systems, when we count metrics. When we design a fraud prevention system we need to count number of times each credit card was used recently. When we design recommendation service we may use counts as input to machine learning models.
+
