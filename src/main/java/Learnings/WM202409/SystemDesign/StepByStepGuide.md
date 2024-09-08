@@ -49,3 +49,16 @@ High Level Architecture
 ==============================
 
 ![alt-text](https://github.com/saurabhchaturvedy/dsa_musings_2024/blob/0c2666b0fd14487131451d59bea85e2244dfd0a2/src/main/java/Learnings/WM202409/SystemDesign/Images/HLD.png "optional-title")
+
+
+
+What we store ?
+
+Video ID
+
+TimeStamp
+
+Store Individual Data
+Store Aggregate Data
+
+![alt-text](src/main/java/Learnings/WM202409/SystemDesign/Images/data_store.png "optional-title")
