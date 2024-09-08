@@ -163,3 +163,6 @@ counters, returns successful responses back to clients and the machine crashes w
 
 
 ![img_2.png](img_2.png)
+
+
+![img_3.png](img_3.png)
