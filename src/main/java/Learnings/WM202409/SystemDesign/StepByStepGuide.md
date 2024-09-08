@@ -70,3 +70,13 @@ Store Aggregate Data
 
 Where we store ?
 ================
+
+![alt-text](https://github.com/saurabhchaturvedy/dsa_musings_2024/blob/7f66f555e475444c70a29b6cb45592e41c3810fe/src/main/java/Learnings/WM202409/SystemDesign/Images/where_we_store.png "optional-title")
+
+SQL Database - MySQL
+Split Data into partitions - Sharding 
+
+Make services talk to Database using cluster proxy
+
+![alt-text](https://github.com/saurabhchaturvedy/dsa_musings_2024/blob/7f66f555e475444c70a29b6cb45592e41c3810fe/src/main/java/Learnings/WM202409/SystemDesign/Images/data_store.png "optional-title")
+
