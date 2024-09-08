@@ -47,3 +47,5 @@ Non-Functional Requirements
 
 High Level Architecture
 ==============================
+
+![alt-text](/Images/HLD.png "optional-title")
