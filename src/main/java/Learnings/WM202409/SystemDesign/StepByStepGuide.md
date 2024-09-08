@@ -66,3 +66,7 @@ Store Aggregate Data
 
 1. Stream Data Processing
 2. Batch Data Processing
+
+
+Where we store ?
+================
