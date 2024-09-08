@@ -124,4 +124,4 @@ SENDER
 
 00:24:47	when several copies of a message is stored across several machines, and ideally across several data centers. We also retry messages for a period of time to make sure they are delivered to every subscriber at least once. And that is it for today’s system design interview question. Thank you for watching this video. If you have any questions please leave them in the comments below. And I will see you next time.
 
-![img_10.png](img_10.png)
+![img_11.png](img_11.png)
