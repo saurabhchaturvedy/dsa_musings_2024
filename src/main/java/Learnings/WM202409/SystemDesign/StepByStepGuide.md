@@ -119,3 +119,6 @@ Remember that when we defined non-functional requirements we chose availability 
 
 
 This effect is known as eventual consistency. Cassandra actually extends the concept of eventual consistency by offering tunable consistency. Let's discuss this big topic separately and in more details. After discussing what we store and where, let's think how we can store the data. There is a big difference how we do data modeling for SQL and NoSQL databases. When designing data models for relational databases we usually start with defining nouns in the system. We then convert these nouns into tables and use foreign keys to reference related data
+
+
+>in these tables. Let's take a look at the example. We want to build a report that shows the following three entities: information about video, number of total views per hour for last several hours and information about the channel this video belongs to. We pass video identifier as input for this report. In a relational database we would define the following three tables: video info table that contains information about videos, video stats table that contains total views accumulated for each hour and channel info table that stores information about video channels.
