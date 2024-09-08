@@ -86,3 +86,14 @@ How cluster proxy will know healthy and unhealthy instances ?
 Configuration service (Zookeeper)
 
 ![img.png](img.png)
+
+
+
+Benefits of Shard Proxy
+
+1. Cache Query Results
+2. Publish Metrics
+3. Terminate Queries that take too long to return the data
+4. Monitor Data Base Instance Health
+
+We need to replicate data. Let's call each existing shard a master shard or a leader. And for every master shard we introduce a copy of it, called read replica or a follower. We call it read replica because writes still go through a master shard, but reads may go through both master shard and a replica. We also put some replicas to a data center different from their master shard. So that if the whole data center goes down, we still have a copy of data available. So, when store data request comes, based on the information provided by Configuration
