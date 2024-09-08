@@ -305,3 +305,6 @@ Summary
 
 * to the successful system design interview. And system design in general. And although we talked about a specific problem today, like video views counting, the same ideas can be applied to other problems, for example counting likes, shares, reposts, ad impressions and clicks. The same ideas can be applied to designing monitoring systems, when we count metrics. When we design a fraud prevention system we need to count number of times each credit card was used recently. When we design recommendation service we may use counts as input to machine learning models.
 
+* When we design "what's trending" service, we count all sorts of different reactions: views, re-tweets, comments, likes. And many other applications. There are plenty of other important system design concepts we have not covered today. As it is practically impossible to do in a single video. But we will have them covered in other videos on this channel. Thank you for being with me and I will see you next time. Bye.
+
+![img_32.png](img_32.png)
