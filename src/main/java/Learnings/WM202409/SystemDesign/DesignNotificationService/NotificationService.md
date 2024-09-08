@@ -82,6 +82,11 @@ Metadata Service
 
 00:14:41	After message is successfully published and stored in the Temporary Storage, we now can start sending this message to subscribers. Let’s take a look at the Sender component. You will see that ideas on which Sender service is built upon, can easily be applied to other distributed systems and not just the Notification service. If you design a solution that involves data retrieval, processing and sending results in a fan-out manner, meaning that messages are sent to multiple destinations in parallel,
 
+SENDER
+==================
+
+![img_8.png](img_8.png)
+
 00:15:14	think of the ideas we will discuss next. The first thing that Sender does is message retrieval. This is achieved by having a pool of threads, where each thread tries to read data from the Temporary Storage. We can implement a naive approach and always start a predefined number of message retrieval threads. The problem with this approach is that some threads may be idle, as there may not be enough messages to retrieve. Or another extreme, when all threads may quickly become occupied and the only way to scale
 
 00:15:48	message retrieval would be adding more Sender hosts. A better approach is to keep track of idle threads and adjust number of message retrieval threads dynamically. If we have too many idle threads, no new threads should be created. If all threads are busy, more threads in the pool can start reading messages. This not only helps to better scale the Sender service, it also protects Temporary Storage service from being constantly bombarded by Sender service. This is especially useful when Temporary Storage service experiences performance degradation,
@@ -110,9 +115,13 @@ Metadata Service
 
 00:22:53	And we also need to encrypt messages while storing them. We need to setup monitoring for every microservice we discussed, as well as for the end-to-end customer experience. We also need to give customers ability to track state of their topics. For example, number of messages waiting for delivery, number of messages failed to deliver, etc. This usually means that integration with a monitoring system is required. We will have more videos explaining this topic. Let’s take one final look at our high-level architecture and evaluate whether all non-functional
 
+![img_9.png](img_9.png)
+
+
 00:23:28	requirements are met. Did we design a scalable system? Yes. Every component is horizontally scalable. Sender service also has a great potential for vertical scaling, when more powerful hosts can execute more delivery tasks. Did we design a highly available system? Yes. There is no single point of failure, each component is deployed across several data centers. Did we design a highly performant system? To answer this question let’s take a more thorough look. FrontEnd service is fast. We made it responsible for several relatively small and cheap activities.
 
 00:24:06	We delegated several other activities to agents that run asynchronously and does not impact request processing. Metadata service is a distributed cache. It is fast as we store data for active topics in memory. We discussed several Temporary Storage design options and mentioned 3-rd party solutions that are fast. And our Sender service splits message delivery into granular tasks, so that each one of them can be optimally performed. Did we design a durable system? Yes. Whatever Temporary Storage solution we choose, data will be stored in the redundant manner,
 
 00:24:47	when several copies of a message is stored across several machines, and ideally across several data centers. We also retry messages for a period of time to make sure they are delivered to every subscriber at least once. And that is it for today’s system design interview question. Thank you for watching this video. If you have any questions please leave them in the comments below. And I will see you next time.
 
+![img_10.png](img_10.png)
