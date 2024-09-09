@@ -1,9 +1,5 @@
 package LLD.LLD002.SplitWise;
 
-import splitwise.splittype.EqualSplit;
-import splitwise.splittype.PercentSplit;
-import splitwise.splittype.Split;
-
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
