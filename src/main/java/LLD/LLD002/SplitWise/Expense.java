@@ -1,44 +1,48 @@
 package LLD.LLD002.SplitWise;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class Expense {
-    private final String id;
-    private final double amount;
-    private final String description;
-    private final User paidBy;
-    private final List<Split> splits;
+class Expense {
+    private String expenseId;
+    private double amount;
+    private User paidBy;
+    private Group group;
+    private List<SplitStrategy> splits;
+    private ExpenseType expenseType;
 
-    public Expense(String id, double amount, String description, User paidBy) {
-        this.id = id;
+    public Expense(String expenseId, double amount, User paidBy, Group group, List<SplitStrategy> splits, ExpenseType expenseType) {
+        this.expenseId = expenseId;
         this.amount = amount;
-        this.description = description;
         this.paidBy = paidBy;
-        this.splits = new ArrayList<>();
+        this.group = group;
+        this.splits = splits;
+        this.expenseType = expenseType;
     }
 
-    public void addSplit(Split split) {
-        splits.add(split);
-    }
-
-    public String getId() {
-        return id;
+    public void calculateSplits() {
+        for (SplitStrategy split : splits) {
+            split.split();
+        }
     }
 
     public double getAmount() {
         return amount;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
     public User getPaidBy() {
         return paidBy;
     }
 
-    public List<Split> getSplits() {
+    public List<SplitStrategy> getSplits() {
         return splits;
+    }
+
+    public ExpenseType getExpenseType() {
+        return expenseType;
+    }
+
+    @Override
+    public String toString() {
+        return "Expense{" + "expenseId='" + expenseId + '\'' + ", amount=" + amount + ", paidBy=" + paidBy.getName() + ", group=" + group.getName() + ", expenseType=" + expenseType + '}';
     }
 }

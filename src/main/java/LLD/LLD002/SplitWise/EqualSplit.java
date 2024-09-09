@@ -1,18 +1,17 @@
 package LLD.LLD002.SplitWise;
 
+class EqualSplit implements SplitStrategy {
+    private User user;
+    private double amount;
 
-
-public class EqualSplit extends Split {
-    public EqualSplit(User user) {
-        super(user);
+    public EqualSplit(User user, double amount) {
+        this.user = user;
+        this.amount = amount;
     }
 
     @Override
-    public double getAmount() {
-        return amount;
-    }
-
-    public void setAmount(double amount) {
-        this.amount = amount;
+    public void split() {
+        // Logic for equal split
+        System.out.println("Equal split for " + user.getName() + ": " + amount);
     }
 }

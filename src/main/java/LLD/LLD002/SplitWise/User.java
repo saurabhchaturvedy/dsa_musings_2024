@@ -1,23 +1,20 @@
 package LLD.LLD002.SplitWise;
 
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
+class User {
+    private String userId;
+    private String name;
+    private String email;
 
-public class User {
-    private final String id;
-    private final String name;
-    private final String email;
-    private final Map<String, Double> balances;
-
-    public User(String id, String name, String email) {
-        this.id = id;
+    // Constructor
+    public User(String userId, String name, String email) {
+        this.userId = userId;
         this.name = name;
         this.email = email;
-        this.balances = new ConcurrentHashMap<>();
     }
 
-    public String getId() {
-        return id;
+    // Getters
+    public String getUserId() {
+        return userId;
     }
 
     public String getName() {
@@ -28,7 +25,8 @@ public class User {
         return email;
     }
 
-    public Map<String, Double> getBalances() {
-        return balances;
+    @Override
+    public String toString() {
+        return "User{" + "userId='" + userId + '\'' + ", name='" + name + '\'' + ", email='" + email + '\'' + '}';
     }
 }

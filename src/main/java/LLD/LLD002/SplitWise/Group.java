@@ -1,35 +1,30 @@
 package LLD.LLD002.SplitWise;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
 
-public class Group {
-    private final String id;
-    private final String name;
-    private final List<User> members;
-    private final List<Expense> expenses;
+class Group {
+    private String groupId;
+    private String name;
+    private List<User> members;
+    private List<Expense> expenses;
 
-    public Group(String id, String name) {
-        this.id = id;
+    public Group(String groupId, String name) {
+        this.groupId = groupId;
         this.name = name;
-        this.members = new CopyOnWriteArrayList<>();
-        this.expenses = new CopyOnWriteArrayList<>();
+        this.members = new ArrayList<>();
+        this.expenses = new ArrayList<>();
     }
 
     public void addMember(User user) {
-        members.add(user);
+        if (!members.contains(user)) {
+            members.add(user);
+        }
     }
 
     public void addExpense(Expense expense) {
         expenses.add(expense);
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
+        expense.calculateSplits();
     }
 
     public List<User> getMembers() {
@@ -38,5 +33,18 @@ public class Group {
 
     public List<Expense> getExpenses() {
         return expenses;
+    }
+
+    public String getGroupId() {
+        return groupId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public String toString() {
+        return "Group{" + "groupId='" + groupId + '\'' + ", name='" + name + '\'' + '}';
     }
 }
