@@ -1,33 +1,30 @@
 
 
-Q1 :
+# Q1 : Workarounds for Video Subtitle Generation Service
 
-1. Limit the Number of Concurrent Threads
-Instead of starting a new thread for every video, implement a thread pool or limit the number of concurrent threads (e.g., use a maximum of 5-10 threads). You can use a queue to hold the video requests and only process a limited number of them at once. For example, in Java, you could use ExecutorService to control the thread count:
+## Problem Overview
+The service that generates subtitles for users' videos starts a new thread for every video. This process is processor-intensive and causes the server to crash when processing more than 10 videos at a time. Currently, the service runs as a single process on a single machine, and the crash leads to losing all requests and affects other processes on the machine. Fixing this bug may take time, so the following workarounds are proposed to continue running the service.
 
-java
-Copy code
+---
+
+## Workarounds
+
+### 1. Limit the Number of Concurrent Threads
+**Problem:**  
+Starting a new thread for every video results in high CPU and memory usage, leading to crashes.
+
+**Solution:**
+- Implement a thread pool to limit the number of concurrent threads.
+- Queue the video processing tasks and process a limited number at a time (e.g., 5-10 threads), and process the remaining videos as earlier ones complete.
+
+**Java Example (using `ExecutorService`):**
+```java
 ExecutorService executor = Executors.newFixedThreadPool(5); // Limit to 5 threads
 for (Video video : videoList) {
     executor.submit(() -> processVideo(video));
 }
 executor.shutdown();
-2. Move to a Task Queue System
-Use a task queue like RabbitMQ, Kafka, or Redis to manage the video processing requests. This way, the video generation tasks can be queued, and you can control how many are processed concurrently. The system can scale across multiple machines more easily, preventing overload on a single server.
 
-3. Use Rate Limiting
-Temporarily impose rate limiting on the service, ensuring users cannot upload too many videos at the same time. You can return a friendly message to users that there’s a high volume of requests, and they should try again later.
-
-4. Vertical Scaling
-If possible, temporarily scale up the machine by adding more CPU and memory, which can help handle more load until you solve the problem.
-
-5. Implement Video Processing Delays
-Introduce a short delay between the processing of each video to reduce the sudden surge of CPU usage when processing many videos simultaneously.
-
-6. Move to a Separate Machine
-Run the video processing service on a separate machine to avoid affecting other processes. This won’t prevent the service from crashing, but it will isolate the issue, allowing other applications to run without interference.
-
-These workarounds can help you continue running the service while minimizing crashes. Which option sounds most feasible for your system?
 
 
 
