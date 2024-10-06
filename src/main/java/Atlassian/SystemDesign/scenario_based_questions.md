@@ -1,9 +1,9 @@
 
 
-# Q1 : Workarounds for Video Subtitle Generation Service
+# Q1 : Workarounds
 
-## Problem Overview
-The service that generates subtitles for users' videos starts a new thread for every video. This process is processor-intensive and causes the server to crash when processing more than 10 videos at a time. Currently, the service runs as a single process on a single machine, and the crash leads to losing all requests and affects other processes on the machine. Fixing this bug may take time, so the following workarounds are proposed to continue running the service.
+## Overview
+This service generates subtitles for users' videos. It starts a new thread for every video, which is processor-intensive. When processing more than 10 videos simultaneously, the service crashes the server, losing all requests in progress and affecting other processes. While the root cause of the bug is investigated, here are several workarounds to keep the service running.
 
 ---
 
@@ -11,19 +11,76 @@ The service that generates subtitles for users' videos starts a new thread for e
 
 ### 1. Limit the Number of Concurrent Threads
 **Problem:**  
-Starting a new thread for every video results in high CPU and memory usage, leading to crashes.
+Starting a new thread for each video leads to excessive resource usage.
 
 **Solution:**
-- Implement a thread pool to limit the number of concurrent threads.
-- Queue the video processing tasks and process a limited number at a time (e.g., 5-10 threads), and process the remaining videos as earlier ones complete.
+- Implement a **thread pool** to limit the number of concurrent threads.
+- Use a queue to manage video processing tasks, allowing only a set number of tasks to run concurrently (e.g., 5-10). When one task completes, the next task in the queue can start.
 
-**Java Example (using `ExecutorService`):**
-```java
-ExecutorService executor = Executors.newFixedThreadPool(5); // Limit to 5 threads
-for (Video video : videoList) {
-    executor.submit(() -> processVideo(video));
-}
-executor.shutdown();
+---
+
+### 2. Use a Task Queue
+**Problem:**  
+Overloading the server with too many simultaneous threads.
+
+**Solution:**
+- Implement a **task queue** (e.g., RabbitMQ, Redis, Kafka) to manage incoming video processing requests.
+- Only process a limited number of tasks at a time, queuing additional requests until resources are available.
+
+---
+
+### 3. Implement Rate Limiting
+**Problem:**  
+Excessive concurrent requests can lead to server crashes.
+
+**Solution:**
+- Introduce **rate limiting** to control the number of requests processed simultaneously.
+- If the server is busy, reject additional requests or inform users to try again later.
+
+---
+
+### 4. Vertical Scaling (Increase Server Resources)
+**Problem:**  
+Insufficient server resources cause crashes.
+
+**Solution:**
+- Temporarily **increase server resources** (e.g., adding more CPU cores or RAM) to accommodate higher loads.
+- This can provide immediate relief until a permanent fix is found.
+
+---
+
+### 5. Stagger Video Processing Tasks
+**Problem:**  
+Overwhelming the server with simultaneous processing.
+
+**Solution:**
+- Introduce delays between starting video processing tasks to **stagger** the workload.
+- For example, start a new task every few seconds instead of all at once.
+
+---
+
+### 6. Isolate the Service on a Separate Machine or Container
+**Problem:**  
+Crashes in the service affect other processes.
+
+**Solution:**
+- Run the subtitle generation service on a **dedicated machine** or within a **container** (e.g., Docker) to prevent interference with other processes.
+- This isolates the service and limits its impact on the overall system.
+
+---
+
+### 7. Batch Processing
+**Problem:**  
+Overloading the server with simultaneous requests.
+
+**Solution:**
+- Implement **batch processing** to group video requests and process them at specified intervals, rather than handling each request immediately.
+- This approach can help manage server load effectively.
+
+---
+
+## Conclusion
+These workarounds aim to stabilize the subtitle generation service while the root cause of the issue is being resolved. By managing thread concurrency, utilizing task queues, implementing rate limiting, and considering resource scaling, you can help ensure that the service continues to operate effectively during this period.
 
 
 
