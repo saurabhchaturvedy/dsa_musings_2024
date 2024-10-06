@@ -1,74 +1,41 @@
-# Q4 - Storage Estimation
+# Photo Storage Service - Sharding Design Review
 
+## Overview
+For our photo storage service, we are considering sharding the photos and associated data evenly onto multiple machines based on usernames. The proposed scheme divides usernames alphabetically, assigning each starting letter to a different server. For example, if we had 26 servers, usernames starting with 'A' would go to Server 1, those starting with 'B' to Server 2, and so on.
 
+### Potential Problems with the Design
 
-## Information Needed
+1. **Uneven Distribution of Users**
+    - **Skewed Data Distribution:** The distribution of usernames is not uniform, with some letters having significantly more usernames (e.g., 'S', 'J', 'M'), leading to overloaded servers while others are underutilized.
 
-1. **Current Usage Metrics:**
-    - Average number of photos uploaded per user per day.
-    - Total number of active users currently using the service.
-    - Average size of a photo (in MB or GB).
+2. **User Growth and Rebalancing**
+    - **Difficulty in Rebalancing:** New users may cluster around certain letters, causing one or two servers to become overloaded. Rebalancing can be complex and time-consuming, especially if it requires moving large amounts of data.
 
-2. **Growth Projections:**
-    - Expected user growth rate (how many new users you expect to onboard each month).
-    - Estimated increase in the average number of photos uploaded per user over time.
+3. **Single Point of Failure**
+    - **Server Dependency:** If a server goes down (e.g., Server 19 for usernames starting with 'S'), it affects all users in that category, leading to potential service outages. High availability strategies are essential to mitigate this risk.
 
-3. **Retention Policy:**
-    - How long will you keep the photos (e.g., indefinitely, a certain period, etc.)?
-    - Any policies regarding deleting unused or old photos.
+4. **Performance Bottlenecks**
+    - **Increased Latency:** Overloaded servers can lead to increased latency in data retrieval and processing, negatively impacting overall performance.
 
-4. **Photo Type Distribution:**
-    - Breakdown of photo types (e.g., JPEG, PNG, RAW) as different formats have varying sizes.
-    - Estimates of any video uploads, if applicable.
+5. **Lack of Flexibility**
+    - **Fixed Shard Boundaries:** The rigid alphabetic scheme lacks adaptability to changing usage patterns. New popular username prefixes can lead to overloaded shards without a simple redistribution mechanism.
 
-5. **Backup Requirements:**
-    - Backup and redundancy strategies (e.g., 1x, 2x, or 3x redundancy) for data integrity and availability.
-    - Frequency of backups (daily, weekly).
+6. **Complexity in User Management**
+    - **User Migration:** Changes in usernames or sharding policies may necessitate complex and error-prone data migrations across servers.
 
-6. **Server Configuration:**
-    - The current configuration of the server hardware, including total storage capacity and performance specifications.
-    - Any anticipated upgrades or changes to the infrastructure over the year.
+7. **Difficulties with Aggregation Queries**
+    - **Cross-Server Queries:** Operations requiring data from multiple servers can complicate querying, leading to performance hits and increased complexity in managing those queries.
 
-7. **Cost of Storage:**
-    - Current costs associated with storage (e.g., per GB) based on your server infrastructure.
-    - Potential costs for additional servers or upgrades to meet projected storage needs.
+8. **Potential for Data Hotspots**
+    - **Frequent Access Patterns:** Popular usernames (e.g., celebrities) may create hotspots on specific servers, leading to performance degradation.
 
-## Factors to Consider
+### Recommendations
+To address these issues, consider the following strategies:
 
-1. **User Behavior:**
-    - Seasonal trends in photo uploads (e.g., holidays, events) that could impact storage needs.
+- **Hash-Based Sharding:** Use a hashing algorithm to distribute users more evenly across servers, improving load balancing.
+- **Dynamic Resharding:** Implement dynamic resharding to redistribute users based on load, usage patterns, or specific growth thresholds.
+- **Monitoring and Alerts:** Utilize monitoring tools to track server usage and set up alerts for hotspots or bottlenecks.
+- **Load Balancers:** Incorporate load balancers to distribute incoming requests based on server load, further mitigating potential bottlenecks.
 
-2. **Performance Requirements:**
-    - How fast you need to access and retrieve photos, which might affect the choice of storage solution (e.g., SSD vs. HDD).
-
-3. **Scaling Strategy:**
-    - Strategies for scaling storage as demand increases (e.g., adding new servers, increasing existing server capacities).
-
-4. **Infrastructure Maintenance Costs:**
-    - Costs associated with maintaining and managing your own server farm (e.g., personnel, hardware maintenance, power, cooling).
-
-5. **Security Considerations:**
-    - Measures for securing the data and protecting against loss, which may require additional storage for backups.
-
-6. **User Experience:**
-    - Impact of storage and retrieval times on user experience, which could influence decisions regarding architecture and technology.
-
-## Estimation Process
-
-1. **Calculate Total Storage Needs:**
-    - Use the current metrics and growth projections to estimate total storage needs for the year:
-      \[
-      \text{Total Storage} = \text{Current Photos} + (\text{New Users} \times \text{Avg. Photos/User/Year} \times \text{Avg. Size of Photo})
-      \]
-
-2. **Factor in Growth:**
-    - Adjust for user growth and retention policies to get an annual estimate.
-
-3. **Calculate Cost:**
-    - Multiply the total storage estimate by the cost per GB to determine overall storage costs for the year.
-
-4. **Include Redundancy Costs:**
-    - Consider redundancy costs based on your backup strategy (if applicable).
-
-5. **Review and Adjust:**
-    - Review the estimates regularly, especially as user behavior and system usage patterns change.
+## Conclusion
+By recognizing and addressing these concerns, we can enhance the performance and reliability of our photo storage service as it scales.
