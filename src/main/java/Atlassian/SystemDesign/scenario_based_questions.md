@@ -36,39 +36,55 @@ These workarounds can help you continue running the service while minimizing cra
 
 Q2:
 
+Potential Issues and Solutions
 1. Server Overload at Midnight
-With 100,000 machines connecting simultaneously at midnight, the central server could become overwhelmed. This sudden surge of connections could cause server crashes, slow response times, or even lead to dropped connections.
+   Problem: With 100,000 machines connecting simultaneously at midnight, the central server may be overwhelmed, leading to server crashes, slow responses, or dropped connections.
 
-Solution: Implement a staggered or randomized reporting schedule. For example, instead of all machines connecting at exactly midnight, you could randomize the connection time over a window (e.g., between 12:00 AM and 12:30 AM) to distribute the load more evenly.
+Solution:
 
+Implement a staggered or randomized reporting schedule.
+Example: Machines connect between 12:00 AM and 12:30 AM, instead of all at once.
 2. Single Point of Failure
-If you are relying on a single central server, any downtime, network failure, or server overload could prevent machines from reporting their statuses. This would result in lost data and could delay restocking and maintenance operations.
+   Problem: Relying on a single central server introduces the risk of downtime, which could prevent machines from reporting their statuses.
 
-Solution: Use a distributed architecture with multiple servers in different regions. You could use a load balancer to distribute incoming connections across servers, ensuring redundancy and avoiding a single point of failure.
+Solution:
 
+Implement a distributed architecture with multiple servers.
+Use a load balancer to distribute traffic across these servers, ensuring redundancy.
 3. Network Latency and Failures
-Since the machines are spread across different cities and rely on cellular networks, there’s a risk that some machines might not be able to connect due to poor signal, network congestion, or latency, especially during high-traffic times (like midnight).
+   Problem: Cellular network issues, such as poor signal or congestion, could prevent some machines from successfully sending their status updates.
 
-Solution: Add a retry mechanism for machines that fail to connect. The machines could retry after a short delay (with an exponential backoff strategy) if they fail to send the status report at midnight. You might also allow machines to report at alternative times if midnight is a busy time for the cellular network.
+Solution:
 
+Introduce a retry mechanism with exponential backoff for failed connections.
+Allow machines to report during alternative times if the network is congested at midnight.
 4. Database Overload
-If 100,000 machines are reporting at the same time, your database could experience a large influx of writes, potentially overwhelming it and leading to performance bottlenecks.
+   Problem: A large influx of writes from 100,000 machines may overwhelm the database, affecting performance.
 
-Solution: Implement a queueing system like RabbitMQ or Kafka to handle incoming reports and process them asynchronously. This way, the machines can send their status updates quickly, and the central server can process these updates in batches without overloading the database.
+Solution:
 
+Use a message queue (e.g., RabbitMQ, Kafka) to buffer incoming reports and process them asynchronously.
+Process status updates in batches to avoid database bottlenecks.
 5. Scalability of the Batch Job
-With a large number of machines, your 1 AM batch job could take a long time to process the maintenance and restocking schedules, especially if the database is large and not optimized for batch operations.
+   Problem: A monolithic batch job could take a long time to process the restocking and maintenance schedules for a large number of machines.
 
-Solution: Instead of running a single monolithic batch job, consider parallelizing the job by splitting the workload across multiple threads or nodes. You can also investigate incremental or continuous processing (i.e., processing reports as they come in) instead of waiting for a batch job.
+Solution:
 
+Parallelize the batch job by splitting the workload across multiple threads or nodes.
+Consider processing reports incrementally as they come in, rather than in a single batch.
 6. Time Zone Considerations
-Since the machines are located in various cities around the world, the definition of "midnight" varies by time zone. If all machines report at midnight local time, you could end up with a rolling surge of status updates as midnight happens in each time zone.
+   Problem: Machines located in different cities will have varying local midnight times, creating a rolling surge of status updates.
 
-Solution: Either handle this rolling wave by ensuring the server can handle the continuous load or synchronize reporting to occur at the same universal time (e.g., midnight UTC).
+Solution:
 
+Handle the rolling surge by ensuring the server can manage continuous traffic.
+Alternatively, synchronize reporting to a common universal time (e.g., midnight UTC).
 7. Security and Authentication
-Since these vending machines will be connected over the internet via cellular networks, security is a concern. Unauthorized access could compromise the machine data or allow malicious actors to alter reports or schedules.
+   Problem: Connecting machines via the internet poses security risks, such as unauthorized access or tampering with data.
 
-Solution: Use secure communication protocols such as TLS and implement strong authentication mechanisms for each machine when it connects to the central server.
+Solution:
 
-By addressing these potential issues, you can build a more robust and scalable system that can handle the large number of machines and ensure the timely and reliable processing of their status updates.
+Use secure communication protocols like TLS.
+Implement strong authentication for each machine before it connects to the server.
+Conclusion
+By addressing these potential issues, the system can become more scalable, reliable, and secure, allowing it to handle a large number of vending machines efficiently and effectively.
