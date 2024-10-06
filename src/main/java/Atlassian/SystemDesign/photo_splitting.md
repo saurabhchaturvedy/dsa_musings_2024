@@ -1,4 +1,4 @@
-# Photo Storage Service - Sharding Design Review
+# Q4 - Sharding Design Review
 
 ## Overview
 For our photo storage service, we are considering sharding the photos and associated data evenly onto multiple machines based on usernames. The proposed scheme divides usernames alphabetically, assigning each starting letter to a different server. For example, if we had 26 servers, usernames starting with 'A' would go to Server 1, those starting with 'B' to Server 2, and so on.
