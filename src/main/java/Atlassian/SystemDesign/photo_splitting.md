@@ -1,7 +1,6 @@
 # Q4 - Storage Estimation
 
-## Overview
-We are running a simple photo storage and sharing service where users upload their photos to our servers and share links with others to view them. Instead of using a cloud service, we manage our own server farms. The goal is to create an estimate of the storage required over the coming year and the associated costs.
+
 
 ## Information Needed
 
