@@ -33,58 +33,74 @@ These workarounds can help you continue running the service while minimizing cra
 
 
 
+# Vending Machine Status Reporting System: Design Considerations
 
-Q2:
+## Overview
+This system involves internet-connected vending machines that will report their status to a central server. Around 100,000 machines will connect at midnight, using cellular networks, to update their stock and maintenance status. A batch job will run at 1 AM to schedule restocking and maintenance.
 
-Potential Issues and Solutions
-1. Server Overload at Midnight
-   Problem: With 100,000 machines connecting simultaneously at midnight, the central server may be overwhelmed, leading to server crashes, slow responses, or dropped connections.
+Below are potential issues with the current design and suggested solutions to improve scalability and reliability.
 
-Solution:
+---
 
-Implement a staggered or randomized reporting schedule.
-Example: Machines connect between 12:00 AM and 12:30 AM, instead of all at once.
-2. Single Point of Failure
-   Problem: Relying on a single central server introduces the risk of downtime, which could prevent machines from reporting their statuses.
+## Potential Issues and Solutions
 
-Solution:
+### 1. Server Overload at Midnight
+**Problem:**  
+With 100,000 machines connecting simultaneously at midnight, the central server may be overwhelmed, leading to server crashes, slow responses, or dropped connections.
 
-Implement a distributed architecture with multiple servers.
-Use a load balancer to distribute traffic across these servers, ensuring redundancy.
-3. Network Latency and Failures
-   Problem: Cellular network issues, such as poor signal or congestion, could prevent some machines from successfully sending their status updates.
+**Solution:**
+- Implement a staggered or randomized reporting schedule.  
+  Example: Machines connect between 12:00 AM and 12:30 AM, instead of all at once.
 
-Solution:
+### 2. Single Point of Failure
+**Problem:**  
+Relying on a single central server introduces the risk of downtime, which could prevent machines from reporting their statuses.
 
-Introduce a retry mechanism with exponential backoff for failed connections.
-Allow machines to report during alternative times if the network is congested at midnight.
-4. Database Overload
-   Problem: A large influx of writes from 100,000 machines may overwhelm the database, affecting performance.
+**Solution:**
+- Implement a distributed architecture with multiple servers.
+- Use a load balancer to distribute traffic across these servers, ensuring redundancy.
 
-Solution:
+### 3. Network Latency and Failures
+**Problem:**  
+Cellular network issues, such as poor signal or congestion, could prevent some machines from successfully sending their status updates.
 
-Use a message queue (e.g., RabbitMQ, Kafka) to buffer incoming reports and process them asynchronously.
-Process status updates in batches to avoid database bottlenecks.
-5. Scalability of the Batch Job
-   Problem: A monolithic batch job could take a long time to process the restocking and maintenance schedules for a large number of machines.
+**Solution:**
+- Introduce a retry mechanism with exponential backoff for failed connections.
+- Allow machines to report during alternative times if the network is congested at midnight.
 
-Solution:
+### 4. Database Overload
+**Problem:**  
+A large influx of writes from 100,000 machines may overwhelm the database, affecting performance.
 
-Parallelize the batch job by splitting the workload across multiple threads or nodes.
-Consider processing reports incrementally as they come in, rather than in a single batch.
-6. Time Zone Considerations
-   Problem: Machines located in different cities will have varying local midnight times, creating a rolling surge of status updates.
+**Solution:**
+- Use a message queue (e.g., RabbitMQ, Kafka) to buffer incoming reports and process them asynchronously.
+- Process status updates in batches to avoid database bottlenecks.
 
-Solution:
+### 5. Scalability of the Batch Job
+**Problem:**  
+A monolithic batch job could take a long time to process the restocking and maintenance schedules for a large number of machines.
 
-Handle the rolling surge by ensuring the server can manage continuous traffic.
-Alternatively, synchronize reporting to a common universal time (e.g., midnight UTC).
-7. Security and Authentication
-   Problem: Connecting machines via the internet poses security risks, such as unauthorized access or tampering with data.
+**Solution:**
+- Parallelize the batch job by splitting the workload across multiple threads or nodes.
+- Consider processing reports incrementally as they come in, rather than in a single batch.
 
-Solution:
+### 6. Time Zone Considerations
+**Problem:**  
+Machines located in different cities will have varying local midnight times, creating a rolling surge of status updates.
 
-Use secure communication protocols like TLS.
-Implement strong authentication for each machine before it connects to the server.
-Conclusion
+**Solution:**
+- Handle the rolling surge by ensuring the server can manage continuous traffic.
+- Alternatively, synchronize reporting to a common universal time (e.g., midnight UTC).
+
+### 7. Security and Authentication
+**Problem:**  
+Connecting machines via the internet poses security risks, such as unauthorized access or tampering with data.
+
+**Solution:**
+- Use secure communication protocols like TLS.
+- Implement strong authentication for each machine before it connects to the server.
+
+---
+
+## Conclusion
 By addressing these potential issues, the system can become more scalable, reliable, and secure, allowing it to handle a large number of vending machines efficiently and effectively.
