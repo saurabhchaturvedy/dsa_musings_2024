@@ -33,14 +33,7 @@ These workarounds can help you continue running the service while minimizing cra
 
 
 
-# Vending Machine Status Reporting System: Design Considerations
 
-## Overview
-This system involves internet-connected vending machines that will report their status to a central server. Around 100,000 machines will connect at midnight, using cellular networks, to update their stock and maintenance status. A batch job will run at 1 AM to schedule restocking and maintenance.
-
-Below are potential issues with the current design and suggested solutions to improve scalability and reliability.
-
----
 
 ## Potential Issues and Solutions
 
