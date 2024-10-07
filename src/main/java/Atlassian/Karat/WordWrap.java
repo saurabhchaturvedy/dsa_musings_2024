@@ -12,7 +12,9 @@ public class WordWrap {
 
         for (String word : words) {
             // Check if the word can fit in the current line
-            if (currentLength + word.length() + (currentLine.size() > 0 ? 1 : 0) <= maxLength) {
+            int currentLineSize = currentLine.size() > 0 ? 1 : 0;
+            int overallCurrentLineSize = currentLength + word.length() + currentLineSize;
+            if (overallCurrentLineSize <= maxLength) {
                 if (!currentLine.isEmpty()) { // If there's already a word in the line, add '-'
                     currentLine.add("-");
                     currentLength++; // account for the '-'
@@ -46,25 +48,25 @@ public class WordWrap {
                 "flame"
         };
         System.out.println(wrapLines(words1, 13)); // Expected output: ["The-day-began", "as-still-as", "the-night", "abruptly", "lighted-with", "brilliant", "flame"]
-        System.out.println(wrapLines(words1, 12)); // Expected output: ["The-day", "began-as", "still-as-the", "night", "abruptly", "lighted-with", "brilliant", "flame"]
-        System.out.println(wrapLines(words1, 20)); // Expected output: ["The-day-began-as", "still-as-the-night", "abruptly-lighted", "with-brilliant-flame"]
-
-        String[] words2 = {"Hello"};
-        System.out.println(wrapLines(words2, 5)); // Expected output: ["Hello"]
-        System.out.println(wrapLines(words2, 30)); // Expected output: ["Hello"]
-
-        String[] words3 = {"Hello", "Hello"};
-        System.out.println(wrapLines(words3, 5)); // Expected output: ["Hello", "Hello"]
-
-        String[] words4 = {"Well", "Hello", "world"};
-        System.out.println(wrapLines(words4, 5)); // Expected output: ["Well", "Hello", "world"]
-
-        String[] words5 = {"Hello", "HelloWorld", "Hello", "Hello"};
-        System.out.println(wrapLines(words5, 20)); // Expected output: ["Hello-HelloWorld", "Hello-Hello"]
-
-        String[] words6 = {"a", "b", "c", "d"};
-        System.out.println(wrapLines(words6, 20)); // Expected output: ["a-b-c-d"]
-        System.out.println(wrapLines(words6, 4));  // Expected output: ["a-b", "c-d"]
-        System.out.println(wrapLines(words6, 1));  // Expected output: ["a", "b", "c", "d"]
+//        System.out.println(wrapLines(words1, 12)); // Expected output: ["The-day", "began-as", "still-as-the", "night", "abruptly", "lighted-with", "brilliant", "flame"]
+//        System.out.println(wrapLines(words1, 20)); // Expected output: ["The-day-began-as", "still-as-the-night", "abruptly-lighted", "with-brilliant-flame"]
+//
+//        String[] words2 = {"Hello"};
+//        System.out.println(wrapLines(words2, 5)); // Expected output: ["Hello"]
+//        System.out.println(wrapLines(words2, 30)); // Expected output: ["Hello"]
+//
+//        String[] words3 = {"Hello", "Hello"};
+//        System.out.println(wrapLines(words3, 5)); // Expected output: ["Hello", "Hello"]
+//
+//        String[] words4 = {"Well", "Hello", "world"};
+//        System.out.println(wrapLines(words4, 5)); // Expected output: ["Well", "Hello", "world"]
+//
+//        String[] words5 = {"Hello", "HelloWorld", "Hello", "Hello"};
+//        System.out.println(wrapLines(words5, 20)); // Expected output: ["Hello-HelloWorld", "Hello-Hello"]
+//
+//        String[] words6 = {"a", "b", "c", "d"};
+//        System.out.println(wrapLines(words6, 20)); // Expected output: ["a-b-c-d"]
+//        System.out.println(wrapLines(words6, 4));  // Expected output: ["a-b", "c-d"]
+//        System.out.println(wrapLines(words6, 1));  // Expected output: ["a", "b", "c", "d"]
     }
 }

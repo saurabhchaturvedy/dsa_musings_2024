@@ -58,17 +58,24 @@ public class WordProcessor {
         int extraSpaces = totalSpaces % (words.size() - 1);
 
         StringBuilder justifiedLine = new StringBuilder();
+        String str="";
         for (int i = 0; i < words.size(); i++) {
             justifiedLine.append(words.get(i));
             if (i < words.size() - 1) { // No space after the last word
                 // Add base spaces
-                justifiedLine.append("-".repeat(spaceBetweenWords));
+
+                for(int k=0; k<spaceBetweenWords; k++)
+                {
+                  str+="-";
+                }
+                justifiedLine.append(str);
                 // Add extra spaces if any
                 if (extraSpaces > 0) {
                     justifiedLine.append("-");
                     extraSpaces--;
                 }
             }
+            str="";
         }
         return justifiedLine.toString();
     }
@@ -79,15 +86,15 @@ public class WordProcessor {
                 "night abruptly lighted with",
                 "brilliant flame"
         };
-     //   System.out.println(reflowAndJustify(lines1, 24)); // Expected output: ["The--day--began-as-still", ...]
+       System.out.println(reflowAndJustify(lines1, 24)); // Expected output: ["The--day--began-as-still", ...]
      //   System.out.println(reflowAndJustify(lines1, 25)); // Expected output: ["The-day-began-as-still-as", ...]
      //   System.out.println(reflowAndJustify(lines1, 26)); // Expected output: ["The--day-began-as-still-as", ...]
       //  System.out.println(reflowAndJustify(lines1, 40)); // Expected output: ["The--day--began--as--still--as-the-night", ...]
-     System.out.println(reflowAndJustify(lines1, 14)); // Expected output: ["The--day-began", ...]
+    // System.out.println(reflowAndJustify(lines1, 14)); // Expected output: ["The--day-began", ...]
     //    System.out.println(reflowAndJustify(lines1, 15)); // Expected output: ["The--day--began", ...]
         
         String[] lines2 = { "a b", "c d" };
-       // System.out.println(reflowAndJustify(lines2, 20)); // Expected output: ["a------b-----c-----d"]
+       System.out.println(reflowAndJustify(lines2, 20)); // Expected output: ["a------b-----c-----d"]
     //    System.out.println(reflowAndJustify(lines2, 4));  // Expected output: ["a--b", "c--d"]
       //  System.out.println(reflowAndJustify(lines2, 2));  // Expected output: ["a", "b", "c", "d"]
     }
