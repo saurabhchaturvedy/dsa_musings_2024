@@ -5,7 +5,7 @@ import java.util.List;
 
 public class WordWrap {
 
-    public static List<String> wrapLines(String[] words, int maxLength) {
+    public static List<String> wrapLines(String[] words, int maxWidth) {
         List<String> wrappedLines = new ArrayList<>();
         List<String> currentLine = new ArrayList<>();
         int currentLength = 0;
@@ -14,7 +14,7 @@ public class WordWrap {
             // Check if the word can fit in the current line
             int currentLineSize = currentLine.size() > 0 ? 1 : 0;
             int overallCurrentLineSize = currentLength + word.length() + currentLineSize;
-            if (overallCurrentLineSize <= maxLength) {
+            if (overallCurrentLineSize <= maxWidth) {
                 if (!currentLine.isEmpty()) { // If there's already a word in the line, add '-'
                     currentLine.add("-");
                     currentLength++; // account for the '-'
