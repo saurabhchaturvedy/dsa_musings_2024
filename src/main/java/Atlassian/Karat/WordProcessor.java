@@ -79,16 +79,16 @@ public class WordProcessor {
                 "night abruptly lighted with",
                 "brilliant flame"
         };
-        System.out.println(reflowAndJustify(lines1, 24)); // Expected output: ["The--day--began-as-still", ...]
-        System.out.println(reflowAndJustify(lines1, 25)); // Expected output: ["The-day-began-as-still-as", ...]
-        System.out.println(reflowAndJustify(lines1, 26)); // Expected output: ["The--day-began-as-still-as", ...]
-        System.out.println(reflowAndJustify(lines1, 40)); // Expected output: ["The--day--began--as--still--as-the-night", ...]
-        System.out.println(reflowAndJustify(lines1, 14)); // Expected output: ["The--day-began", ...]
-        System.out.println(reflowAndJustify(lines1, 15)); // Expected output: ["The--day--began", ...]
+     //   System.out.println(reflowAndJustify(lines1, 24)); // Expected output: ["The--day--began-as-still", ...]
+     //   System.out.println(reflowAndJustify(lines1, 25)); // Expected output: ["The-day-began-as-still-as", ...]
+     //   System.out.println(reflowAndJustify(lines1, 26)); // Expected output: ["The--day-began-as-still-as", ...]
+      //  System.out.println(reflowAndJustify(lines1, 40)); // Expected output: ["The--day--began--as--still--as-the-night", ...]
+     System.out.println(reflowAndJustify(lines1, 14)); // Expected output: ["The--day-began", ...]
+    //    System.out.println(reflowAndJustify(lines1, 15)); // Expected output: ["The--day--began", ...]
         
         String[] lines2 = { "a b", "c d" };
-        System.out.println(reflowAndJustify(lines2, 20)); // Expected output: ["a------b-----c-----d"]
-        System.out.println(reflowAndJustify(lines2, 4));  // Expected output: ["a--b", "c--d"]
-        System.out.println(reflowAndJustify(lines2, 2));  // Expected output: ["a", "b", "c", "d"]
+       // System.out.println(reflowAndJustify(lines2, 20)); // Expected output: ["a------b-----c-----d"]
+    //    System.out.println(reflowAndJustify(lines2, 4));  // Expected output: ["a--b", "c--d"]
+      //  System.out.println(reflowAndJustify(lines2, 2));  // Expected output: ["a", "b", "c", "d"]
     }
 }
