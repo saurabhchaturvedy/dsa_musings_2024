@@ -51,4 +51,22 @@ public class HitCounter {
             last = hits.getLast();
         }
     }
+
+    public static void main(String[] args) {
+
+
+        HitCounter counter = new HitCounter();
+
+        // Hit at time 1.
+        counter.hit(1);
+
+        // Hit at time 2.
+        counter.hit(2);
+
+        // Hit at time 3.
+        counter.hit(3);
+
+        // Get hits at time 4, should return 3.
+        System.out.println(counter.getHits(4));
+    }
 }
