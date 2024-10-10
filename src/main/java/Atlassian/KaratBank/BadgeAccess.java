@@ -65,7 +65,7 @@ public class BadgeAccess {
                 {"Bob", "exit"}};
 
 
-        badgeAccess(badgeRecords);
+     //   badgeAccess(badgeRecords);
 
 
         String[][] badge_records = {
