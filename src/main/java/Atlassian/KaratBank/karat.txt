@@ -1,8 +1,12 @@
-1. WrapLines
-2. WrapLines2 + Justify
-
- Assuming only one "-" between words, but define "score": sum of difference square between each line length and the length of longest line (like variance), how to wrap can minimize the score. How long for each line is not limited. (dp)
 
 
-3. Friend Cycle
-4. Now for each department count the number of employees that have a friend in another department
+1. Wrap Lines
+2. Friend Cycle
+3. Common Ancestor/Parent
+4. Calculator
+5. Domain visits
+6. Course Schedule
+7. Badge Access
+8. Meeting Room/Merge Interval
+9. Task By Level
+10.Find Rectangles
