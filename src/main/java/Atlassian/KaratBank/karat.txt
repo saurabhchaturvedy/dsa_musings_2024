@@ -1,12 +1,12 @@
 
 
-1. Wrap Lines
-2. Friend Cycle
+1. Wrap Lines - Done
+2. Friend Cycle - Done
 3. Common Ancestor/Parent
 4. Calculator
-5. Domain visits
+5. Domain visits - Done
 6. Course Schedule
-7. Badge Access
-8. Meeting Room/Merge Interval
+7. Badge Access - Done
+8. Meeting Room/Merge Interval - Done
 9. Task By Level
 10.Find Rectangles
