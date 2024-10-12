@@ -2,7 +2,7 @@ I'm seeing that many people have interview there and seeing a common theme of pr
 
 But I am unable to understand whether they get answered in the System Design or in the Coding Design.
 
-Specifically, for exmaple, the API Rate Limiter. One could code a simple one of these prettty easily but you also can get very heavy involved if you are wanting to do it at scale.
+Specifically, for example, the API Rate Limiter. One could code a simple one of these prettty easily but you also can get very heavy involved if you are wanting to do it at scale.
 
 Can some one help me understand a bit better, which fo the questions below owuld be asked in System Design and which would be asked in Coding Design?
 ========================================
