@@ -1,0 +1,109 @@
+I'm seeing that many people have interview there and seeing a common theme of problems that they ask.
+
+But I am unable to understand whether they get answered in the System Design or in the Coding Design.
+
+Specifically, for exmaple, the API Rate Limiter. One could code a simple one of these prettty easily but you also can get very heavy involved if you are wanting to do it at scale.
+
+Can some one help me understand a bit better, which fo the questions below owuld be asked in System Design and which would be asked in Coding Design?
+========================================
+TC: 0
+Got laid off 2 weeks ago
+========================================
+
+—— System Design Possibilities:
+—> Youtube Videos for Sys Design: https://www.youtube.com/playlist?list=PLlvnxKilk3aIKa3Vv688ELv-DeAEg3YQ1
+
+https://leetcode.com/discuss/interview-experience/4133665/Atlassian-P6-or-Sydney-or-Rejected-offer/
+
+—> RAte Limiter: https://www.youtube.com/watch?v=FU4WlwfS3G0&ab_channel=SystemDesignInterview
+
+—> Design a Tagging System (Tagging files and find top N tags)
+—> Photo storage service
+—> Game Machine with Payment System
+—> Design REST API ? — SEEMS MORE LIKE API DESIGN
+—> DESIGN API IN THE SYSTEM DESIGN
+—> web crawler
+—> design color picker
+—> Tagging Atlassian products
+— system design: designing a system for keeping track of user statuses
+— Given some files with size and collection, design a file system that generates a summary like the total size per collection for top k collections. https://leetcode.com/discuss/interview-question/1508471/code-design-file-processing-scenario
+— — tagging system (feature flag system)
+— Design tagging system.
+
+ —> Design a tagging system This is just a design question, no code required. I've provided the basics, there are plenty of useful youtube videos to prepare for this kind of questions. I've used Python for the coding questions: - A filesystem counter/reporter Using a Counter() to count the files in specific collections as it's a `dict` inside and stores/fetches in O(1). Counter has a function for the most common element, to sort and get the most N elements and show some handling of algorithms, a binary insertion can be used to keep an array sorted with the top n elements of N in N*O(n). - The snake game I had some practice with numpy, so I've used a 2d NDarray for coordinates. I've offered 3 possible designs: 1) Infinite board (using a queue with positions for the snake), checking if crash by checking if new head is already included in the queue. 2) Finite board (the same queue and a matrix for the board), useful to draw and find objects quickly. (the version I implemented) 3) just a board and increasing numbers for the snake slower to move the snake (increase all the numbers) but no queue. I've asked about the border walls, and they suggested toroidal wrap. So I used the numpy modulo with the board dimensions and the wall problem was solved in one line. i.e. new_pos = (old_pos+movement) % dimension being all of them 2d arrays. To use walls: new_pos = old_pos+movement ; if new_pos % dimension != new_pos: raise Crash()
+—— Coding Possibilities:
+—> SNAKE GAME and Algorithmic Question ?
+—> Tagging files and find top N tags — Tagging file question - A file can belong to a collection. Multiple files can belong to a collection. Given this set of files, find total size of all files and top n collections. - Pretty easy. Go to leetcode, you will find solution.
+
+—> Implement a service that tracks popularity of a given set of IDs (that represent some piece of content). Write code to increase/decrease popularity of a piece of content and a method that tells you the most popular content at any time. — this: https://leetcode.com/problems/all-oone-data-structure/description/
+
+—> API Rate Limiter
+—> Design Snake Game
+—> Voting System (Rank Based or Stream of votes)
+—> Tagging files and Top N collections/tags
+— 1. rateLimit for given customer
+— 2. ballot voting...
+— Data Structures - Implement a voting system with a constant stream of votes.
+— coding: Observe an online snake game, figure out how it works, write a working interface for your own snake game
+— coding: Something with multi dimensional arrays
+— snake game
+— voting system
+—  Implement a Rate Limiter
+—  Choose the winner from a list of casted votes
+— Implement a rate limiter..
+— Implement a method 'find' that will find the starting index (zero based) where the second list occurs as a sub-list in the first list. It should return -1 if the sub-list cannot be found. Arguments are always given, not empty. Sample Input 1 list1 = (1, 2, 3) list2 = (2, 3) Sample Output 1 1 Explanation As second list (2, 3) is sub-list in first list (1, 2, 3) at index 1 Sample Input 2 list1 = (1, 2, 3) list2 = (3, 2) Sample Output 2 -1. similar to string comparision, you need to implement a kmp algorithm to make it fast enough.
+— Complete functions within an application. Build a staircase, find a sub-list within a list. convert long to string in base 7. Look and say sequence. Control robot arm.
+
+ - Implement a voting system.
+
+https://leetcode.com/discuss/interview-question/object-oriented-design/1713795/API-Rate-Limiter
+
+— Code Design – Rate Limiter. Here is the exact question I received. Problem Title: Rate Limiter Problem Description: Imagine we are building an application that is used by many different customers. We want to avoid one customer being able to overload the system by sending too many requests, so we enforce a per-customer rate limit. The rate limit is defined as: “Each customer can make X requests per Y seconds” Assuming that customer ID is extracted somehow from the request, implement the following function. // Perform rate limiting logic for provided customer ID. Return true if the // request is allowed, and false if it is not. boolean rateLimit(int customerId)
+
+Data Structures - Implement a voting system with a constant stream of votes.
+
+—> Take a stream of 'upvotes' and 'downvotes' on particular pieces of 'content', and then return the ID of the most 'upvoted' piece of content
+
+—> Solve a variant of the Knapsack problem
+
+ARTICLES:
+https://leetcode.com/discuss/interview-experience/1566225/atlassian-p5-bangalore-4th-oct-19th-oct-p4-offer
+
+maybe this?! — https://github.com/shubhamharitash/ApiRateLimiter_Core_Java
+
+ARTICLES dUDE: https://www.geeksforgeeks.org/atlassian-interview-questions-for-technical-profiles/
+
+Geeks for geeks for Atlassian prep: https://www.geeksforgeeks.org/atlassian-interview-questions-for-technical-profiles/#
+
+—— ATLASSIAN
+
+- what types of interviews?
+
+— Backend Coding — Build soemthing - description of an old rudimentary video games — ask to implement base logic of the game (snake game) —
+
+— Not Leetcode — more like build something —
+
+[[[[ A couple different prompts the interviewers can choose from. ]]]]
+
+— resourcefulness
+— allowed to use the web
+
+— Backend System Design —
+assessing
+
+— Leadership Craft — onterview,
+—> How outcomes Focused You Are
+	- remove roadblocks
+	- ability to collaborate
+	- improving individual/team organizational ways of working
+	- architectural choices you have made specific to large projects you have made
+
+——> PEOPLE WHO GET DOWNLEVELED FAIL AS DESCRIBED BELOW IN LEADERSHPI CRAFT
+— Candidates falling short — talk about wrong kind fo project — Interviewers want to see and hear about a LARGE SCALE PROJECT … .LARGE SCALE IN TERMS OF BUSINESS IMPACT, AND HIGHLY COLLABORATIVE.
+
+—> MUST INVOLVE A LOT OF PEOPLE
+—> SOMETHING THAT INVOLVES MANY STAKEHOLDERS, MOVING PIECES, INDIVIDUALS
+——> Talk about a Specific Project and then ask Series of Questions.
+
+— Values Interview
+	- 5 questoins — 1 question per value.
