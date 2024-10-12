@@ -2,10 +2,10 @@
 
 1. Wrap Lines - Done
 2. Friend Cycle - Done
-3. Common Ancestor/Parent
+3. Common Ancestor/Parent - Done
 4. Calculator
 5. Domain visits - Done
-6. Course Schedule
+6. Course Schedule - Done
 7. Badge Access - Done
 8. Meeting Room/Merge Interval - Done
 9. Task By Level

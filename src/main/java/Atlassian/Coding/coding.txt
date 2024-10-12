@@ -1,0 +1,11 @@
+
+
+1	Merge Intervals	M	5.78	Vid / Code
+2	Group Anagrams	M	3.46	Vid / Code
+3	Logger Rate Limiter	E	1.72
+4	All O`one Data Structure	H	0.65
+5	Rank Teams by Votes	M	0.41
+6	Design Snake Game	M	0.35
+7	Design File System	M	0.33
+8	Longest String Chain	M	0.19
+9	Stock Price Fluctuation

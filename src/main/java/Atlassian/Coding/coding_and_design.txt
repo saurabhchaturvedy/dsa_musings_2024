@@ -1,0 +1,11 @@
+
+
+
+
+1. Design Tagging System
+2. Photo Storage Service
+3. Game Machine With Payment System
+4. Design Web Crawler
+5. Design Color Picker
+6. system design: designing a system for keeping track of user statuses
+7. Given some files with size and collection, design a file system that generates a summary like the total size per collection for top k collections.
