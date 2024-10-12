@@ -1,4 +1,4 @@
-# Interview Preparation Notes
+
 
 Many people have interviews with common themes of problems being asked. However, it is often unclear whether certain questions should be answered as part of **System Design** or **Coding Design**.
 
