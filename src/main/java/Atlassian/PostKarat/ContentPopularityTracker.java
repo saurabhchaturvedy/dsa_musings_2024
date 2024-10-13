@@ -93,7 +93,7 @@ public class ContentPopularityTracker {
         }
 
 
-        return popularityToContentIdsMap.get(maxPopularity).iterator().next();
+        return popularityToContentIdsMap.get(maxPopularity).getLast();
     }
 
 

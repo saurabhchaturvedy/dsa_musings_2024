@@ -56,6 +56,10 @@ public class ContentPopularityTracker1 {
     private void updateMaxPopularContent() {
 
 
+        // 7 -> 1   3
+        // 8 -> 2
+        // 9 -> 4 O(n) x O(1)
+
         this.maxPopularity = Integer.MIN_VALUE;
         this.maxPopularContent = -1;
 

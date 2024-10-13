@@ -8,6 +8,8 @@ public class ContentPopularityTracker3 {
     Map<Integer, Integer> contentPopularityMap;
     Map<Integer, LinkedHashSet<Integer>> popularityToContentIdsMap;
 
+    //  8 -> 3
+    //  3 -> [8,9]
     int maxPopularity;
 
 
