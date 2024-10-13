@@ -1,0 +1,30 @@
+
+
+Imagine we are building an application that is used by many different consumers . We want to avoid one customer being able to overload the system by sending too many requests , so we enforce a  per customer rate limit . The rate limit is defined as : "Each customer can make X requests per Y seconds"
+
+* For any given time window Y , only X requests can be made
+* Time windows are fixed , and the restriction applies per fixed window . (e.g how mobile usage is tracked)
+
+* Assuming that the customerId is extracted from the request somehow , implement the following function
+
+// perform rate limiting logic for provided customerID
+// return true if request is allowed , otherwise false if it is not
+
+boolean rateLimit(int customerId)
+
+
+Instead of Rate Limiting over a time window - simply have maximum threshold that each customer can reach before we rate limit them
+
+add resetting manually per customer
+
+
+Add a global reset counter ( e.g last reset time, and if current time > last reset + 1 -> make a new map)
+
+Some of our customers have bursty traffic , and are complaining about being rate limited . We want to better accomodate those customers , so we want to adopt a credit based system.
+
+It will work as follows
+
+For each bucket of time , any capacity avaialable below the limit is converted into credits for that customer
+
+There is some maximum numbers of credits that a customer can accumulate .
+When a customer exceeds their normal request limit for a window , the credit count starts to decrease . Where there are 0 credits , customer is rate limited .
