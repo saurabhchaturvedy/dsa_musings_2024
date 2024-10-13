@@ -17,7 +17,7 @@ public class RateLimiter2 {
     }
 
 
-    public boolean rateLimit(int customerId) {
+    public synchronized boolean rateLimit(int customerId) {
         int requestCount = userToRequestCountMap.getOrDefault(customerId, 0);
 
 
@@ -31,6 +31,13 @@ public class RateLimiter2 {
 
     }
 
+    public synchronized void reset(int customerId)
+    {
+
+        userToRequestCountMap.remove(customerId);
+        System.out.println(" Customer ID : "+customerId+" rate limit has been set");
+    }
+
 
     public static void main(String[] args) {
 
@@ -40,6 +47,14 @@ public class RateLimiter2 {
         int customerId = 1;
 
         for (int i = 0; i < 5; i++) {
+
+            boolean isAllowed = rateLimiter2.rateLimit(customerId);
+            System.out.println(" Request " + (i + 1) + " Allowed ? : " + isAllowed);
+        }
+
+        rateLimiter2.reset(customerId);
+
+        for (int i = 0; i < 2; i++) {
 
             boolean isAllowed = rateLimiter2.rateLimit(customerId);
             System.out.println(" Request " + (i + 1) + " Allowed ? : " + isAllowed);
