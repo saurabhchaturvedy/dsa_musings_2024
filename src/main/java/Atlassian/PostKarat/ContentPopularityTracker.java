@@ -1,8 +1,10 @@
 package Atlassian.PostKarat;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.LinkedHashSet;
+import java.util.Map;
 
-public class ContentPopularityTracker2 {
+public class ContentPopularityTracker {
 
 
     Map<Integer, Integer> contentPopularityMap;
@@ -11,7 +13,7 @@ public class ContentPopularityTracker2 {
     int maxPopularity;
 
 
-    ContentPopularityTracker2() {
+    ContentPopularityTracker() {
         this.contentPopularityMap = new HashMap<>();
         this.popularityToContentIdsMap = new HashMap<>();
         this.maxPopularity = 0;
@@ -123,5 +125,4 @@ public class ContentPopularityTracker2 {
 
 
     }
-
 }
