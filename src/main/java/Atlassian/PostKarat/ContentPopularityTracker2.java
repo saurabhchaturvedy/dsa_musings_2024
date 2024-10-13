@@ -6,7 +6,7 @@ public class ContentPopularityTracker2 {
 
 
     Map<Integer, Integer> contentPopularityMap;
-    Map<Integer, Set<Integer>> popularityToContentIdsMap;
+    Map<Integer, LinkedHashSet<Integer>> popularityToContentIdsMap;
 
     int maxPopularity;
 
@@ -37,7 +37,7 @@ public class ContentPopularityTracker2 {
 
         if (!popularityToContentIdsMap.containsKey(currentPopularity + 1)) {
 
-            popularityToContentIdsMap.put(currentPopularity + 1, new HashSet<>());
+            popularityToContentIdsMap.put(currentPopularity + 1, new LinkedHashSet<>());
         }
 
         popularityToContentIdsMap.get(currentPopularity + 1).add(contentId);
@@ -72,7 +72,7 @@ public class ContentPopularityTracker2 {
 
             if (!popularityToContentIdsMap.containsKey(currentPopularity - 1)) {
 
-                popularityToContentIdsMap.put(currentPopularity - 1, new HashSet<>());
+                popularityToContentIdsMap.put(currentPopularity - 1, new LinkedHashSet<>());
             }
 
             popularityToContentIdsMap.get(currentPopularity - 1).add(contentId);
@@ -100,9 +100,11 @@ public class ContentPopularityTracker2 {
 
         ContentPopularityTracker2 contentPopularityTracker2 = new ContentPopularityTracker2();
 
+        System.out.println(contentPopularityTracker2.mostPopular());
 
         contentPopularityTracker2.increasePopularity(7);
         contentPopularityTracker2.increasePopularity(7);
+        contentPopularityTracker2.increasePopularity(8);
         contentPopularityTracker2.increasePopularity(8);
         System.out.println(contentPopularityTracker2.mostPopular());
 
