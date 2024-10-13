@@ -57,7 +57,7 @@ public class RateLimiter2 {
         for (int i = 0; i < 2; i++) {
 
             boolean isAllowed = rateLimiter2.rateLimit(customerId);
-            System.out.println(" Request " + (i + 1) + " Allowed ? : " + isAllowed);
+            System.out.println(" Request " + (i + 6) + " Allowed ? : " + isAllowed);
         }
     }
 }
