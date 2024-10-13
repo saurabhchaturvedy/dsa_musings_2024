@@ -1,8 +1,8 @@
-# Concurrent Credit-Based Rate Limiting System
+# Concurrent Rate Limiting System
 
 ## Overview
 
-This system implements a **credit-based rate limiter** to control customer request rates. Each customer has a limit on the number of requests they can make per time window, and unused capacity accumulates as credits. When a customer exceeds their limit, credits are consumed. Once credits are exhausted, the customer is rate-limited.
+This system implements a **rate limiter** to control customer request rates. Each customer has a limit on the number of requests they can make per time window, and unused capacity accumulates as credits. When a customer exceeds their limit, credits are consumed. Once credits are exhausted, the customer is rate-limited.
 
 The system is scalable and designed to handle concurrent traffic. For distributed environments, the state can be shared across instances using a distributed cache or database.
 
