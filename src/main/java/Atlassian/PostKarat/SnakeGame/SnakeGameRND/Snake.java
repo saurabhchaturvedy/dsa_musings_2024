@@ -1,47 +1,65 @@
-package Atlassian.PostKarat.SnakeGame.SnakeGameRND;
-
-import java.util.LinkedList;
+package Atlassian.PostKarat.SnakeGame.SnakeGameRND;// Snake.java
+import java.util.ArrayList;
+import java.util.List;
 
 public class Snake {
-    private LinkedList<Point> body;  // Represents the snake's body as a list of points
-    private Direction currentDirection;
+    private List<Cell> body;
+    private Direction direction;
 
-    public Snake(Point start) {
-        body = new LinkedList<>();
-        body.add(start);  // Snake starts with one segment
-        currentDirection = Direction.RIGHT;
-    }
-
-    public LinkedList<Point> getBody() {
-        return body;
-    }
-
-    public void setDirection(Direction newDirection) {
-        if (!currentDirection.isOpposite(newDirection)) {
-            currentDirection = newDirection;
-        }
+    public Snake(Cell initialPosition) {
+        this.body = new ArrayList<>();
+        body.add(initialPosition);
+        this.direction = Direction.RIGHT; // Default initial direction
     }
 
     public void move() {
-        Point head = body.getFirst();
-        Point newHead = head.move(currentDirection);
+        Cell head = getHead();
+        int newRow = head.getRow();
+        int newCol = head.getCol();
 
-        // Add new head position
-        body.addFirst(newHead);
+        // Determine new head position based on the current direction
+        switch (direction) {
+            case UP:
+                newRow--;
+                break;
+            case DOWN:
+                newRow++;
+                break;
+            case LEFT:
+                newCol--;
+                break;
+            case RIGHT:
+                newCol++;
+                break;
+        }
 
-        // Remove tail unless growing (which would be handled in GameController)
-        body.removeLast();
+        // Add new head position and remove the tail
+        Cell newHead = new Cell(newRow, newCol);
+        body.add(0, newHead);
+        if (body.size() > 3) { // Assume initial size is 3
+            body.remove(body.size() - 1);
+        }
     }
 
     public void grow() {
-        // Add a new segment without removing the tail
-        Point head = body.getFirst();
-        Point newHead = head.move(currentDirection);
-        body.addFirst(newHead);
+        // Do not remove the last segment to grow the snake
+        body.add(body.get(body.size() - 1)); // Repeat last segment to grow
     }
 
-    public boolean checkCollisionWithSelf() {
-        Point head = body.getFirst();
-        return body.subList(1, body.size()).contains(head);  // Check if the head collides with any body segment
+    public boolean checkCollisionWithItself() {
+        Cell head = getHead();
+        return body.subList(1, body.size()).contains(head); // Check if head collides with body
+    }
+
+    public Cell getHead() {
+        return body.get(0);
+    }
+
+    public void setDirection(Direction direction) {
+        this.direction = direction;
+    }
+
+    public List<Cell> getBody() {
+        return body;
     }
 }

@@ -1,45 +1,42 @@
 package Atlassian.PostKarat.SnakeGame.SnakeGameRND;
 
-import java.util.Random;
-
+// Board.java
 public class Board {
-    private int width;
-    private int height;
+    private final int width;
+    private final int height;
     private Snake snake;
     private Food food;
-    private Random random;
 
     public Board(int width, int height) {
         this.width = width;
         this.height = height;
-        random = new Random();
+        this.food = new Food();
+        this.snake = new Snake(new Cell(height / 2, width / 2)); // Start in the middle of the board
+        placeFood();
     }
 
-    public void initializeGame() {
-        // Initialize snake at the center of the board
-        snake = new Snake(new Point(width / 2, height / 2));
-        spawnFood();
+    public int getWidth() {
+        return width;
     }
 
-    public Snake getSnake() {
-        return snake;
+    public int getHeight() {
+        return height;
+    }
+
+    public void placeFood() {
+        food.placeRandomly(snake, this);
     }
 
     public Food getFood() {
         return food;
     }
 
-    public void spawnFood() {
-        int x = random.nextInt(width);
-        int y = random.nextInt(height);
-        food = new Food(new Point(x, y));
+    public Snake getSnake() {
+        return snake;
     }
 
-    public boolean isFoodConsumed() {
-        return snake.getBody().getFirst().equals(food.getLocation());
-    }
-
-    public boolean isOutOfBounds(Point point) {
-        return point.getX() < 0 || point.getX() >= width || point.getY() < 0 || point.getY() >= height;
+    public boolean isOutOfBounds(Cell cell) {
+        return cell.getRow() < 0 || cell.getRow() >= height ||
+               cell.getCol() < 0 || cell.getCol() >= width;
     }
 }
