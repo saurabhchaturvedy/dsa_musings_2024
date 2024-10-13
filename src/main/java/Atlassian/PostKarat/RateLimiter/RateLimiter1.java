@@ -24,7 +24,7 @@ public class RateLimiter1 {
     }
 
 
-    boolean rateLimit(int customerId) {
+    synchronized boolean rateLimit(int customerId) {
         long currentTime = System.currentTimeMillis();
         Queue<Long> timestamps = userTimeStamps.getOrDefault(customerId, new LinkedList<>());
 
