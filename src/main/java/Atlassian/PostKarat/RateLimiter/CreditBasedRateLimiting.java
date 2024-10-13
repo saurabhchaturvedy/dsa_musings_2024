@@ -85,6 +85,7 @@ public class CreditBasedRateLimiting {
         int customerId = 1;
 
 
+
         for (int i = 0; i < 5; i++) {
             boolean allowed = rateLimiter.rateLimit(customerId);
             System.out.println("Request " + (i + 1) + " allowed: " + allowed);
