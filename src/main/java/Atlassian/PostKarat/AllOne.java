@@ -7,7 +7,7 @@ class AllOne {
     class ListNode {
 
         int count;
-        Set<String> keys;
+        LinkedHashSet<String> keys;
 
         ListNode next;
         ListNode prev;
@@ -15,7 +15,7 @@ class AllOne {
         ListNode(int count) {
 
             this.count = count;
-            this.keys = new HashSet<>();
+            this.keys = new LinkedHashSet<>();
 
         }
     }
