@@ -121,16 +121,16 @@ class SnakeGameImpl implements SnakeGame {
         int y = currentHead.getY();
 
         switch (currentDirection) {
-            case "UP":
+            case "LEFT":
                 y = (y - 1 + height) % height;
                 break;
-            case "DOWN":
+            case "RIGHT":
                 y = (y + 1) % height;
                 break;
-            case "LEFT":
+            case "UP":
                 x = (x - 1 + width) % width;
                 break;
-            case "RIGHT":
+            case "DOWN":
                 x = (x + 1) % width;
                 break;
         }
