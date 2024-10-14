@@ -168,7 +168,7 @@ public class SnakeGameImpl implements SnakeGame {
     public Cell getNextPosition() {
 
 
-        Cell cell = snake.get(0);
+        Cell cell = snake.getFirst();
 
         int x = cell.getX();
         int y = cell.getY();
