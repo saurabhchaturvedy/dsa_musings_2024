@@ -117,7 +117,7 @@ public class ContentPopularityTracker3 {
             }
         }
 
-        Collections.reverse(result);
+        //Collections.reverse(result);
         return result;
     }
 
@@ -134,6 +134,7 @@ public class ContentPopularityTracker3 {
         contentPopularityTracker3.increasePopularity(7);
         contentPopularityTracker3.increasePopularity(8);
         contentPopularityTracker3.increasePopularity(8);
+        contentPopularityTracker3.decreasePopularity(8);
 //        contentPopularityTracker3.increasePopularity(9);
 //        contentPopularityTracker3.increasePopularity(9);
 //        contentPopularityTracker3.increasePopularity(9);
