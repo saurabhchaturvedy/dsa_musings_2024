@@ -85,13 +85,13 @@ public class SnakeGameImpl implements SnakeGame {
 
         } else {
 
-            snake.remove(0);
+            snake.removeFirst();
         }
     }
 
     @Override
     public boolean isGameOver() {
-        return false;
+        return isGameOver;
     }
 
 

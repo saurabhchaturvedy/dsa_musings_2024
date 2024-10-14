@@ -20,8 +20,8 @@ public class SnakeDemoCollision {
         snakeGame.setDirection(Direction.UP);
         moveSnake(snakeGame, 1); // Move snake to the left for 3 steps
 
-       snakeGame.setDirection(Direction.UP);
-        moveSnake(snakeGame, 1); // Move snake up for 1 step to collide
+     //  snakeGame.setDirection(Direction.UP);
+      //  moveSnake(snakeGame, 1); // Move snake up for 1 step to collide
 
         // Check if the game is over
         if (snakeGame.isGameOver()) {

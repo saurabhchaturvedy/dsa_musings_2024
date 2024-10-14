@@ -13,8 +13,7 @@ public class Main {
 
         moveSnake(snakeGame, Direction.DOWN, 1);
         moveSnake(snakeGame, Direction.LEFT, 1);
-        moveSnake(snakeGame, Direction.UP, 1);
-        moveSnake(snakeGame, Direction.UP, 1);
+      //  moveSnake(snakeGame, Direction.UP, 1);
 
 
         if (snakeGame.isGameOver()) {
@@ -22,7 +21,7 @@ public class Main {
             System.out.println("Game Over !! Collision has occured");
         } else {
 
-            System.out.println(" Keep playing !! ");
+            System.out.println(" Current Snake Positions : " + snakeGame.getSnakePositions());
         }
 
     }
@@ -33,7 +32,7 @@ public class Main {
         for (int i = 0; i < steps; i++) {
 
             snakeGame.moveSnake(direction);
-            System.out.println(" Step : " + (i + 1) + " " + snakeGame.getSnakePositions());
+            System.out.println(" Direction : " + direction + " " + snakeGame.getSnakePositions());
 
             try {
                 Thread.sleep(500);
