@@ -26,8 +26,8 @@ public class FileReportService {
 
         for (Collection collection : collectionMap.values()) {
 
-            totalSize = calculateFileSize(collection, collectionSizes);
-            collectionSizes.put(collection.getName(), totalSize);
+            long totalSizeOverall = calculateFileSize(collection, collectionSizes);
+            collectionSizes.put(collection.getName(), totalSizeOverall);
 
         }
 
@@ -36,9 +36,9 @@ public class FileReportService {
     }
 
 
-    public int calculateFileSize(Collection collection, Map<String, Long> collectionSizes) {
+    public long calculateFileSize(Collection collection, Map<String, Long> collectionSizes) {
 
-        int size = 0;
+        long size = 0;
 
         for (String fileName : collection.getFiles()) {
 

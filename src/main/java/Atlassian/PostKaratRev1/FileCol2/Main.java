@@ -25,13 +25,7 @@ public class Main {
         Collection collection3 = new Collection("collection2");
         Collection collection4 = new Collection("collection3");
 
-        collection1.addFile("file2.txt");
-        collection1.addFile("file3.txt");
-        collection1.addFile("file4.txt");
 
-        collection2.addFile("file1.txt");
-        collection2.addChildCollection(collection3);
-        collection3.addFile("file4.txt");
 
         Map<String, Collection> collections = new HashMap<>();
         collections.put("collection", collection1);
