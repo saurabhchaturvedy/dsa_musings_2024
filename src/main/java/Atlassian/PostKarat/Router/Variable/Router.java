@@ -98,17 +98,20 @@ public class Router {
             String[] parts = pattern.split("/");
             StringBuilder regex = new StringBuilder();
             for (String part : parts) {
-
+                if (part.isEmpty()) {
+                    continue; // Skip empty parts (like leading '/')
+                }
+                regex.append("/");
                 if (part.startsWith(":")) {
 
                     variables.add(part.substring(1));
-                    regex.append("/([^/]+)");
+                    regex.append("([^/]+)");
                 } else {
 
-                    regex.append("/").append(Pattern.quote(part));
+                    regex.append(Pattern.quote(part));
                 }
             }
-
+            regex.append("/?$");
             return Pattern.compile(regex.toString());
         }
 
