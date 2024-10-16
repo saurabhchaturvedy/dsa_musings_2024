@@ -1,16 +1,17 @@
-package Atlassian.PostKaratRev1.FileCollection1;
+package Atlassian.PostKaratRev1.FileCollection;
 
 public class FileMetadata {
 
 
     String fileName;
 
-    int fileSize;
+    long fileSize;
 
     String collectionId;
 
 
     FileMetadata(String fileName, int fileSize, String collectionId) {
+
 
         this.fileName = fileName;
         this.fileSize = fileSize;
