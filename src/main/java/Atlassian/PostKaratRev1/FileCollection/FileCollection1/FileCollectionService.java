@@ -1,4 +1,4 @@
-package Atlassian.PostKaratRev1.FileCollection;
+package Atlassian.PostKaratRev1.FileCollection.FileCollection1;
 
 import java.util.*;
 
@@ -25,7 +25,7 @@ public class FileCollectionService {
         sortedList.sort((a, b) -> Long.compare(b.getValue(), a.getValue()));
 
 
-        Map<String, Long> topNCollections = new HashMap<>();
+        Map<String, Long> topNCollections = new LinkedHashMap<>();
 
         for (int i = 0; i < Math.min(noOfCollections, sortedList.size()); i++) {
 

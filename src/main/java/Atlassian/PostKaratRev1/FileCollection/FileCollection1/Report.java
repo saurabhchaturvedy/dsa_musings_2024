@@ -1,4 +1,4 @@
-package Atlassian.PostKaratRev1.FileCollection;
+package Atlassian.PostKaratRev1.FileCollection.FileCollection1;
 
 import java.util.Map;
 
