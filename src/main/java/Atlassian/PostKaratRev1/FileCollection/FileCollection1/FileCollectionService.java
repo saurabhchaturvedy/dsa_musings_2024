@@ -16,7 +16,7 @@ public class FileCollectionService {
 
             if (fileMetadata.collectionId != null) {
 
-                collectionSizes.put(fileMetadata.collectionId, collectionSizes.getOrDefault(fileMetadata, 0L) + fileMetadata.fileSize);
+                collectionSizes.put(fileMetadata.collectionId, collectionSizes.getOrDefault(fileMetadata.collectionId, 0L) + fileMetadata.fileSize);
             }
         }
 
@@ -53,13 +53,13 @@ public class FileCollectionService {
 
         Report report = generateReport(files, 2);
 
-
+        System.out.println(" Total File Size : " + report.totalFileSize);
         for (Map.Entry<String, Long> entry : report.collectionToFileSizeMap.entrySet()) {
 
 
-            System.out.println(" Total File Size : " + report.totalFileSize);
-            System.out.println(" Collection ID : " + entry.getKey());
-            System.out.println(" File Size : " + entry.getValue());
+            System.out.print(" Collection ID : " + entry.getKey());
+            System.out.print(" File Size : " + entry.getValue());
+            System.out.println();
         }
     }
 }
