@@ -30,7 +30,7 @@ public class FileCollectionService {
         sortedEntries.sort((a, b) -> Long.compare(b.getValue(), a.getValue()));
 
 
-        Map<String, Long> topNCollections = new HashMap<>();
+        Map<String, Long> topNCollections = new LinkedHashMap<>();
 
         for (int i = 0; i < Math.min(noOfCollectionsToReport, sortedEntries.size()); i++) {
 
