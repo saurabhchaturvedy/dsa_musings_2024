@@ -1,4 +1,4 @@
-package Atlassian.PostKaratRev1.ContentPopularity;
+package Atlassian.PostKaratRev1.ContentPopularity.ON;
 
 import java.util.HashMap;
 import java.util.LinkedList;
