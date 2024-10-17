@@ -47,7 +47,7 @@ public class PopularityON {
             if (contentToPopularityMap.get(contentId) <= 0) {
 
                 contentToPopularityMap.remove(contentId);
-                recencyList.remove(contentId);
+                recencyList.remove((Integer) contentId);
             }
         }
 
@@ -87,9 +87,9 @@ public class PopularityON {
         PopularityON popularityON = new PopularityON();
 
         popularityON.increasePopularity(7);
-        popularityON.increasePopularity(8);
         popularityON.increasePopularity(7);
-        popularityON.decreasePopularity(7);
+        popularityON.increasePopularity(8);
+        popularityON.increasePopularity(8);
 
         System.out.println(popularityON.getMostPopularContent());
     }
