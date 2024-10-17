@@ -1,12 +1,13 @@
 package Atlassian.PostKarat.SnakeGame.SnakeGameSelf;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class SnakeGameImpl implements SnakeGame {
 
 
-    List<Cell> snake;
+    LinkedList<Cell> snake;
     int steps;
     boolean isGameOver;
     int boardWidth;
@@ -15,12 +16,12 @@ public class SnakeGameImpl implements SnakeGame {
 
     SnakeGameImpl(int boardWidth, int boardHeight) {
 
-        this.snake = new ArrayList<>();
+        this.snake = new LinkedList<>();
         this.snake.add(new Cell(0, 0));
         this.snake.add(new Cell(0, 1));
         this.snake.add(new Cell(0, 2));
         this.snake.add(new Cell(0, 3));
-        this.snake.add(new Cell(0, 4));
+       // this.snake.add(new Cell(0, 4));
 
         this.steps = 0;
         this.isGameOver = false;
@@ -47,24 +48,24 @@ public class SnakeGameImpl implements SnakeGame {
         switch (direction) {
 
             case Direction.UP:
-                newX--;
+                newX = (newX-1+boardWidth)%boardWidth;
                 break;
             case Direction.DOWN:
-                newX++;
+                newX = (newX+1)%boardWidth;
                 break;
             case Direction.LEFT:
-                newY--;
+                newY = (newY-1+boardHeight)%boardHeight;;
                 break;
             case Direction.RIGHT:
-                newY++;
+                newY = (newY+1)%boardHeight;;
                 break;
         }
 
 
-        if (newX < 0) newX = boardHeight - 1;
-        if (newX >= boardHeight) newX = 0;
-        if (newY < 0) newY = boardWidth - 1;
-        if (newY >= boardWidth) newY = 0;
+//        if (newX < 0) newX = boardHeight - 1;
+//        if (newX >= boardHeight) newX = 0;
+//        if (newY < 0) newY = boardWidth - 1;
+//        if (newY >= boardWidth) newY = 0;
 
 
         Cell newHead = new Cell(newX, newY);

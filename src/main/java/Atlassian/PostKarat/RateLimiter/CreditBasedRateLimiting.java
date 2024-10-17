@@ -10,7 +10,7 @@ public class CreditBasedRateLimiting {
     int maxCredits;
 
     int windowSizeForRateLimitInMs;
-    int lastRefreshTime;
+
 
     Map<Integer, Integer> userRequestCountMap;
     Map<Integer, Integer> userCreditBalanceMap;

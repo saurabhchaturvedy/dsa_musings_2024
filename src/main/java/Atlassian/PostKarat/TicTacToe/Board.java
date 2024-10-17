@@ -1,53 +1,49 @@
-package LLD.LLD001.TicTacToe;
+package Atlassian.PostKarat.TicTacToe;
 
 public class Board {
 
 
     char[][] grid;
+
     int size;
 
 
     Board(int size) {
 
         this.size = size;
+
         this.grid = new char[size][size];
-        initializeBoard(size);
+        initializeBoard();
     }
 
-    public void initializeBoard(int size) {
+    public void initializeBoard() {
 
         for (int i = 0; i < size; i++) {
 
             for (int j = 0; j < size; j++) {
-
                 grid[i][j] = '-';
             }
         }
     }
 
-
     public void publishBoard() {
-
         for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
 
+            for (int j = 0; j < size; j++) {
                 System.out.print(grid[i][j] + " ");
             }
             System.out.println();
         }
+
     }
 
     public boolean isFull() {
-
         for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
 
-                if (grid[i][j] == '-') {
-                    return false;
-                }
+            for (int j = 0; j < size; j++) {
+                if (grid[i][j] == '-') return false;
             }
         }
-
         return true;
     }
 
@@ -61,11 +57,6 @@ public class Board {
     public void placeMove(Move move, char symbol) {
 
         grid[move.getRow()][move.getCol()] = symbol;
-    }
-
-
-    public int getSize() {
-        return size;
     }
 
 
@@ -87,7 +78,6 @@ public class Board {
 
         if (win) return true;
 
-
         win = true;
 
         for (int i = 0; i < size; i++) {
@@ -99,7 +89,6 @@ public class Board {
         }
 
         if (win) return true;
-
 
         if (row == col) {
             win = true;
@@ -113,7 +102,6 @@ public class Board {
             }
 
             if (win) return true;
-
         }
 
 
@@ -129,7 +117,6 @@ public class Board {
             }
 
             if (win) return true;
-
         }
 
         return false;

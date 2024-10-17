@@ -11,9 +11,10 @@ public class Main {
 
         System.out.println(" Initial Snake Position : " + snakeGame.getSnakePositions());
 
-         moveSnake(snakeGame, Direction.DOWN, 1);
-         moveSnake(snakeGame, Direction.LEFT, 1);
-         moveSnake(snakeGame, Direction.UP, 1);
+         moveSnake(snakeGame, Direction.DOWN, 4);
+         moveSnake(snakeGame, Direction.LEFT, 2);
+      //   moveSnake(snakeGame, Direction.LEFT, 1);
+      //   moveSnake(snakeGame, Direction.UP, 1);
 
 
         if (snakeGame.isGameOver()) {
@@ -33,6 +34,7 @@ public class Main {
 
             snakeGame.moveSnake(direction);
             System.out.println(" Direction : " + direction + " " + snakeGame.getSnakePositions());
+            System.out.println("Size of the snake : "+snakeGame.getSnakePositions().size());
 
             try {
                 Thread.sleep(500);

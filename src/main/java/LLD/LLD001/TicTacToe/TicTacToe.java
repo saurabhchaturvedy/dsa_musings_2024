@@ -43,7 +43,7 @@ public class TicTacToe {
             int row = scanner.nextInt();
             int col = scanner.nextInt();
 
-            if (!board.isValidMove(row, col)) {
+            while (!board.isValidMove(row, col)) {
 
                 System.out.println(" Please enter a valid move !");
                 row = scanner.nextInt();
