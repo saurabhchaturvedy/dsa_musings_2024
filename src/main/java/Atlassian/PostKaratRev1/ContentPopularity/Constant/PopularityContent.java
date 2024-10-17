@@ -45,7 +45,7 @@ public class PopularityContent {
         if (!contentToPopularityMap.containsKey(contentId)) return;
 
 
-        contentToPopularityMap.put(contentId, contentToPopularityMap.getOrDefault(contentId, 0) - 1);
+        contentToPopularityMap.put(contentId, (contentToPopularityMap.getOrDefault(contentId, 0) - 1));
 
         if (contentToPopularityMap.get(contentId) <= 0) {
 
@@ -74,7 +74,7 @@ public class PopularityContent {
             mostPopularContent = contentToNodeMap.get(contentId);
         } else if (contentToPopularityMap.get(contentId).equals(contentToPopularityMap.get(mostPopularContent.contentId))) {
 
-            mostPopularContent = recencyList.tail;
+            mostPopularContent = recencyList.tail.prev;
         }
     }
 

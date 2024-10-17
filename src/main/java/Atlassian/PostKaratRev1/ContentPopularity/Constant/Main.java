@@ -13,6 +13,7 @@ public class Main {
         popularityContent.increasePopularity(7);
         popularityContent.increasePopularity(8);
         popularityContent.increasePopularity(8);
+        popularityContent.decreasePopularity(8);
 
         System.out.println(popularityContent.getMostPopularContent());
     }

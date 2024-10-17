@@ -91,6 +91,8 @@ public class PopularityON {
         popularityON.increasePopularity(8);
         popularityON.increasePopularity(8);
 
+
+
         System.out.println(popularityON.getMostPopularContent());
     }
 }
