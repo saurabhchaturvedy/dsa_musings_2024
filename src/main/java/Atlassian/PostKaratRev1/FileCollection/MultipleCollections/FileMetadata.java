@@ -1,6 +1,5 @@
 package Atlassian.PostKaratRev1.FileCollection.MultipleCollections;
 
-import java.util.List;
 import java.util.Set;
 
 public class FileMetadata {
