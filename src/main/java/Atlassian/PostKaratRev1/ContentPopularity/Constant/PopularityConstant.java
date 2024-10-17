@@ -1,9 +1,6 @@
 package Atlassian.PostKaratRev1.ContentPopularity.Constant;
 
-import java.util.HashMap;
-import java.util.LinkedHashSet;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 public class PopularityConstant {
 
@@ -79,5 +76,29 @@ public class PopularityConstant {
 
 
         return popularityToContentIdsMap.lastEntry().getValue().iterator().next();
+    }
+
+
+    public List<Integer> topKPopular(int topK) {
+
+        List<Integer> result = new ArrayList<>();
+
+
+        for (Map.Entry<Integer, LinkedHashSet<Integer>> entry : popularityToContentIdsMap.descendingMap().entrySet()) {
+
+            LinkedHashSet<Integer> list = entry.getValue();
+
+            for (Integer contentId : list) {
+
+                result.add(contentId);
+                if (result.size() == topK) {
+                    break;
+                }
+            }
+
+
+        }
+
+        return result;
     }
 }

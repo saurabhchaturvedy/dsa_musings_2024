@@ -1,5 +1,7 @@
 package Atlassian.PostKaratRev1.ContentPopularity.Constant;
 
+import java.util.List;
+
 public class Main {
 
 
@@ -34,5 +36,18 @@ public class Main {
         tracker.decreasePopularity(8);
         tracker.decreasePopularity(8);
         System.out.println(tracker.mostPopular());
+
+        tracker.increasePopularity(9);
+        tracker.increasePopularity(9);
+        tracker.increasePopularity(9);
+        tracker.increasePopularity(9);
+
+        List<Integer> list = tracker.topKPopular(2);
+
+
+        System.out.println("top k popular");
+        for (int x : list) {
+            System.out.print(x + " ");
+        }
     }
 }
