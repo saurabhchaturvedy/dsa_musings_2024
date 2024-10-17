@@ -49,5 +49,13 @@ public class Main {
         for (int x : list) {
             System.out.print(x + " ");
         }
+        System.out.println(tracker.mostPopular());
+
+        Integer count = tracker.numberOfContentsWithAtleastPopularity(2);
+
+        System.out.println(" Count of content with atleast popularity : 2 "+count);
     }
+
+
+
 }

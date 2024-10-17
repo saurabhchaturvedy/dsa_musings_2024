@@ -101,4 +101,29 @@ public class PopularityConstant {
 
         return result;
     }
+
+
+    public Integer numberOfContentsWithAtleastPopularity(Integer K) {
+
+        int count = 0;
+
+
+        for (Map.Entry<Integer, LinkedHashSet<Integer>> entry : popularityToContentIdsMap.descendingMap().entrySet()) {
+
+            int popularity = entry.getKey();
+
+            if (popularity >= K) {
+
+                LinkedHashSet<Integer> linkedHashSet = entry.getValue();
+                count += linkedHashSet.size();
+            } else {
+
+                break;
+            }
+
+
+        }
+
+        return count;
+    }
 }
