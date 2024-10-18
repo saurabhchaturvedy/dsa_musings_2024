@@ -1,5 +1,7 @@
 package Atlassian.PostKarat18Oct.SnakeGame;
 
+import java.util.Random;
+
 public class Main {
 
 
@@ -17,7 +19,7 @@ public class Main {
 
             while (!snakeGame.isGameOver()) {
 
-                snakeGame.moveSnake(Direction.RIGHT);
+                snakeGame.moveSnake(getRandomDirection());
 
 
                 try {
@@ -69,6 +71,13 @@ public class Main {
             System.out.println(" Initial Snake Positions : " + snakeGame.getSnakeDirections());
         }
 
+    }
+
+
+    public static Direction getRandomDirection() {
+        Direction[] directions = Direction.values(); // Get all enum values
+        Random random = new Random();
+        return directions[random.nextInt(directions.length)]; // Select a random one
     }
 
 
