@@ -9,6 +9,7 @@ public class SnakeGameImpl implements SnakeGame {
 
     LinkedList<Cell> snake;
     int steps;
+    Direction direction;
     int boardWidth;
     int boardHeight;
     boolean isGameOver;
@@ -27,6 +28,7 @@ public class SnakeGameImpl implements SnakeGame {
         this.boardWidth = boardWidth;
         this.boardHeight = boardHeight;
         this.random = new Random();
+        this.direction = Direction.RIGHT;
 
         this.isGameOver = false;
         placeFood();
@@ -41,6 +43,11 @@ public class SnakeGameImpl implements SnakeGame {
 
 
         if (isGameOver) {
+            return;
+        }
+
+        if (!isValidDirectionChange(direction)) {
+            System.out.println("Invalid Direction, Snake cannot move into itself");
             return;
         }
 
@@ -121,6 +128,21 @@ public class SnakeGameImpl implements SnakeGame {
                 break;
             }
         }
+    }
+
+
+    public boolean isValidDirectionChange(Direction direction) {
+
+
+        if (this.direction.equals(Direction.UP) && direction.equals(Direction.DOWN) ||
+                this.direction.equals(Direction.DOWN) && direction.equals(Direction.UP)
+                || this.direction.equals(Direction.LEFT) && direction.equals(Direction.RIGHT) || this.direction.equals(Direction.RIGHT) && direction.equals(Direction.LEFT)
+        ) {
+
+            return false;
+        }
+
+        return true;
     }
 
     public Cell getFoodCell() {
