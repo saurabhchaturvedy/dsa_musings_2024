@@ -1,6 +1,7 @@
 package Atlassian.PostKarat18Oct.SnakeGame;
 
 import java.util.Random;
+import java.util.Scanner;
 
 public class Main {
 
@@ -19,7 +20,7 @@ public class Main {
 
             while (!snakeGame.isGameOver()) {
 
-                snakeGame.moveSnake(getRandomDirection());
+                snakeGame.moveSnake(snakeGame.getDirection());
 
 
                 try {
@@ -40,21 +41,53 @@ public class Main {
 
 
                 try {
-                    Thread.sleep(500);
+                    Thread.sleep(4000);
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
                 }
             }
         });
 
+        Thread inputThread = new Thread(() -> {
+            Scanner scanner = new Scanner(System.in);
+
+            while (!snakeGame.isGameOver()) {
+                System.out.print("Enter direction (W = UP, S = DOWN, A = LEFT, D = RIGHT): ");
+                String input = scanner.nextLine().toUpperCase();
+
+                // Update snake direction based on user input
+                switch (input) {
+                    case "W":
+                        snakeGame.setDirection(Direction.UP);
+                        break;
+                    case "S":
+                        snakeGame.setDirection(Direction.DOWN);
+                        break;
+                    case "A":
+                        snakeGame.setDirection(Direction.LEFT);
+                        break;
+                    case "D":
+                        snakeGame.setDirection(Direction.RIGHT);
+                        break;
+                    default:
+                        System.out.println("Invalid input! Please enter W, S, A, or D.");
+                        break;
+                }
+            }
+
+            scanner.close(); // Close scanner when game is over
+        });
+
 
         gameThread.start();
         renderThread.start();
+        inputThread.start();
 
 
         try {
             gameThread.join();
             renderThread.join();
+            inputThread.join();
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }

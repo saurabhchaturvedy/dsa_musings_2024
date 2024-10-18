@@ -21,7 +21,7 @@ public class SnakeGameImpl implements SnakeGame {
 
     SnakeGameImpl(int boardWidth, int boardHeight) {
 
-      this.snake = new LinkedList<>();
+        this.snake = new LinkedList<>();
 //        this.snake.add(new Cell(0, 0));
 //        this.snake.add(new Cell(0, 1));
 //        this.snake.add(new Cell(0, 2));
@@ -45,12 +45,15 @@ public class SnakeGameImpl implements SnakeGame {
 
     private void initializeSnake() {
 
-        int x = boardWidth / 2;
-        int y = boardHeight / 2;
-
-        for (int i = 0; i < 3; i++) {
-            this.snake.add(new Cell(x - 1, y));
-        }
+        this.snake.add(new Cell(0, 0));
+        this.snake.add(new Cell(0, 1));
+        this.snake.add(new Cell(0, 2));
+//        int x = boardWidth / 2;
+//        int y = boardHeight / 2;
+//
+//        for (int i = 0; i < 3; i++) {
+//            this.snake.add(new Cell(x - 1, y));
+//        }
     }
 
     @Override
@@ -198,5 +201,13 @@ public class SnakeGameImpl implements SnakeGame {
 
     public Cell getFoodCell() {
         return foodCell;
+    }
+
+    public Direction getDirection() {
+        return direction;
+    }
+
+    public void setDirection(Direction direction) {
+        this.direction = direction;
     }
 }
