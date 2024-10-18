@@ -76,7 +76,7 @@ public class RateLimiter {
     public static void main(String[] args) throws InterruptedException {
 
 
-        RateLimiter rateLimiter = new RateLimiter(3, 5, 10);
+        RateLimiter rateLimiter = new RateLimiter(3, 5, 5);
 
         int customerId = 123;
         for (int i = 0; i < 5; i++) {
