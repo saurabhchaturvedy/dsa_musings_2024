@@ -12,9 +12,54 @@ public class Main {
         System.out.println(" Initial Snake Positions : " + snakeGame.getSnakeDirections());
 
 
-        moveSnake(snakeGame, Direction.LEFT, 1);
-        moveSnake(snakeGame, Direction.DOWN, 1);
-        moveSnake(snakeGame, Direction.DOWN, 1);
+        Thread gameThread = new Thread(() -> {
+
+
+            while (!snakeGame.isGameOver()) {
+
+                snakeGame.moveSnake(Direction.RIGHT);
+
+
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
+            }
+        });
+
+
+        Thread renderThread = new Thread(() -> {
+
+
+            while (!snakeGame.isGameOver()) {
+
+                snakeGame.render();
+
+
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
+            }
+        });
+
+
+        gameThread.start();
+        renderThread.start();
+
+
+        try {
+            gameThread.join();
+            renderThread.join();
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+
+//        moveSnake(snakeGame, Direction.LEFT, 1);
+//        moveSnake(snakeGame, Direction.DOWN, 1);
+//        moveSnake(snakeGame, Direction.DOWN, 1);
 
         if (snakeGame.isGameOver()) {
 

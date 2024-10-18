@@ -3,6 +3,7 @@ package Atlassian.PostKarat18Oct.SnakeGame;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class SnakeGameImpl implements SnakeGame {
 
@@ -15,14 +16,15 @@ public class SnakeGameImpl implements SnakeGame {
     boolean isGameOver;
     Random random;
     Cell foodCell;
+    ReentrantLock lock;
 
 
     SnakeGameImpl(int boardWidth, int boardHeight) {
 
-        this.snake = new LinkedList<>();
-        this.snake.add(new Cell(0, 0));
-        this.snake.add(new Cell(0, 1));
-        this.snake.add(new Cell(0, 2));
+      this.snake = new LinkedList<>();
+//        this.snake.add(new Cell(0, 0));
+//        this.snake.add(new Cell(0, 1));
+//        this.snake.add(new Cell(0, 2));
 
         this.steps = 0;
         this.boardWidth = boardWidth;
@@ -31,6 +33,9 @@ public class SnakeGameImpl implements SnakeGame {
         this.direction = Direction.RIGHT;
 
         this.isGameOver = false;
+        this.lock = new ReentrantLock();
+
+        initializeSnake();
         placeFood();
 
         //  foodCell = new Cell(1, 3);
@@ -38,39 +43,70 @@ public class SnakeGameImpl implements SnakeGame {
 
     }
 
+    private void initializeSnake() {
+
+        int x = boardWidth / 2;
+        int y = boardHeight / 2;
+
+        for (int i = 0; i < 3; i++) {
+            this.snake.add(new Cell(x - 1, y));
+        }
+    }
+
     @Override
     public void moveSnake(Direction direction) {
 
+        lock.lock();
+        try {
 
-        if (isGameOver) {
-            return;
+
+            if (isGameOver) {
+                return;
+            }
+
+            if (!isValidDirectionChange(direction)) {
+                System.out.println("Invalid Direction, Snake cannot move into itself");
+                return;
+            }
+
+
+            Cell newHead = getNextCell(direction);
+
+            if (snake.contains(newHead)) {
+
+                isGameOver = true;
+                return;
+            }
+
+
+            snake.add(newHead);
+            steps++;
+
+
+            if (this.snake.getLast().equals(foodCell)) {
+
+
+            } else {
+
+                snake.removeFirst();
+            }
+        } finally {
+            lock.unlock();
         }
+    }
 
-        if (!isValidDirectionChange(direction)) {
-            System.out.println("Invalid Direction, Snake cannot move into itself");
-            return;
-        }
+    @Override
+    public void render() {
 
-
-        Cell newHead = getNextCell(direction);
-
-        if (snake.contains(newHead)) {
-
-            isGameOver = true;
-            return;
-        }
+        lock.lock();
+        try {
 
 
-        snake.add(newHead);
-        steps++;
-
-
-        if (this.snake.getLast().equals(foodCell)) {
-
-
-        } else {
-
-            snake.removeFirst();
+            System.out.println(" Direction : " + direction.name() + " => " + this.getSnakeDirections());
+            System.out.println(" Snake Length: " + this.getSnakeDirections().size());
+            System.out.println(" Current Food Position : " + this.getFoodCell());
+        } finally {
+            lock.unlock();
         }
     }
 
@@ -105,7 +141,15 @@ public class SnakeGameImpl implements SnakeGame {
 
     @Override
     public boolean isGameOver() {
-        return this.isGameOver;
+
+        lock.lock();
+        try {
+
+
+            return this.isGameOver;
+        } finally {
+            lock.unlock();
+        }
     }
 
     public List<Cell> getSnakeDirections() {
@@ -115,18 +159,25 @@ public class SnakeGameImpl implements SnakeGame {
 
     public void placeFood() {
 
-        while (true) {
+        lock.lock();
+        try {
 
-            int x = this.random.nextInt(boardWidth);
-            int y = this.random.nextInt(boardHeight);
 
-            Cell newFoodCell = new Cell(x, y);
+            while (true) {
 
-            if (!snake.contains(newFoodCell)) {
+                int x = this.random.nextInt(boardWidth);
+                int y = this.random.nextInt(boardHeight);
 
-                foodCell = newFoodCell;
-                break;
+                Cell newFoodCell = new Cell(x, y);
+
+                if (!snake.contains(newFoodCell)) {
+
+                    foodCell = newFoodCell;
+                    break;
+                }
             }
+        } finally {
+            lock.unlock();
         }
     }
 
