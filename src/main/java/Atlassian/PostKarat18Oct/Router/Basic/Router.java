@@ -1,4 +1,4 @@
-package Atlassian.PostKarat18Oct.Router;
+package Atlassian.PostKarat18Oct.Router.Basic;
 
 import java.util.HashMap;
 import java.util.Map;
