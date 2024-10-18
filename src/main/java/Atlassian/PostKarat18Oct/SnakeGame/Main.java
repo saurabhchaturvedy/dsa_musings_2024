@@ -12,7 +12,7 @@ public class Main {
         System.out.println(" Initial Snake Positions : " + snakeGame.getSnakeDirections());
 
 
-        moveSnake(snakeGame, Direction.RIGHT, 1);
+        moveSnake(snakeGame, Direction.LEFT, 1);
         moveSnake(snakeGame, Direction.DOWN, 1);
         moveSnake(snakeGame, Direction.DOWN, 1);
 
