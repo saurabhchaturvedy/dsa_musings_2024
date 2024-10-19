@@ -23,12 +23,4 @@ public enum PricingPlan {
         return monthlyCost;
     }
 
-    public static PricingPlan getById(String planId) {
-        for (PricingPlan plan : values()) {
-            if (plan.getPlanId().equals(planId)) {
-                return plan;
-            }
-        }
-        return null; // or throw an exception if the planId is invalid
-    }
 }
