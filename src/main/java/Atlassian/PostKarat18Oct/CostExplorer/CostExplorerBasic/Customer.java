@@ -1,11 +1,14 @@
-package Atlassian.PostKarat18Oct.CostExplorer;
+package Atlassian.PostKarat18Oct.CostExplorer.CostExplorerBasic;
 
-class Customer {
-    private String customerId;
-    private String productName;
-    private Subscription subscription;
+public class Customer {
 
-    // Constructors, getters, and setters
+
+    String customerId;
+
+    String productName;
+
+    Subscription subscription;
+
     public Customer(String customerId, String productName, Subscription subscription) {
         this.customerId = customerId;
         this.productName = productName;
