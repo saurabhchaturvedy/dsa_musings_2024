@@ -3,6 +3,7 @@ package Atlassian.PostKarat18Oct.CostExplorer;
 import java.math.BigDecimal;
 
 public enum PricingPlan {
+    TRIAL("TRIAL", new BigDecimal("0.00")),
     BASIC("BASIC", new BigDecimal("9.99")),
     STANDARD("STANDARD", new BigDecimal("49.99")),
     PREMIUM("PREMIUM", new BigDecimal("249.99"));
