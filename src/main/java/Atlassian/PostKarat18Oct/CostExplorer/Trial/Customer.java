@@ -1,9 +1,9 @@
-package Atlassian.PostKarat18Oct.CostExplorer;
+package Atlassian.PostKarat18Oct.CostExplorer.Trial;
 
 class Customer {
     private String customerId;
     private String productName;
-    private Subscription subscription;
+    Subscription subscription;
 
     // Constructors, getters, and setters
     public Customer(String customerId, String productName, Subscription subscription) {

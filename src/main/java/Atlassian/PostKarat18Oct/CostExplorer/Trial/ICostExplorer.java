@@ -1,4 +1,4 @@
-package Atlassian.PostKarat18Oct.CostExplorer;
+package Atlassian.PostKarat18Oct.CostExplorer.Trial;
 
 import java.math.BigDecimal;
 
