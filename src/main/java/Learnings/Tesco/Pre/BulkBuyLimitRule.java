@@ -14,8 +14,9 @@ public class BulkBuyLimitRule implements Rule {
 
     @Override
     public boolean applyRule(Cart cart) {
-        int quantity = cart.products.stream().mapToInt(Product::getQuantity).sum();
-        return quantity<=this.totalQuantity;
+      //  int quantity = cart.products.stream().mapToInt(Product::getQuantity).sum();
+       // return quantity<=this.totalQuantity;
+        return true;
     }
 
 
