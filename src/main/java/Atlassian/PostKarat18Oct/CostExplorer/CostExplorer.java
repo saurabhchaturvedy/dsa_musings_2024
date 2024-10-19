@@ -18,10 +18,10 @@ public class CostExplorer implements ICostExplorer {
         Arrays.fill(costs, BigDecimal.ZERO);
 
         LocalDate startDate = customer.getSubscription().getStartDate();
-        PricingPlan planId = customer.getSubscription().getPlanId();
+        PricingPlan pricingPlan = customer.getSubscription().getPlanId();
 
         // Get the monthly cost based on the plan ID
-        PricingPlan pricingPlan = PricingPlan.getById(planId.name());
+
         BigDecimal monthlyCost = (pricingPlan != null) ? pricingPlan.getMonthlyCost() : BigDecimal.ZERO;
 
         // Calculate costs for each month
