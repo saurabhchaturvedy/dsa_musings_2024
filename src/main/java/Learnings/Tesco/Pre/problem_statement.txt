@@ -26,3 +26,13 @@ so don't worry about reducing hardware cost etc
 What is the possible way to implement this If we have to update rank of million record on every order table?
 Is this possible or we can update rank at interval through a scheduler.
 
+
+
+The problem to Design a train booking system similar to IRCTC. The requirements were limited
+
+
+To search train journeys between a given source and destination
+Booking a seats on a train journey (emphasis was on handling concurrency)
+Cancel a booking
+I stumbled in this round as I was a bit overwhelmed due to the limited time and didn't manage to approach the problem systematically, but kept at it and came up with an abstract design.
+
