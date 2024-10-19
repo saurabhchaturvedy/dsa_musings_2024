@@ -6,9 +6,9 @@ import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
-        Subscription subscription = new Subscription("BASIC", LocalDate.parse("2021-01-01"));
+        Subscription subscription = new Subscription(PricingPlan.BASIC, LocalDate.parse("2021-01-01"));
         Customer customer = new Customer("c1", "Jira", subscription);
-        CostExplorer costExplorer = new CostExplorer(customer);
+        CostExplorer costExplorer = new CostExplorer(customer); // Using the interface reference
 
         // Get monthly costs
         BigDecimal[] monthlyCosts = costExplorer.monthlyCostList();
@@ -19,3 +19,4 @@ public class Main {
         System.out.println("Annual Cost: " + annualCost);
     }
 }
+

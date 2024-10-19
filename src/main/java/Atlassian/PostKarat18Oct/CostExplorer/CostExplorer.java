@@ -4,35 +4,25 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
-public class CostExplorer {
-    private List<PricingPlan> pricingPlans = Arrays.asList(
-            new PricingPlan("BASIC", new BigDecimal("9.99")),
-            new PricingPlan("STANDARD", new BigDecimal("49.99")),
-            new PricingPlan("PREMIUM", new BigDecimal("249.99"))
-    );
-
+public class CostExplorer implements ICostExplorer {
     private Customer customer;
 
     public CostExplorer(Customer customer) {
         this.customer = customer;
     }
 
+    @Override
     public BigDecimal[] monthlyCostList() {
         BigDecimal[] costs = new BigDecimal[12];
         Arrays.fill(costs, BigDecimal.ZERO);
 
         LocalDate startDate = customer.getSubscription().getStartDate();
-        String planId = customer.getSubscription().getPlanId();
+        PricingPlan planId = customer.getSubscription().getPlanId();
 
         // Get the monthly cost based on the plan ID
-        BigDecimal monthlyCost = pricingPlans.stream()
-                .filter(plan -> plan.getPlanId().equals(planId))
-                .map(PricingPlan::getMonthlyCost)
-                .findFirst()
-                .orElse(BigDecimal.ZERO);
+        PricingPlan pricingPlan = PricingPlan.getById(planId.name());
+        BigDecimal monthlyCost = (pricingPlan != null) ? pricingPlan.getMonthlyCost() : BigDecimal.ZERO;
 
         // Calculate costs for each month
         for (int month = 0; month < 12; month++) {
@@ -45,6 +35,7 @@ public class CostExplorer {
         return costs;
     }
 
+    @Override
     public BigDecimal annualCost() {
         return Arrays.stream(monthlyCostList())
                 .reduce(BigDecimal.ZERO, BigDecimal::add);

@@ -2,12 +2,15 @@ package Atlassian.PostKarat18Oct.CostExplorer;
 
 import java.math.BigDecimal;
 
-public class PricingPlan {
+public enum PricingPlan {
+    BASIC("BASIC", new BigDecimal("9.99")),
+    STANDARD("STANDARD", new BigDecimal("49.99")),
+    PREMIUM("PREMIUM", new BigDecimal("249.99"));
+
     private String planId;
     private BigDecimal monthlyCost;
 
-    // Constructors, getters, and setters
-    public PricingPlan(String planId, BigDecimal monthlyCost) {
+    PricingPlan(String planId, BigDecimal monthlyCost) {
         this.planId = planId;
         this.monthlyCost = monthlyCost;
     }
@@ -18,5 +21,14 @@ public class PricingPlan {
 
     public BigDecimal getMonthlyCost() {
         return monthlyCost;
+    }
+
+    public static PricingPlan getById(String planId) {
+        for (PricingPlan plan : values()) {
+            if (plan.getPlanId().equals(planId)) {
+                return plan;
+            }
+        }
+        return null; // or throw an exception if the planId is invalid
     }
 }
