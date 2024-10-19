@@ -1,0 +1,28 @@
+Draw a mix of high level/deployment diagram
+
+
+Input to system: A Kafka Topic in which you are getting messages containing
+Customer orders having customer ID and order amount. With every 100 rs spent,
+customer gets 1 reward point. Based on reward points accumulated, customer gets rank.
+
+
+Create two rest end points hosted on internet without authentication:
+
+
+Input: N
+Output: Top N customers based on rank
+Input: Customer ID
+Output: rank and reward points of this customer and +2 and -2 ranked customers.
+For simplicity, Assume 1000 requests / messages per second at any point.
+Also, assume millions of customers
+If possible, choose open source and avoid public cloud as you will not be able to
+detail about inner working of let's say a database.
+
+
+Scalability and resilience are the main abilities that is the focus for now,
+so don't worry about reducing hardware cost etc
+
+
+What is the possible way to implement this If we have to update rank of million record on every order table?
+Is this possible or we can update rank at interval through a scheduler.
+
