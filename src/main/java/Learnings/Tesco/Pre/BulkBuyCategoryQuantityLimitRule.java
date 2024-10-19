@@ -1,4 +1,6 @@
-package Learnings.Tesco;
+package Learnings.Tesco.Pre;
+
+import Learnings.Tesco.RealStuff19Oct.Cart;
 
 public class BulkBuyCategoryQuantityLimitRule implements Rule {
 
@@ -12,8 +14,9 @@ public class BulkBuyCategoryQuantityLimitRule implements Rule {
 
     @Override
     public boolean applyRule(Cart cart) {
-        int quantity = cart.getProducts().stream().filter(product -> product.getCategory().equalsIgnoreCase(category)).mapToInt(Product::getQuantity).sum();
-        return quantity <= totalQuantityLimit;
+        //   int quantity = cart.getProducts().stream().filter(product -> product.getCategory().equalsIgnoreCase(category)).mapToInt(Product::getQuantity).sum();
+        //  return quantity <= totalQuantityLimit;
+        return true;
     }
 
     @Override

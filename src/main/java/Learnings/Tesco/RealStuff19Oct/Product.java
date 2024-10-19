@@ -1,10 +1,11 @@
-package Learnings.Tesco;
+package Learnings.Tesco.RealStuff19Oct;
 
 public class Product {
 
-    int productId;
-    String category;
-    int quantity;
+
+    public int productId;
+    public String category;
+    public int quantity;
 
     public Product(int productId, String category, int quantity) {
         this.productId = productId;
@@ -12,11 +13,15 @@ public class Product {
         this.quantity = quantity;
     }
 
-    String getCategory() {
+    public String getCategory() {
         return category;
     }
 
-    int getQuantity() {
+    public int getQuantity() {
         return quantity;
+    }
+
+    public int getProductId() {
+        return productId;
     }
 }
