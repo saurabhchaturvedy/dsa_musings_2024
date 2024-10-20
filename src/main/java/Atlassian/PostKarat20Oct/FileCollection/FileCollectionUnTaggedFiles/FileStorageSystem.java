@@ -45,11 +45,11 @@ class FileStorageSystem {
     }
 
     private void updateTopCollections(String collectionId,boolean isChild) {
-        if(!isChild) {topCollections.removeIf(entry -> entry.getKey().equals(collectionId));}
+        topCollections.removeIf(entry -> entry.getKey().equals(collectionId));
         CollectionMetadata collection = collections.get(collectionId);
         if (collection != null) {
             long size = collection.getTotalSize();
-            if(!isChild) {topCollections.offer(new AbstractMap.SimpleEntry<>(collectionId, size));}
+             {topCollections.offer(new AbstractMap.SimpleEntry<>(collectionId, size));}
         }
     }
 

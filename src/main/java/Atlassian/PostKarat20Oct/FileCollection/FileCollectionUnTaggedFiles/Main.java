@@ -20,19 +20,22 @@ public class Main {
 //        storageSystem.addFileToCollection("childCollection1", new FileMetadata("file6.txt", 50));
 //        storageSystem.addChildCollection("collection1", childCollection);
 
-        fileStorageSystem.addFile(new FileMetadata("file1.txt",100));
+        fileStorageSystem.addFile(new FileMetadata("file1.txt", 100));
         fileStorageSystem.addFileToCollection("collection1", new FileMetadata("file2.txt", 200));
         fileStorageSystem.addFileToCollection("collection1", new FileMetadata("file3.txt", 200));
         fileStorageSystem.addFileToCollection("collection3", new FileMetadata("file4.txt", 300));
         fileStorageSystem.addFileToCollection("collection2", new FileMetadata("file4.txt", 300));
-        fileStorageSystem.addFile(new FileMetadata("file1.txt",10));
+        fileStorageSystem.addFile(new FileMetadata("file1.txt", 10));
 
         CollectionMetadata childCollection = new CollectionMetadata("collection2");
-        childCollection.addFile(new FileMetadata("file7.txt",300));
+        childCollection.addFile(new FileMetadata("file7.txt", 300));
+        fileStorageSystem.addFileToCollection("collection2", new FileMetadata("file3.txt", 200));
+        fileStorageSystem.addChildCollection("collection1", childCollection);
+
+        CollectionMetadata childCollection0 = new CollectionMetadata("collection3");
+        childCollection0.addFile(new FileMetadata("file7.txt",300));
         fileStorageSystem.addFileToCollection("collection2",new FileMetadata("file4.txt",300));
-        fileStorageSystem.addChildCollection("collection1",childCollection);
-
-
+        fileStorageSystem.addChildCollection("collection2",childCollection0);
 
 
         // Generating report for top 2 collections
