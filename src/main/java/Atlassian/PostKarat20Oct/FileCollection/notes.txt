@@ -1,0 +1,8 @@
+
+
+
+1. Basic File Collection
+2. File In Multiple Collection
+3. Hierarchical Collections
+4. Time Complexity : O(F + MlogM)
+5. Improved : O(F + MlogN) (Min Heap)
