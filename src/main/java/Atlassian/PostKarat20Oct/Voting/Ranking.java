@@ -36,7 +36,7 @@ public class Ranking {
         List<Ballot> ballots = new ArrayList<>();
         ballots.add(new Ballot(Arrays.asList("Alice", "Bob", "Charlie")));
         ballots.add(new Ballot(Arrays.asList("Bob", "Alice", "Charlie")));
-        ballots.add(new Ballot(Arrays.asList("Charlie", "Alice", "Bob")));
+        ballots.add(new Ballot(Arrays.asList("Bob", "Alice", "Charlie")));
 
         List<String> results = getRankings(ballots);
         System.out.println(results);
