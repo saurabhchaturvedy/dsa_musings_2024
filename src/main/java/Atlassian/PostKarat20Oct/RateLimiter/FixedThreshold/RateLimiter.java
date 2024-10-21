@@ -32,12 +32,27 @@ public class RateLimiter {
     }
 
 
+    public void resetLimit(int customerId) {
+
+        this.userToRequestCountMap.remove(customerId);
+        System.out.println(" Rate limit Reset :");
+    }
+
+
     public static void main(String[] args) {
 
 
         RateLimiter rateLimiter = new RateLimiter(3);
 
         int customerId = 123;
+
+        for (int i = 0; i < 5; i++) {
+
+            boolean isAllowed = rateLimiter.rateLimit(customerId);
+            System.out.println(" Request " + (i + 1) + " is allowed ? : " + isAllowed);
+        }
+
+        rateLimiter.resetLimit(customerId);
 
         for (int i = 0; i < 5; i++) {
 
