@@ -9,11 +9,11 @@ public class RateLimiter {
 
 
     public int maxRequests;
-    public int windowSizeForRateLimitInMs;
+    public long windowSizeForRateLimitInMs;
     public Map<Integer, Queue<Long>> userIdToTimeStampsMap;
 
 
-    RateLimiter(int maxRequests, int windowSizeForRateLimitInSeconds) {
+    RateLimiter(int maxRequests, long windowSizeForRateLimitInSeconds) {
 
         this.maxRequests = maxRequests;
         this.windowSizeForRateLimitInMs = windowSizeForRateLimitInSeconds * 1000;
@@ -30,11 +30,17 @@ public class RateLimiter {
 
         long previousTimeStamp = timestamps.peek() == null ? 0 : timestamps.peek();
 
-        if (!timestamps.isEmpty() && (currentTime - previousTimeStamp) > windowSizeForRateLimitInMs) {
+
+        long timeDifference = currentTime - previousTimeStamp;
+        System.out.println("Time Difference " + timeDifference + " milli seconds ");
+        System.out.println("Window Size " + windowSizeForRateLimitInMs + " milli seconds ");
+
+        if (!timestamps.isEmpty() && timeDifference > windowSizeForRateLimitInMs) {
 
             timestamps.poll();
         }
 
+        System.out.println("Timestamp size : " + timestamps.size());
         if (timestamps.size() < maxRequests) {
 
             timestamps.add(currentTime);
