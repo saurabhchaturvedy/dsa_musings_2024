@@ -46,3 +46,26 @@ public class Ranking {
         // Charlie 3 + 1 + 1 = 5
     }
 }
+
+//overall time complexity of the solution is:
+//
+//𝑂
+//        (
+//                𝑏
+//×
+//        𝑟
+//        +
+//        𝑚
+//        log
+//        ⁡
+//        𝑚
+//        )
+//O(b×r+mlogm)
+//Where:
+//
+//𝑏
+//b is the number of ballots,
+//        𝑟
+//r is the maximum number of ranked candidates in a ballot,
+//𝑚
+//m is the number of unique candidates.
