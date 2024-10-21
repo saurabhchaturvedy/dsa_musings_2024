@@ -92,12 +92,12 @@ public class PopularityCreator {
             LinkedHashSet<Integer> contentIds = entry.getValue();
 
             for (Integer contentId : contentIds) {
-
-                result.add(contentId);
-
                 if (result.size() == topK) {
                     break;
                 }
+                result.add(contentId);
+
+
             }
 
 
