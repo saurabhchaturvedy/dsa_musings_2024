@@ -1,8 +1,8 @@
-package Atlassian.PostKaratRev1.ContentPopularity.Constant;
+package Atlassian.PostKarat20Oct.Popularity;
 
 import java.util.*;
 
-public class PopularityConstant {
+public class PopularityCreator {
 
 
     Map<Integer, Integer> contentToPopularityMap;
@@ -10,7 +10,7 @@ public class PopularityConstant {
     int mostRecentContentId;
 
 
-    PopularityConstant() {
+    PopularityCreator() {
 
         this.contentToPopularityMap = new HashMap<>();
         this.popularityToContentIdsMap = new TreeMap<>();
@@ -21,6 +21,7 @@ public class PopularityConstant {
     public void increasePopularity(int contentId) {
 
         int currentPopularity = contentToPopularityMap.getOrDefault(contentId, 0);
+
 
         if (currentPopularity > 0) {
 
@@ -34,16 +35,17 @@ public class PopularityConstant {
         int newPopularity = currentPopularity + 1;
         contentToPopularityMap.put(contentId, newPopularity);
         popularityToContentIdsMap.computeIfAbsent(newPopularity, k -> new LinkedHashSet<>()).add(contentId);
-        mostRecentContentId = contentId;
+
+        this.mostRecentContentId = contentId;
     }
 
 
     public void decreasePopularity(int contentId) {
 
         if (!contentToPopularityMap.containsKey(contentId)) {
+
             return;
         }
-
 
         int currentPopularity = contentToPopularityMap.getOrDefault(contentId, 0);
 
@@ -52,6 +54,7 @@ public class PopularityConstant {
 
             popularityToContentIdsMap.remove(currentPopularity);
         }
+
 
         int newPopularity = currentPopularity - 1;
 
@@ -64,7 +67,8 @@ public class PopularityConstant {
             contentToPopularityMap.remove(contentId);
         }
 
-        mostRecentContentId = contentId;
+
+        this.mostRecentContentId = contentId;
     }
 
 
@@ -74,24 +78,23 @@ public class PopularityConstant {
             return -1;
         }
 
-
-        return popularityToContentIdsMap.lastEntry().getValue().getFirst();
-
+        return popularityToContentIdsMap.lastEntry().getValue().getLast();
     }
 
 
-    public List<Integer> topKPopular(int topK) {
+    public List<Integer> getTopK(int topK) {
 
         List<Integer> result = new ArrayList<>();
 
 
-        for (Map.Entry<Integer, LinkedHashSet<Integer>> entry : popularityToContentIdsMap.descendingMap().entrySet()) {
+        for (Map.Entry<Integer, LinkedHashSet<Integer>> entry : this.popularityToContentIdsMap.descendingMap().entrySet()) {
 
-            LinkedHashSet<Integer> list = entry.getValue();
+            LinkedHashSet<Integer> contentIds = entry.getValue();
 
-            for (Integer contentId : list) {
+            for (Integer contentId : contentIds) {
 
                 result.add(contentId);
+
                 if (result.size() == topK) {
                     break;
                 }
@@ -104,27 +107,58 @@ public class PopularityConstant {
     }
 
 
-    public Integer numberOfContentsWithAtleastPopularity(Integer K) {
-
-        int count = 0;
+    public Integer numberOfContentWithAtleastPopularity(int k) {
 
 
-        for (Map.Entry<Integer, LinkedHashSet<Integer>> entry : popularityToContentIdsMap.descendingMap().entrySet()) {
+        int numberOfContentIds = 0;
+
+
+        for (Map.Entry<Integer, LinkedHashSet<Integer>> entry : this.popularityToContentIdsMap.descendingMap().entrySet()) {
 
             int popularity = entry.getKey();
 
-            if (popularity >= K) {
+            if (popularity >= k) {
+                int contentIdsSize = entry.getValue().size();
+                numberOfContentIds += contentIdsSize;
 
-                LinkedHashSet<Integer> linkedHashSet = entry.getValue();
-                count += linkedHashSet.size();
-            } else {
-
-                break;
             }
-
-
         }
 
-        return count;
+        return numberOfContentIds;
+    }
+
+
+    public static void main(String[] args) {
+
+
+        PopularityCreator popularityCreator = new PopularityCreator();
+
+
+        popularityCreator.increasePopularity(7);
+        popularityCreator.increasePopularity(7);
+        popularityCreator.increasePopularity(8);
+        popularityCreator.increasePopularity(8);
+
+        System.out.println(popularityCreator.mostPopular());
+
+
+        popularityCreator.decreasePopularity(8);
+
+        System.out.println(popularityCreator.mostPopular());
+
+        popularityCreator.increasePopularity(8);
+        popularityCreator.increasePopularity(8);
+        popularityCreator.increasePopularity(8);
+
+        popularityCreator.increasePopularity(4);
+        popularityCreator.increasePopularity(4);
+        popularityCreator.increasePopularity(4);
+        popularityCreator.increasePopularity(4);
+
+        System.out.println(popularityCreator.mostPopular());
+
+        System.out.println(popularityCreator.getTopK(2));
+
+        System.out.println(popularityCreator.numberOfContentWithAtleastPopularity(2));
     }
 }
