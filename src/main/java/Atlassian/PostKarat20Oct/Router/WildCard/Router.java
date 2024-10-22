@@ -90,10 +90,11 @@ public class Router {
     public static void main(String[] args) {
 
 
-        Router router = new Router.RouteBuilder().withRoute("/foo", "homePage").build();
+        Router router = new Router.RouteBuilder().withRoute("/foo", "homePage").withRoute("/data/*/view", "accountsView").build();
 
         System.out.println(router.callRoute("/foo"));
         System.out.println(router.callRoute("/fooz"));
+        System.out.println(router.callRoute("/data/123/view"));
     }
 }
 
