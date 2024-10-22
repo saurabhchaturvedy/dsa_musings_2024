@@ -125,11 +125,11 @@ public class Router {
 
             if (!matcher.matches()) {
                 return null;
-            }
-            else {
+            } else {
 
-                System.out.println(" Identified Groups : "+matcher.group());
-                System.out.println(" Identified Groups # : "+matcher.group(1));
+                System.out.println(" Identified Groups : " + matcher.group());
+                System.out.println(" Identified Groups 0 Index : " + matcher.group(0));
+                System.out.println(" Identified Groups # : " + matcher.group(1));
             }
 
             Map<String, String> variables = new HashMap<>();
@@ -137,7 +137,7 @@ public class Router {
             for (int i = 0; i < this.variables.size(); i++) {
 
 
-                System.out.println(matcher.group(i+1));
+                System.out.println(matcher.group(i + 1));
                 variables.put(this.variables.get(i), matcher.group(i + 1));
             }
 
