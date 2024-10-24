@@ -33,6 +33,7 @@ public class Collection {
     public void addChildCollection(Collection collection) {
 
         this.collections.add(collection);
+        cachedSize = null;
     }
 
 
