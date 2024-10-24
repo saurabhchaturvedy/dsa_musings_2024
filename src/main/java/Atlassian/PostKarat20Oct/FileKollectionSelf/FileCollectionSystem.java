@@ -86,7 +86,7 @@ public class FileCollectionSystem {
             if (count >= K)
                 break;
 
-            result.add(collection.getName());
+            result.add(collection.getName() + " " + collection.getTotalSize());
             count++;
         }
 
@@ -112,5 +112,16 @@ public class FileCollectionSystem {
         System.out.println(fileCollectionSystem.getTotalFileSize());
 
         System.out.println(fileCollectionSystem.getTopKCollections(2));
+
+
+        FileCollectionSystem fileCollectionSystem2 = new FileCollectionSystem();
+
+        fileCollectionSystem2.addFile("file1.txt", 100, null);
+        fileCollectionSystem2.addFile("file2.txt", 230, Arrays.asList("c1"));
+        fileCollectionSystem2.addFile("file3.txt", 230, Arrays.asList("c2"));
+        fileCollectionSystem2.addFile("file3.txt", 400, Arrays.asList("c3"));
+
+        System.out.println(fileCollectionSystem2.getTotalFileSize());
+        System.out.println(fileCollectionSystem2.getTopKCollections(3));
     }
 }
